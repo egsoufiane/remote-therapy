@@ -1,0 +1,140 @@
+.home-section{
+   
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.home-container{
+/*     
+    background: var(--color-white); */
+    /* width: 100%; */
+
+    padding: 1rem;
+    margin: 1rem;
+
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    place-items: center; */
+
+    /* display: flex;
+    flex-direction: rows;
+    justify-content: center;
+    align-items: center; */
+
+    /* flex-wrap: wrap; */
+
+    /* display: grid;
+    grid-template-columns: auto 1fr auto;
+    justify-content: center;
+    align-items: center; */
+
+    display: flex;
+
+
+    /* height: 100vh; */
+
+    /*box style*/
+    /* position: relative; */
+     /* z-index: 1; */
+ 
+    /* background-color: var(--color-white); */
+/*     
+    background-color: rgba(253, 253, 253, 0.8); 
+    padding: 3rem 6rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; */
+
+
+
+}
+
+
+.home-slogan {
+    padding:2rem;
+}
+
+.home-picture-container{
+
+   
+    /* border-radius: ;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent; */
+    /* border-color: black; */
+
+
+    /* height: 250px;
+    width: 250px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+     */
+
+ 
+    
+}
+
+.home-picture{
+  
+    /* border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    width: 100%;
+    height: auto;
+    float: right;
+    transition: ease 0.2s;
+    padding: 2rem;   
+
+}
+
+.clearfix::before {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+.home-picture:hover{
+    transform: scale(1.1);
+}
+
+/* .login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+} */
+
+
+@media screen and (max-width: 1024px){
+
+    .home-container{
+        /* flex-wrap: wrap; */
+    }
+
+    .home-picture{
+      
+
+    }
+
+
+
+  }
+  
+  
+  @media screen and (max-width: 600px){
+
+    .home-picture{
+        /* height: 350px; */
+    }
+
+   
+  }
+  
