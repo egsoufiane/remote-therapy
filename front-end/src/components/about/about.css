@@ -3,14 +3,13 @@
     display: flex;
     flex-direction: column;
     /* padding: 1rem; */
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     /* gap: 1rem; */
     /* margin: 3rem 0; */
     padding: 0;
     /* background-color: white; */
     
-
 
 }
 
@@ -19,10 +18,11 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 700px;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: white;
+   
 }
 
 .box-middle{
@@ -50,31 +50,42 @@
 }
 
 .about-box{
-    /* display: flex;
-    flex-direction: row; */
-    /* justify-content: center; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 90%;
     margin: 0;
     padding: 0;
-    /* gap: 1rem; */
+    gap: 3rem;
     transition: all 0.2s;
    
 }
 
-.about-box:hover{
-    transform: scale(1.1);
-   
-}
+/* .about-box:hover{
+    transform:  scale(1.1);
+
+} */
 
 .about-title{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 4rem;
     width: 100%;
     /* margin-bottom: 2rem; */
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
+    background-image: url("../../assets/aboutH3.png");
+    background-position: center top;
+    background-color: transparent;
+
+    /* background-image: rgba(242, 245, 244, 0.126) url("../src/assets/aboutH2.jpg") no-repeat fixed center; */
+    height: 100vh;
+
+   
 }
+
+
 
 .about-img {
     /* height: 400px;
@@ -87,23 +98,39 @@
     margin-right: 10px; */
 
 
-    float: left;
-    max-width: 45%;
+  
+    max-width: 40%;
     height: auto; /* to maintain the aspect ratio*/
-    margin-right: 15px;
+    /* margin-right: 15px; */
+    border-radius: 10px;
     /* border: 3px solid black;     */
+    transition: ease 0.3s;
+
+
+  
 }
+
+.about-img:hover{
+    transform: scale(1.1);
+
+}
+
 
 .box-right img{
-    float:right;
+    /* float:right;
     margin-right: 0;
-    margin-left: 15px;
+    margin-left: 15px; */
 }
 
-.clearfix::before {
+/* .clearfix::before {
     content: "";
     display: table;
     clear: both;
+} */
+
+.about-title h2{
+    padding-top: 2rem; 
+    color: white;
 }
 
 
@@ -111,38 +138,44 @@
     font-size: 3rem;
     margin-bottom: 2rem;
     text-align: right;
+    color: white;
 }
 
 .about-section h2{
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
     font-weight: 400;
 }
 
 .box h2{
-    font-size: 3rem;
-    color: white;
+    font-size: 2rem;
+    color: black;
     font-weight: 500;
     transition: ease 0.4s;
 }
 
 
-.box:first-child h2:hover,
+/* .box:first-child h2:hover,
 .box:last-child h2:hover{
     color: var(--secondary-color);
     transform: scale(1.2);
     
-}
+} */
 
 
 .box-middle h2{
-    color: black;
+    /* color: black; */
 }
 
 
-
 .about-box p {
-    padding: 1rem;
-    font-size: 1.1rem;      
+    /* padding: 1rem; */
+    font-weight: 600;
+    font-size: 1.2rem; 
+    color: var(--black-color);  
+}
+
+.about-description{
+
 }
 
 .box-left p{
@@ -171,13 +204,15 @@
 .double-text{
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.2rem;
     margin-bottom: 0.5rem;
 }
 
 .double-text h2{
-    font-weight: 500;
+    /* font-weight: 400; */
 }
+
+
 
 /* .third-header{
     transition: all 0.3s;
@@ -189,6 +224,24 @@
 } */
 
 
+
+/* transitions when scrolling down*/
+
+
+/* .slide-in-element{
+    transform: translateY(80px); Start 100px belo
+    opacity: 0; Hidden by default
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+} */
+
+.slide-in-element.visible{
+    transform: translateY(0); /* Slide to its original position */
+    opacity: 1; /* Fully visible */
+}
+
+
+
+
 @media screen and (max-width: 1024px){
 
     .about-container{
@@ -197,15 +250,16 @@
 
     .about-box {
 
-        /* display: flex;
+        display: flex;
         flex-direction: column;
-        justify-content: center; */
-    
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
     }
 
 
     .about-img{
-        max-width: 70%;
+        max-width: 90%;
 
     }
 

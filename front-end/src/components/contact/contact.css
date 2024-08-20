@@ -1,0 +1,111 @@
+.contact-section{
+
+    margin: 0 20px;
+    margin-bottom: 30px;
+
+}
+
+.contact-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem;
+
+
+} 
+
+.message-area{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem;
+    h1{
+        font-size: 3rem;
+    }
+    p{
+        font-size: 1.2rem;
+    }
+    
+}
+
+
+.infos-container{
+    width: 40%;
+    padding: 1rem;
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px;
+}
+
+
+.entryareac{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contact-label{
+    color: black;
+    font-weight: 600;
+}
+
+.name{
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+
+}
+
+input{
+    height: 40px;
+    padding: 0 0.5rem;
+    background-color: var(--neutral-color);
+
+}
+
+textarea{
+    padding: 0.5rem;
+    background-color: var(--neutral-color);
+    resize: none;
+}
+
+
+@media screen and (max-width: 1024px){
+
+
+    .contact-container{
+        display: flex;
+        flex-direction: column;
+    
+    
+    } 
+
+
+    .infos-container{
+        width: 90%;
+    
+    }
+
+
+
+    .name{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1024px){
+
+    .infos-container{
+        width: 100%;
+    
+    }
+
+
+
+  
+}

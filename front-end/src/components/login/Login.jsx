@@ -11,15 +11,29 @@ const Login = () => {
         
 
         <section className='login-section'>
-            <div  className='container login-container-outer'>
-                    <div className='login-message center'>
+           
+                    {/* <div className='login-message center'>
                         <a href='/home'><img src={logo} alt='logo' className='logo-login'/></a>
                         <h3 className='center'>Login or create an account!</h3>
 
-                    </div>
+                    </div> */}
 
-                    <div className='login-container-inner cool-container'>
-                        <h2 className='center'>Sign in!</h2>
+                    <div className='login-container-inner '>
+                        
+                        <form className='login-form'>
+                            <div className='input-unit'>
+                                <input type='email' id='email' name='firstname' className='textfield email' placeholder='Email'/>
+                            </div>
+                    
+                            <div className='input-unit'>
+                                <input type='password' id='password' name='password' className='textfield password' placeholder='Password'/>
+                            </div>
+                            <div className="checkbox-input">
+                                <input type='checkbox' value='rememberme'/>
+                                <label for='rememberme' Style='font-weight: 400'>Remember me</label>
+                            </div>
+                            <input type='sumbit' value='Log In' className='btn btn-secondary'/>
+                        </form>
                         {/* <form method='post' action='/loggedin' className='login-form'>
             
                             <label for="email" >Email address:</label>
@@ -32,7 +46,7 @@ const Login = () => {
 
                         </form> */}
 
-                        <form className='login-form'>
+                        {/* <form className='login-form'>
 
                             <div className="entryarea">
                                 <input  type="email" id='email' name="email" className='email input-cool' maxlength={maxL} />
@@ -44,25 +58,15 @@ const Login = () => {
                                 <div className="label-cool">password</div>
                             </div>
 
-{/*                           
-                            <div className="entryarea">
-                                <input type="text" className="input-cool" />
-                                <div className="label-cool">fullname</div>
-                            </div>
- */}                
-                            <input type='submit' id='submit' value='Sign in' className='btn btn-primary'/>
+                            <input type='submit' id='submit' value='Sign in' className='btn btn-secondary'/>
                             
                         </form> 
-                        
+                         */}
                        
 
-                        <a className='center' href='#'>Forgotten password?</a>
 
-                        <hr/>
-            
-                        <p className='center' >New user? <a href='/register'>Create an account</a></p>
                     </div>
-            </div>
+            
         </section>
 
     );

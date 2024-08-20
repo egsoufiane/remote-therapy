@@ -12,7 +12,7 @@ const Footer = () => {
     const iconSize = 20;
     return(
 
-        <section className="footer-section-outer">
+        <div className="footer-section-outer">
             <div className='footer-section'>
                 <h4>Copyright © {year} ES. All rights reserved.</h4>
                 <div className='socials'>
@@ -21,7 +21,7 @@ const Footer = () => {
                     <a href=""><FaFacebook className="social_icon"size={iconSize}/></a>
                 </div>
             </div>
-        </section>
+        </div>
         );
 }
 

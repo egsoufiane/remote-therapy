@@ -1,7 +1,12 @@
 import React from 'react'
 import './home.css'
-import hp from '../../assets/Counseling-PNG-Picture.png';
+import hp from '../../assets/home3.jpg';
 import hp2 from '../../assets/home-picture2.jpg';
+
+
+
+
+
 
 const Home = () => {
 
@@ -11,22 +16,28 @@ const Home = () => {
     return(
         
         <section className='home-section'>
-            <div className='container cool-container home-container'>
+            <div className='container home-container'>
                 <div className='home-slogan'>
-                    <h1>Therapy Now!</h1>
-                    <h2></h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eos, doloribus illo dolores mai
-                        ores totam dolorem nihil numquam. Fugit quas minima odit sapiente illo temporibus praesentium rem aperiam 
-                        incidunt quia.
-                    </p>
+                    <h1 Style='color: white; font-size: 2.5rem;'>Connecting You to Better Mental Health </h1>
+                    <h1 Style="font-size: 2.5rem" >Therapy Now!</h1>
+                 
+                  
+                    {/* <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eos, doloribus illo dolores maiores totam 
+                        dolorem nihil numquam. Fugit quas minima odit sapiente illo temporibus praesentium rem aperiam incidunt quia.
+                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit error quidem temporibus! Tempore itaque, 
+                         neque praesentium dolor vel eos cum? Reiciendis modi architecto ipsa ipsam id a, non dolorum eaque?
+                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur eos, doloribus illo dolores maiores totam 
+                        dolorem nihil numquam. Fugit quas minima odit sapiente illo temporibus praesentium rem aperiam incidunt quia.
+                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit error quidem temporibus! Tempore itaque, 
+                         neque praesentium dolor vel eos cum? Reiciendis modi architecto ipsa ipsam id a, non dolorum eaque?
+                    </p> */}
                     <a href='/about'><button className='btn btn-secondary' > Read More! </button></a>
 
                 </div>
-                <div className='home-picture-container'>
-                    <img className='home-picture' src={hp} alt='Home Picture'/>
-                </div>
-
+          
+                <img  src={hp} alt='Home Picture' className='home-picture'/>
+               
                 <div className='login-container'>
                         
                     {/* <h2>Login!</h2> */}

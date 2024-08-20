@@ -11,13 +11,16 @@
     margin: 2rem 0; */
 
     display: flex;
-    padding: 1rem;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    margin: 1rem;  
+    width:100%;
+    /* padding: 1rem;
+    padding-top: 0;
+    margin: 1rem; 
+    margin-top: 0; */
+    margin: 0;
+    padding: 0;
 
-   
   
 }
 
@@ -27,6 +30,7 @@
     justify-content: space-evenly;
     align-items: center;
     /* flex-wrap: wrap; */
+    margin-top: 0;
  
 }
 
@@ -35,28 +39,28 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 30%;
+    width: 100%; 
     /* padding: 4rem 7rem; */
-    margin: 3rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
- 
-    
+    /* margin: 3rem; */
+    padding: 0 1rem;
+    margin-top: 0;
 
+ 
     
 }
 
 .logo-login{
     height: 120px;
     padding: 1rem;
+    margin-top: 0;
+ 
 }
 
 .login-form{
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
- 
-  
+    gap: 1rem;
+    margin-top: 1rem;
 
 }
 
@@ -70,6 +74,13 @@
     align-self: center;
 }
 
+.checkbox-input{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2rem;
+}
+
 
 
 @media screen and (max-width: 1024px){
@@ -77,7 +88,6 @@
     .login-container-outer{
         display: flex;
         flex-direction: column;
-
 
     }
 
