@@ -1,0 +1,353 @@
+.services-section{
+    
+    height: 100%;
+    /* margin: 0 20px; */
+}
+
+.services-container{
+    display:flex;
+    flex-direction: column;
+    gap: 4rem;
+    /* margin: 2rem; */
+    justify-content: center;
+    align-items: center;
+    /* padding: 2rem; */
+}
+
+
+.services-header{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    /* gap:2rem; */
+    padding: 1rem;
+    /* margin-top: 3rem; */
+    height: 100vh;
+      
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;  
+        margin-bottom: 5px;
+        text-align: center;
+        color: var(--accent-color);
+       
+
+    }
+
+    h2 {
+        color: var(--accent-color);
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: 500;
+        text-align: center;
+    
+    }   
+}
+
+.services-intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    h2 {
+        color: var(--accent-color);
+        text-align: center;
+    }
+    h3{
+        text-align: center;
+    }
+    p{
+        text-align: center;
+    }
+
+
+}
+
+
+.services-img{
+    width: 50%;
+    height: auto;
+    padding: 1rem;
+    /* padding: 0; */
+    /* border-radius: 3px;
+    border: 3px solid var(--text-color); */
+    align-self: center;
+}
+
+
+.therapy-services{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1rem; */
+    height: 100vh;
+    width: 100%;
+    /* background-color: #FFFFFF; */
+   
+}
+
+.services-msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+
+}
+
+.services-msg h2{
+    color: var(--accent-color);
+}
+
+
+
+.services-list{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    /* margin-bottom: 50px; */
+    padding: 3rem 2rem;
+    /* height: 80vh; */
+    
+}
+
+.services-cards{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    overflow: hidden;
+    overflow-x:scroll;
+    width: 90%;
+    height: auto;
+
+    h1 {
+        align-self: center;
+    }
+}
+
+.service-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap:1rem;
+    padding: 3rem;
+    min-width: 30%;
+    height: auto;
+    /* border-radius: 5px;
+    background-color: var(--bar-text-color); */
+    /* backdrop-filter: blur(10px);
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.1); */
+
+    transition: all 0.3s ;
+    /* border: 1px solid var(--accent-color); */
+    /* background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); */
+    
+    
+    h1 {
+        /* padding:1rem; */
+        /* margin-top: 1.5rem; */
+        width: 100%;
+        text-align: center;
+        font-size:1.4rem
+        /* border-radius: 5px 5px 0 0; */
+        /* border: 2px solid var(--accent-color); */
+        /* background-color:  var(--bar-color); */
+        /* padding: 1.5rem;
+        color: var(--bar-text-color); */
+  
+        
+    }
+
+    p {
+        /* display: flex;
+        flex-direction: column; */
+        font-size: 1.2rem;
+        font-weight: 600;
+        /* padding: 1rem 2rem; */
+        text-align: start;
+        align-self: center;
+
+    }
+
+  
+}
+
+.cta {
+    /* justify-self: center; */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.service-card-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    :first-child{
+        width:3rem;  
+        height: auto;
+        color: var(--accent-color);
+    }
+
+}
+
+.service-card:hover{
+    /* border:1px solid var(--bar-color); */
+    box-shadow: var(--box-shadow-primary);
+    box-shadow: var(--accent-color) 0 0 6px; 
+}
+
+.arrow{
+    align-self: center;
+    color: black;
+    font-size: 1.3rem;
+    padding: 1rem;
+    background-color:  white;
+    box-shadow: var(--box-shadow-primary);
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.arrow:hover{
+    font-weight: 500;
+    color: white;
+    background-color: black;
+    box-shadow: var(--box-shadow-secondary);
+
+}
+
+.arrows{
+    display: none;
+}
+
+
+.technical-services{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    min-width: 100%;
+    height: auto;
+    margin-bottom: 4rem;
+   
+}
+
+.technical-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+
+
+}
+
+.tech-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 40%;
+    height: auto;
+    padding: 1rem;
+    transition: all 0.3s;
+
+    /* border: 1px solid var(--text-color); */ 
+}
+
+.tech-card:hover{
+    transform: scale(1.1);
+}
+
+
+.service-img{
+    min-width: 30%;
+    height: auto;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+
+    .services-header{
+        flex-direction: column;
+    }
+
+    .services-img {
+        width: 100%;
+    }
+
+
+    .services-list{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 2rem 0;
+    }
+
+    .services-cards{
+        /* flex-direction: column;
+        align-items: center;
+         */
+         min-width: 100%;
+    }   
+
+    .service-card{
+        min-width: 100%;
+        height: auto;
+      
+    }
+
+    .arrow-side{
+        display: none;
+    }
+    
+    .arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .technical-services{
+        width:100%;
+    }
+    .technical-cards{
+        flex-direction: column;
+    }
+
+    .tech-card{
+        min-width: 90%;
+    }
+
+}
+
+

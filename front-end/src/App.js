@@ -6,6 +6,7 @@ import './index.css';
 import Footer from "./components/footer/Footer";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import Services from './components/services/Services';
 import Contact from "./components/contact/Contact";
 import Loading from "./Loading";
 
@@ -19,6 +20,7 @@ import {
 
 } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 
 
 const body = document.querySelector('body');
@@ -46,7 +48,7 @@ function App(){
 
         setLoading(false); 
       
-    });
+    }, []);
 
     
     if(loading) {
@@ -74,13 +76,13 @@ function Main() {
 
   const location = useLocation();
 
-  React.useEffect(() => {
-    if (location.pathname === '/about') {
-      document.body.style.background = 'var(--secondary-color)'; // Change to your desired color
-    } else {
-      // document.body.style.background = 'red'; // Default color for other routes
-    }
-  }, [location.pathname]);
+  // React.useEffect(() => {
+  //   if (location.pathname === '/about') {
+  //     document.body.style.background = 'var(--secondary-color)'; // Change to your desired color
+  //   } else {
+  //     // document.body.style.background = 'red'; // Default color for other routes
+  //   }
+  // }, [location.pathname]);
 
 
 
@@ -105,6 +107,7 @@ function Main() {
             <Route path="/about" element={<About/>} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
+            <Route path='/services' element={<Services/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="*" element={<Navigate to="/"/>} />
             

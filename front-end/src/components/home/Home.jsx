@@ -10,16 +10,16 @@ import hp2 from '../../assets/home-picture2.jpg';
 
 const Home = () => {
 
-//    let maxL = "30";
 //    let minL="8";
 
     return(
         
-        <section className='home-section'>
+        <section className='home-section container-h'>
             <div className='container home-container'>
                 <div className='home-slogan'>
-                    <h1 Style='color: white; font-size: 2.5rem;'>Connecting You to Better Mental Health </h1>
-                    <h1 Style="font-size: 2.5rem" >Therapy Now!</h1>
+                    <h1 >Connecting You To </h1>
+                    <h1>Better Mental Health</h1>
+                    <h1 Style="color:var(--accent-color);" >THERAPYNOW</h1>
                  
                   
                     {/* <p>

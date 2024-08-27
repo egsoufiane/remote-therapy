@@ -10,6 +10,10 @@ const Register = ({showLogin}) => {
 
     const [selectedCountry, setSelectedCountry] = useState("");
     const [states, setStates] = useState([]);
+    const [selectedState, setSelectedState] = useState("");
+    const [cities, setCities] = useState([]);
+
+ 
   
     const handleCountryChange = (event) => {
       const selectedCountry = event.target.value;
@@ -17,16 +21,46 @@ const Register = ({showLogin}) => {
   
       // Find the selected country in the data
       const country = countryData.find((item) => item.name === selectedCountry);
+
   
       // Set the states based on the selected country
-      if (country) {
-        setStates(country.states);
-      } else {
-        setStates([]);
-      }
-    };
-  
+         
 
+            if (country) {
+
+                setStates(country.states);
+            } else {
+                setStates([]);
+
+            }
+
+
+    };
+
+
+
+    const handleStateChange = (event) => {
+        const selectedState = event.target.value;
+        setSelectedState(selectedState);
+    
+        // Find the selected country in the data
+        const state = states.find((item) => item.name === selectedState);
+    
+        
+        // Set the states based on the selected country
+
+  
+ 
+                if (state) {
+                    setCities(state.cities);
+                    } else {
+                    setCities([]);
+                    }
+        
+        };
+
+    
+     
 
     return(
         
@@ -64,17 +98,30 @@ const Register = ({showLogin}) => {
                         </div>
                         
                         <div className='hinput-unit'>
-                            <label htmlFor='country' className='register-label' >City</label>
-                            <select id='city' name="city"  >
-                                <option value="">Select a city</option>
+                            <label htmlFor='state' className='register-label' >Region</label>
+                            <select id='state' name="state"  value={selectedState} onChange={handleStateChange} >
+                                <option value="">Select a Region</option>
                                 {states.map((state) => (
                                     <option value={state.name}>{state.name}</option>
                                         ))
                                     }
                             </select> 
                         </div>
-          
-        
+
+                        <div className='hinput-unit'>
+                            <label htmlFor='country' className='register-label' >City</label>
+                            <select id='city' name="city"  >
+                                <option value="">Select a city</option>
+                                {cities.map((city) => (
+                                    <option value={city.name}>{city.name}</option>
+                                        ))
+                                    }
+                            </select> 
+                        </div>
+                  
+                       
+                    </div>
+
                         <div className='hinput-unit'>   
                             <label for='sexe' className='register-label'>Sexe</label>
                             <div className='sexe-options'>
@@ -84,8 +131,6 @@ const Register = ({showLogin}) => {
                                 <label for='female'>Female</label> 
                             </div>
                         </div>
-                      
-                    </div>
 
                     <div className='input-unit'>
                         <input type='email' id='email' name='email' className='textfield email' placeholder='Email address'/>
@@ -96,7 +141,7 @@ const Register = ({showLogin}) => {
                         <input type='password' id='password' name='password' className='textfield password' placeholder='Password'/>
                     </div>
 
-                    <input type='submit' id='submit' value='Register' className='btn btn-secondary'/>
+                    <input type='submit' id='submit' value='Register' className='btn btn-primary'/>
 
                 </form>
                 

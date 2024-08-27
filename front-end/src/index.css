@@ -18,6 +18,7 @@
   --primary-color: #2088bb;
   --primary-color: #1D75BC;
   --primary-color: #118aec;
+  
 
   /* --primary-color: #79AFD1; */
   --secondary-color: #05d6a2;
@@ -31,6 +32,7 @@
   --inputfield-color: #e4e4e4;
   --border-color: #c0c0c0;
   --inputph-color: #4f4d4d;
+  --label-color: black;
 
 
  
@@ -43,9 +45,56 @@
   --bg-color-3: #FFFFFF;
 
 
+  /* 
+  Color Palette:
+Header/Navbar and Footer:
+
+Color: Dark Navy Blue (#1B263B)
+Text/Icon Color: White (#FFFFFF)
+Body Sections:
+
+Section 1 Background: Soft Light Gray (#F5F5F5)
+Section 2 Background: Light Pastel Blue (#E3F2FD)
+Text Color: Dark Charcoal (#333333)
+  */
+
+  --bar-color: #1B263B;
+  --bar-text-color: #FFFFFF;
+  --primary-color:#F5F5F5;
+  --secondary-color:#E3F2FD;
+  --text-color: #333333;
+  --accent-color: #FF6B6B;
+  
+  /* --bar-color: white; */
+  /* --bar-text-color: black; */
+ 
+
+  /* --primary-color:#E3F2FD;
+  --secondary-color: #F5F5F5; */
+
+
+  --box-shadow-primary: #333333 0 0 2px;
+  --box-shadow-secondary: #333333 0 0 10px;
+  --box-shadow-white: #FFFFFF 0 0 5px;
+
+
+  /* --bar-color: #8BC34A; 
+  --bar-text-color: #FFFFFF; 
+  --primary-color: #F0F4C3; 
+  --secondary-color: #C5E1A5; 
+  --text-color: #2E2E2E;
+  --accent-color: #FF7043;  */
+  /* Warm Orange */
+  /* --bar-color: rgb(139, 195, 74, 0.8);  */
+  
+
+
+
   --container-width-lg: 90%;
   --container-width-md: 85%;
   --containter-width-sm: 75%;
+  --container-height-lg: 100vh;
+  --container-height-md: 50vh;
 
 
   --image-gradient: linear-gradient(
@@ -104,6 +153,7 @@ body {
     background: rgba(242, 245, 244, 0.126) url("../src/assets/background5.jpg") no-repeat fixed center;
     background: linear-gradient(135deg, #2088bb, #05d6a2) no-repeat fixed center;
     background: var(--secondary-color);
+    background-color: var(--primary-color);
 
   
   /* background: var(--image-gradient), url(./assets/background2.jpg);
@@ -131,6 +181,7 @@ section{
 
 h1, h2, h3, h4, h5, h6{
   color: var(--color-black);
+  color: var(--text-color);
 }
 
 h1 {
@@ -140,6 +191,7 @@ h1 {
 
 p{
   color:var(black) ;
+  color: var(--text-color);
   font-weight: 400;
 }
 
@@ -156,6 +208,10 @@ select{
 li{
   list-style: none;
 
+}
+
+label{
+  color: var(--label-color);
 }
 
 a {
@@ -178,6 +234,7 @@ hr {
   color:gray;
   background-color:gray; 
   margin: 1rem 0rem;
+  width: 100%;
 }
 
 
@@ -249,16 +306,29 @@ hr {
   /* padding-bottom: 20px; */
   flex: 1;
 
-
+  
 }
 
 .footer{
 
   grid-area: footer;
   /* margin-top: auto; */
+  
 
 }
 
+
+.container-h{
+  margin:0;
+  padding:0;
+  min-height: var(--container-height-lg);
+}
+
+.container-m{
+  margin:0;
+  padding:0;
+  min-height: var(--container-height-md);
+}
 
 .container{
 
@@ -306,8 +376,12 @@ hr {
   border-style: solid;
   border-width: 2px;
   border-color: white;
+  border-color: var(--text-color);
   color: white;
+  color: var(--text-color);
   background-color: transparent;
+
+ 
   font-weight: 600;
   text-align: center;
 
@@ -315,16 +389,19 @@ hr {
 
 .btn:hover{
   filter: brightness(110%);
+  border-color: var(--accent-color);
 }
 
 
 .btn-primary{
   
   background-color: var(--primary-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
   color: var(--color-black);
+  color: var(--text-color);
   transition: ease 0.2s;
-  
- 
+
 }
 
 .btn-primary:hover{
@@ -334,11 +411,17 @@ hr {
 }
 
 .btn-secondary{
-  border: 2px solid white;
-  ;
+  border: 2px solid var(--text-color);
   background-color: var(--secondary-color);
   color: var(--color-white);
+  color: var(--text-color);
   transition: ease 0.2s;
+
+
+  border: 2px solid var(--accent-color);
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  
 }
 
 .btn-secondary:hover{
@@ -362,9 +445,10 @@ hr {
 
 .textfield:focus{
   border-style: solid;
-  border-width: 2px;
-  border-color: var(--secondary-color);
-  box-shadow: var(--secondary-color) 0 0 1px;
+  border-width: 1px;
+  border-color: var(--text-color); 
+  box-shadow: var(--box-shadow-primary);
+
 }
 
 
@@ -375,7 +459,6 @@ hr {
   position: relative;
   height: 60px;
   line-height: 80px;
-  
   margin: 2px;
 }
 
@@ -441,6 +524,15 @@ hr {
   border: 2px solid black;
 }
 
+
+.card{
+  background: rgba(255, 255, 255, 0.2);
+  /* border-radius: 10px; */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  /* -webkit-backdrop-filter: blur(10px); */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
 
 /* .navbar{

@@ -13,7 +13,7 @@ const Contact = () =>{
                         Need to get in touch with us. Fill this form and we will get back to you as soon as possible.
                     </p>
                 </div>
-                <div className='cool-container infos-container'>
+                <div className='infos-container'>
                     <form className='contact-form'>
                         <div className='name'>
                             <div className='entryareac'>
@@ -28,13 +28,13 @@ const Contact = () =>{
                         </div>
                         <div className='entryareac'>
                             <label for='email' className='contact-label'>Email*</label>
-                            <input type="email" className="firstname" name="email"/>
+                            <input type="email" className="firstname" name="email" required/>
                         </div>
                         <div className='entryareac'>
                             <label for='message' className='contact-label'>What can we help you with?</label>
                             <textarea name="Text1" cols="40" rows="8"/>
                         </div> 
-                        <input type='submit' value='Send' className='btn btn-secondary'/>
+                        <input type='submit' value='Send' className='btn btn-primary'/>
                     </form>
                    
                 </div>

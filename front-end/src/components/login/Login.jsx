@@ -32,7 +32,7 @@ const Login = () => {
                                 <input type='checkbox' value='rememberme'/>
                                 <label for='rememberme' Style='font-weight: 400'>Remember me</label>
                             </div>
-                            <input type='sumbit' value='Log In' className='btn btn-secondary'/>
+                            <input type='sumbit' value='Log In' className='btn btn-primary'/>
                         </form>
                         {/* <form method='post' action='/loggedin' className='login-form'>
             

@@ -11,6 +11,8 @@ import { click } from '@testing-library/user-event/dist/click';
 import { BsWindowSidebar } from 'react-icons/bs';
 import Login from '../login/Login';
 import Register from '../register/Register';
+import { useEffect } from 'react';
+import { FaBars } from "react-icons/fa6";
 
 
 /*sidebar show and hide  */
@@ -25,7 +27,11 @@ const showSidebar = () => {
     quitmenu.style.display ='flex';
     sidebar.style.display = 'flex';
 
+
+
 }
+
+
 
 const hideSidebar = () => {
    
@@ -93,6 +99,19 @@ const hideRegister = () => {
 
 }
 
+const hidePopup = () => {
+
+    const overlay = document.querySelector(".overlay");
+    const logincontainer = document.querySelector('.login-container');
+    const registercontainer = document.querySelector('.register-pop');
+
+    registercontainer.style.display = 'none';
+    logincontainer.style.display = 'none';
+    overlay.style.display = 'none';
+
+
+}
+
 
 
 
@@ -104,7 +123,9 @@ window.onscroll = function() {
     var navbar = document.querySelector('.navbar-section-outer');
     let nls = document.querySelectorAll('.nav-link');
     let btn = document.querySelector('.btn');
-    let menu = document.querySelector('.menu')
+    let menu = document.querySelector('.menu');
+    let logo = document.querySelector('.logo');
+
     let path = window.location.pathname;
 
     if(path!=='/register' && path !=='/login'){
@@ -113,21 +134,24 @@ window.onscroll = function() {
             navbar.classList.add("scrolled");
             btn.classList.add("scrolled");
             menu.classList.add("scrolled");
+            logo.classList.add("scrolled");
     
         } else {
             navbar.classList.remove("scrolled");
             btn.classList.remove("scrolled");
             menu.classList.remove("scrolled");
+            logo.classList.remove("scrolled");
+    
 
         }
 
         nls.forEach(nl => {
             if (window.pageYOffset > 60) {
 
-                nl.classList.add("s");
+                nl.classList.add("scrolled");
             } else {
         
-                nl.classList.remove("s");
+                nl.classList.remove("scrolled");
             }
         });
     
@@ -142,26 +166,27 @@ window.onscroll = function() {
 const Navbar = () => {
     
     const iconSize = 16;
-
-
     return(
     
     <div>
        
-       <div className='overlay'></div>
+       <div className='overlay' onClick={hidePopup}></div>
         <div className='navbar-section-outer'>
         
                 <nav className='navbar-section'>
 
                         <div className='logo-navbar'>
-                            <li onClick= {showSidebar} className='menu' ><a><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                         
+                            <li className='menu' onClick={showSidebar}><a><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" 
                                 fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
                                 </svg></a>
                             </li>
                             {/* quit menu*/ }
                             <div className='logo-container'>
-                                <a href='/home'><img src={logo} alt="TherapyNow" className='logo'/></a> 
+                                {/* <a href='/home'><img src={logo} alt="TherapyNow" className='logo'/></a>  */}
+                                <a ><h1 className='logo'>TH<FaBars  fill="var(--accent-color)"/>RAPYNOW</h1></a>
+
                             </div>
                         
                         </div>
@@ -179,7 +204,7 @@ const Navbar = () => {
                                 <li> <a id='myLink' href='/' className='nav-link'><FaHome size={iconSize} className='icon'/>Home</a></li>
                                 <li> <a href='/about' className='nav-link'><FaUser size={iconSize} className='icon'/>About</a></li>
                                 <li> <a href='/reviews' className='nav-link'><MdRateReview size={iconSize} className='icon'/>Reviews</a></li>
-                                <li> <a href='/reviews' className='nav-link'><MdOutlineMedicalServices  size={iconSize} className='icon'/>Services</a></li>
+                                <li> <a href='/services' className='nav-link'><MdOutlineMedicalServices  size={iconSize} className='icon'/>Services</a></li>
                                 <li><a href='/faq' className='nav-link'><FaQuestion size={iconSize} className='icon'/>FAQ</a></li>
                                 <li><a href='/contact' className='nav-link'><FaEnvelope size={iconSize} className='icon'/>Contact</a> </li> 
                             </ul>
@@ -207,6 +232,7 @@ const Navbar = () => {
                             <li> <a href='/' className='nav-link'><FaHome size={iconSize} className='icon'/>Home</a></li>
                             <li> <a href='/about' className='nav-link'><FaUser size={iconSize} className='icon'/>About</a></li>
                             <li> <a href='/reviews' className='nav-link'><MdRateReview size={iconSize} className='icon'/>Reviews</a></li>
+                            <li> <a href='/services' className='nav-link'><MdOutlineMedicalServices  size={iconSize} className='icon'/>Services</a></li>
                             <li><a href='/faq' className='nav-link'><FaQuestion size={iconSize} className='icon'/>FAQ</a></li>
                             <li><a href='/contact' className='nav-link'><FaEnvelope size={iconSize} className='icon'/>Contact</a> </li>
                         </ul>
@@ -220,7 +246,6 @@ const Navbar = () => {
                 <div className='login-header'>
                         <div className='login-msg'>
                             <h2 className='center'>Sign in!</h2>
-                            <p className='center'>It's quick and easy!</p>
                         </div> 
 
                         <a onClick = {hideLogin} className='quit-login'> <svg xmlns="http://www.w3.org/2000/svg" height="24px" 
@@ -229,8 +254,6 @@ const Navbar = () => {
                         </svg></a>
                         
                 </div>
-
-                <hr/>
               
                 <Login/>
 

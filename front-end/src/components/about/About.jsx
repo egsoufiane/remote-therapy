@@ -40,7 +40,7 @@ const About = () => {
                         options={{
                             strings: [
                                 "What do we do?",
-                                "How can we help <span style='color: var(--gold-color); font-weight:700;'>You?</span>"
+                                "How can we help <span style='color: var(--accent-color); font-weight:700;'>You?</span>"
                             ],
                             autoStart: true,
                             loop: true,
@@ -58,7 +58,9 @@ const About = () => {
 
                     {/* <h2>Our Story</h2> */}
                     <div className='about-box box-left slide-in-element'> 
+
                         <img src={about1} alt='ph' className='about-img'/>
+
                         <div className='about-descritpion'>
                             <h2>Our Story</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa dolorum inventore aliquam soluta et facilis sapiente, vel,
@@ -94,24 +96,28 @@ const About = () => {
                             veritatis quaerat, illo quia sapiente? Neque assumenda quo incidunt itaque id vitae.
                             </p>
                         </div>
-                        <img src={about2} alt='ph' className='about-img'/>  
+                        
+                        <img src={about2} alt='ph' className='about-img'/> 
+                   
+                        
                        
-                       
+
                     </div>
                 </div>
 
                 <div className='box'>
                    
                     <div className='about-box box-left slide-in-element'>
-                      
-                        <img src={about3} alt='ph' className='about-img'/> 
+                       
+                        <img src={about3} alt='ph' className='about-img'/>
+                        
                         <div>
                             <h2 className='third-header'>Virtual Care, Real Support</h2>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa dolorum inventore aliquam soluta et facilis sapiente, vel,
                             a consequatur itaque nulla excepturi architecto repudiandae modi! Pariatur officiis excepturi ab ratione! Lorem ipsum
                             dolor sit amet consectetur adipisicing elit. Facilis quo eaque perspiciatis incidunt repellat vero, error doloribus eum, 
                             veritatis quaerat, illo quia sapiente? Neque assumenda quo incidunt itaque id vitae.
-                        </p>
+                            </p>
                         </div>
                        
                     </div>

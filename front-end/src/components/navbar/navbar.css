@@ -12,21 +12,24 @@
     z-index: 1; 
     background-color: transparent;  
 
+   
+
 }
 
 
 .navbar-section-outer.scrolled{
-    background-color: rgb(240, 240, 240, 0.8);
+    /* background-color: rgb(240, 240, 240, 0.8);
     
-    backdrop-filter: blur(10px);
+    
+    backdrop-filter: blur(10px); */
     
     /* background-color: var(--color-white); */
 
+    background-color: var(--bar-color);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px -1px -1px, rgba(9, 30, 66, 0.13) 0px 0px -1px -1px;
+   
 
 }
-
-
-
 
 
 .navbar-section{
@@ -59,7 +62,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   
 
 }
 
@@ -68,14 +70,23 @@
 .logo-container{
     /* background-color: red;     */
     height:100%;
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.9rem;
+     
+    }
+
+    
 }
 
-.logo{
-    height: 40px;
-    /* margin: 0 20px; */
-    margin-left: 0.3rem;
- 
+
+.logo.scrolled{
+    color: var(--bar-text-color);
 }
+
+
 
 .icon{
 
@@ -92,7 +103,7 @@
     flex-wrap: wrap; 
     margin-right: 2rem;
     gap: 1.2rem;
- 
+    
     /* background-color: blue; */
     
 }
@@ -101,7 +112,7 @@
    
     display: flex;
     margin: 0 0.5rem;
-    color: var(--color-white);
+    color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 500;
     /* font-size: 18px; */
@@ -112,9 +123,13 @@
 }
 
 
-.nav-link.s{
-    color: black;
+.nav-link.scrolled{
+    color: var(--bar-text-color);
 
+}
+
+.nav-link.scrolled:hover{
+    color: var(--accent-color);
 }
 
 
@@ -122,7 +137,7 @@
 .nav-link:hover{
     /* color: var(--secondary-color); */
     /* border-bottom: 4px solid var(--primary-color); */
-   
+
 }
 
 ul{
@@ -160,11 +175,14 @@ ul{
 li{
     position: relative;
     list-style: none;
+
   
 }
 
+
 a:hover{
     font-weight: 700;
+    color: var(--accent-color);
 }
 /* 
 a.clicked{
@@ -228,8 +246,9 @@ li:hover::after{
    
     width: 300px;
     background-color: var(--color-white);
-    backdrop-filter: blur(10px);
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    background-color: var(--bar-color);
+    /* backdrop-filter: blur(10px); */
+    /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
 
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
    
@@ -239,11 +258,12 @@ li:hover::after{
     justify-content: flex-start;
     align-items: flex-start;
     z-index: 999;
-
+   
 }
 
+
 .sidebar .nav-link {
-    color: black;
+    color: var(--bar-text-color);
 }
 
 
@@ -262,9 +282,15 @@ li:hover::after{
     width: 100%;
 }
 
+.sidebar a:hover{
+    
+    color: var(--accent-color);
+}
+
 
 .menu {
     display: none;
+    fill: var(--text-color);
     
     
 }
@@ -277,6 +303,15 @@ li:hover::after{
 .btn.scrolled{
     color: black;
     border-color: black;
+    color: var(--bar-text-color);
+    border-color: var(--bar-text-color);
+    
+
+}
+
+.btn.scrolled:hover{
+    
+    border-color: var(--accent-color);
 }
 
 
@@ -291,7 +326,9 @@ li:hover::after{
     flex-direction: column;
     width: 30%;
     /* gap:2rem; */
-    background-color: white;
+    background-color: #FFFFFF;
+  
+  
     padding: 2rem;
     z-index: 1001;
 
@@ -322,7 +359,7 @@ li:hover::after{
     justify-content: center;
     width: 30%;
     /* gap:2rem; */
-    background-color: white;
+    background-color: #FFFFFF;  
     padding: 2rem;
     z-index: 1001;
 
@@ -348,6 +385,7 @@ li:hover::after{
 
 
 
+
 @media screen and (max-width: 1024px){
     
     .nav-links{
@@ -365,13 +403,27 @@ li:hover::after{
     }
 
     .menu svg{
-        fill: white;
+        fill: var(--text-color);
     }
 
+   
     .menu.scrolled svg{
-        fill: black;
+        fill: var(--bar-text-color);
+        
     }
 
+    .quit-menu {
+
+        svg {
+            fill: var(--bar-text-color);
+         
+           
+        }
+        
+    }
+
+
+   
     .login-container{
         width: 90%;
     }
