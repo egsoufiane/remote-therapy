@@ -73,6 +73,10 @@ import service5 from '../../assets/lock.png';
 
 const Services = () => {
 
+
+    /* Cards moving left right */
+
+
     const servicesCardsRef = useRef(null);
     const arrowLeftRef = useRef(null);
     const arrowRightRef = useRef(null);
@@ -162,7 +166,7 @@ const Services = () => {
                 </div>
                 
 
-                <div className="therapy-services">
+                <div className="therapy-services middle-box slide-in-element">
 
                     <div className="services-intro">
                     
@@ -259,7 +263,7 @@ const Services = () => {
                 </div>
             
 
-                <div className="technical-services">
+                <div className="technical-services slide-in-element">
                     <div className='services-intro'>
                         <h2> Your Safe Space Online</h2>  
                         <h3>Our platform is designed to make your sessions accessible and convenient, so you can focus on what matters most—your 

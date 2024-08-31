@@ -1,0 +1,160 @@
+.faq-section{
+    margin:0;
+    /* min-width: 100%; */
+    
+    align-items: center;
+    justify-content: center;
+
+}
+
+.faq-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 1rem;
+    min-width: 90%;
+    gap: 3rem;
+}
+
+.questions-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    background-color: var(--bar-color);
+    border: 1px solid var(--bar-text-color);
+  
+
+    /* box-shadow: var(--box-shadow-secondary); */
+    /* border-top: 0; */
+    /* padding: 1rem; */
+    
+
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    height: auto;
+    padding: 1rem;
+    /* border: 2px solid var(--black-color); */
+    border: 1px solid var(--primary-color);
+   
+    /* cursor: pointer; */
+  
+    /* border-left: 0;
+    border-right: 0; */
+    
+}
+
+
+
+
+.question a {
+    color: var(--white-color);
+}
+
+.question a:hover{
+    color: var(--accent-color);
+}
+
+.arrow-down{
+    display: flex;
+}
+
+.arrow-up{
+    display: none;
+}
+
+
+.questions-container hr {
+    padding: 0;
+    margin: 0;
+    background-color: var(--primary-color)
+}
+
+
+.answer{
+    display: none;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: space-between;;
+    flex-wrap: wrap;
+    flex-direction: wrap;
+    min-width: 100%;
+    height: auto;
+    padding: 1rem;
+    background-color: var(--primary-color);
+
+}
+
+.answer p {
+    font-weight: 600;
+}
+
+
+.answer.show{
+    display: flex;
+}
+
+.arrow-down.hide{
+    display: none;
+}
+
+.arrow-up.show{
+    display: flex;
+}
+
+
+.new-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 30%;
+    padding: 1rem;
+    margin: 2rem 0;
+    padding: 0;
+
+
+    /* h2 {
+        align-self: flex-start;
+    } */
+
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        min-width: 100%;
+
+    
+    }
+}
+
+
+@media screen and (max-width: 1024px){
+
+    
+
+    form {
+       flex-direction: column;
+        min-width: 100%;
+    
+    
+    }
+
+
+}
+
+
+
+

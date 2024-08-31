@@ -22,11 +22,12 @@ const showSidebar = () => {
     const menu = document.querySelector('.menu');
     const quitmenu = document.querySelector('.quit-menu');
     const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay2');
 
     menu.style.display = 'none';
     quitmenu.style.display ='flex';
     sidebar.style.display = 'flex';
-
+    overlay.style.display = 'flex';
 
 
 }
@@ -38,19 +39,18 @@ const hideSidebar = () => {
     const menu = document.querySelector('.menu');
     const quitmenu = document.querySelector('.quit-menu');
     const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay2');
 
     menu.style.display = 'flex';
     quitmenu.style.display ='none';
     sidebar.style.display = 'none'; 
-
+    overlay.style.display = 'none';
 
 }
 
 
+
 /* login-form show and hide  */
-
-
-
 
 
 const showLogin = () => {
@@ -159,6 +159,16 @@ window.onscroll = function() {
  
 };
 
+// style navbar based on current path
+
+window.onload = () => {
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach((link) => {
+        if(link.getAttribute('href') === window.location.pathname){
+            link.classList.add('selected');
+        }
+    });
+}
 
 
 
@@ -166,11 +176,15 @@ window.onscroll = function() {
 const Navbar = () => {
     
     const iconSize = 16;
+
+
+
     return(
     
     <div>
        
        <div className='overlay' onClick={hidePopup}></div>
+       <div className='overlay2' onClick={hideSidebar}></div>
         <div className='navbar-section-outer'>
         
                 <nav className='navbar-section'>
@@ -206,17 +220,16 @@ const Navbar = () => {
                                 <li> <a href='/reviews' className='nav-link'><MdRateReview size={iconSize} className='icon'/>Reviews</a></li>
                                 <li> <a href='/services' className='nav-link'><MdOutlineMedicalServices  size={iconSize} className='icon'/>Services</a></li>
                                 <li><a href='/faq' className='nav-link'><FaQuestion size={iconSize} className='icon'/>FAQ</a></li>
+                                <li><a href='/apply' className='nav-link'><FaUser size={iconSize} className='icon'/>Apply</a></li>
                                 <li><a href='/contact' className='nav-link'><FaEnvelope size={iconSize} className='icon'/>Contact</a> </li> 
                             </ul>
 
-                            
                         
                             <a onClick={showLogin} className='show-login'>
                                 <button className='btn'>Sign in</button>
                             </a>
 
-                   
-                    
+                
 
                 </nav>
         
@@ -234,6 +247,7 @@ const Navbar = () => {
                             <li> <a href='/reviews' className='nav-link'><MdRateReview size={iconSize} className='icon'/>Reviews</a></li>
                             <li> <a href='/services' className='nav-link'><MdOutlineMedicalServices  size={iconSize} className='icon'/>Services</a></li>
                             <li><a href='/faq' className='nav-link'><FaQuestion size={iconSize} className='icon'/>FAQ</a></li>
+                            <li><a href='/apply' className='nav-link'><FaUser size={iconSize} className='icon'/>Apply</a></li>
                             <li><a href='/contact' className='nav-link'><FaEnvelope size={iconSize} className='icon'/>Contact</a> </li>
                         </ul>
 

@@ -9,6 +9,10 @@ import Login from "./components/login/Login";
 import Services from './components/services/Services';
 import Contact from "./components/contact/Contact";
 import Loading from "./Loading";
+import Faq from "./components/faq/Faq";
+import Reviews from "./components/reviews/Reviews";
+import Apply from "./components/apply/Apply";
+import Apply2 from "./components/apply/Apply2";
 
 
 import {
@@ -24,6 +28,33 @@ import { useState, useEffect } from "react";
 
 
 const body = document.querySelector('body');
+
+/*slide in animation  */
+document.addEventListener("DOMContentLoaded", function() {
+
+      window.addEventListener('load', () => {
+      const elements = document.querySelectorAll('.show-in-element');
+      elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+              if (rect.top < window.innerHeight) {
+              el.classList.add('visible');
+              }
+          });
+      });     
+
+
+
+      window.addEventListener('scroll', () => {
+      const elements = document.querySelectorAll('.slide-in-element');
+      elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+              if (rect.top < window.innerHeight) {
+              el.classList.add('visible');
+              }
+          });
+      });     
+
+});
 
 
 
@@ -99,17 +130,23 @@ function Main() {
 
         {/* <Navbar className='navbar'/> */}
       
-        {(location.pathname !== '/login' && location.pathname !== '/register') && <Navbar />}
+        {(location.pathname !== '/login' && location.pathname !== '/register' && <Navbar />)}
 
         <div className="content">
           <Routes>
             <Route path="/" element={<Home/>} />
+        
+            <Route path="/reviews" element={<Reviews/>}/>
             <Route path="/about" element={<About/>} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
             <Route path='/services' element={<Services/>}/>
+            <Route path='/apply' element={<Apply/>}/>
+            <Route path="/apply2" element={<Apply2/>}/>
+            <Route path="/faq" element={<Faq/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="*" element={<Navigate to="/"/>} />
+            
             
           </Routes>
         </div>

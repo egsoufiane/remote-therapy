@@ -1,1 +1,124 @@
 /* List of therapists and takes to their profile where you can see their infos one reviews*/
+
+.section-reviews{
+
+}
+
+.reviews-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 90%;
+    margin: 3rem 0;
+   
+    h1{
+        text-align: center;
+    }
+
+}
+
+
+.reviews-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+
+    min-width: 100%;
+    margin: 1rem;
+
+    padding: 2rem;
+    gap: 1rem;
+
+
+
+
+
+}
+
+.review-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 30%;
+    padding: 1rem;
+    background-color: var(--bar-text-color);
+    border-radius: 10px;
+
+
+}
+
+.therapist{
+    display:flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
+.profile-img-container{
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--bar-color);
+    border-radius: 50%;
+}
+
+.profile-picture{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    align-self: center;
+    justify-self: center;
+}
+
+.therapist-name{
+    align-self: flex-start;
+    h3{
+        color: var(--bar-color);
+    }
+}
+
+.review-date{
+    align-self: flex-end;
+}
+
+
+.more-reviews{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+
+
+
+@media screen and (max-width: 1024px){
+
+    .reviews-cards{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+   
+       
+    }
+
+    .review-card{
+      
+        min-width: 100%;
+        height: auto;
+        justify-content: center;
+
+    }
+
+
+
+  }
+  

@@ -61,9 +61,12 @@ Text Color: Dark Charcoal (#333333)
   --bar-color: #1B263B;
   --bar-text-color: #FFFFFF;
   --primary-color:#F5F5F5;
+  --primary-color-dark:#e1e1e1;
   --secondary-color:#E3F2FD;
   --text-color: #333333;
   --accent-color: #FF6B6B;
+  --black-color: #1a0d0d;
+  --white-color: #fffffffd;
   
   /* --bar-color: white; */
   /* --bar-text-color: black; */
@@ -76,7 +79,10 @@ Text Color: Dark Charcoal (#333333)
   --box-shadow-primary: #333333 0 0 2px;
   --box-shadow-secondary: #333333 0 0 10px;
   --box-shadow-white: #FFFFFF 0 0 5px;
+  --box-shadow-accent: var(--accent-color) 0 0 5px;
 
+
+  /*second palette*/
 
   /* --bar-color: #8BC34A; 
   --bar-text-color: #FFFFFF; 
@@ -215,11 +221,13 @@ label{
 }
 
 a {
-  font-weight: 500;
-  color: blue;
+  font-weight: 600;
+  color: var(--black-color);
   cursor: pointer;
   transition: ease 0.3s;
 }
+
+
 
 
 
@@ -317,6 +325,44 @@ hr {
 
 }
 
+/* .slide-in-element{
+  transform: translateY(80px); 
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.slide-in-element.visible{
+  transform: translateY(0); 
+  opacity: 1; /
+} */
+
+/* animations*/
+
+.slide-in-element{
+    opacity:0;
+    transform: translateY(80px);
+    transition: all 0.5s ease-out;
+
+
+}
+
+.slide-in-element.visible{
+    opacity:1;
+    transform: translateY(0);
+}
+
+
+.show-in-element{
+    opacity: 0;
+    transition: all 0.5s ease-in;
+}
+
+.show-in-element.visible{
+    opacity:1;
+}
+
+
+
 
 .container-h{
   margin:0;
@@ -384,6 +430,12 @@ hr {
  
   font-weight: 600;
   text-align: center;
+
+  
+
+  line-height: 1;
+
+
 
 }
 

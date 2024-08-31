@@ -35,10 +35,13 @@
 .infos-container{
     width: 40%;
     padding: 1.8rem;
-    background-color: white;
-    box-shadow: var(--text-color) 0 0 1px;
+    background-color: var(--primary-color);
+    /* box-shadow: var(--text-color) 0 0 1px;
     box-shadow: black 0 0 1px;
+    box-shadow: var(--box-shadow-secondary); */
     backdrop-filter: blur(10px);
+    box-shadow: var(--box-shadow-primary);
+    border: 1px solid var(--black-color);
 
 }
 
@@ -73,6 +76,8 @@ input{
     padding: 0 0.5rem;
     background-color: var(--neutral-color);
     transform: all 0.3s;
+    border: 1px solid var(--black-color);
+   
 
 }
 
@@ -85,6 +90,8 @@ textarea{
     background-color: var(--neutral-color);
     resize: none;
     transform: all 0.3s;
+    border: 1px solid var(--black-color);
+    
 }
 textarea:focus{
     box-shadow: var(--box-shadow-primary);

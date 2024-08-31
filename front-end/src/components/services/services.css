@@ -148,6 +148,7 @@
     padding: 3rem;
     min-width: 30%;
     height: auto;
+    background-color: var(--primary-color);
     /* border-radius: 5px;
     background-color: var(--bar-text-color); */
     /* backdrop-filter: blur(10px);
@@ -292,6 +293,10 @@
     height: auto;
 }
 
+
+/* .middle-box{
+    background-color: var(--white-color);
+} */
 
 
 @media screen and (max-width: 1024px) {

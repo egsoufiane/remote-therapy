@@ -102,7 +102,7 @@
     flex-direction: rows;
     flex-wrap: wrap; 
     margin-right: 2rem;
-    gap: 1.2rem;
+    gap: 1rem;
     
     /* background-color: blue; */
     
@@ -112,7 +112,7 @@
    
     display: flex;
     margin: 0 0.5rem;
-    color: var(--text-color);
+    color: var(--black-color);
     font-size: 1.1rem;
     font-weight: 500;
     /* font-size: 18px; */
@@ -122,6 +122,10 @@
 
 }
 
+.nav-link.selected{
+    color: var(--accent-color);
+}
+
 
 .nav-link.scrolled{
     color: var(--bar-text-color);
@@ -129,6 +133,10 @@
 }
 
 .nav-link.scrolled:hover{
+    /* color: var(--accent-color); */
+}
+
+.nav-link.scrolled.selected{
     color: var(--accent-color);
 }
 
@@ -182,7 +190,7 @@ li{
 
 a:hover{
     font-weight: 700;
-    color: var(--accent-color);
+    /* color: var(--accent-color); */
 }
 /* 
 a.clicked{
@@ -244,7 +252,7 @@ li:hover::after{
     height: 100vh;
 
    
-    width: 300px;
+    min-width: 300px;
     background-color: var(--color-white);
     background-color: var(--bar-color);
     /* backdrop-filter: blur(10px); */
@@ -256,14 +264,20 @@ li:hover::after{
     display: none;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    
     z-index: 999;
-   
+    
 }
+
+
 
 
 .sidebar .nav-link {
     color: var(--bar-text-color);
+}
+
+.sidebar .nav-link.selected{
+    color: var(--accent-color);
 }
 
 
@@ -273,30 +287,71 @@ li:hover::after{
 } */
 
 .sidebar li {
-    width: 100%;
+    min-width: 100%;
     padding: 0.3rem 0.5rem;
 
+
+ 
 }
+
+/* .quit-menu-a {
+    display: flex;
+    justify-content: flex-end;
+} */
 
 .sidebar a{
     width: 100%;
+
+    
 }
 
 .sidebar a:hover{
     
-    color: var(--accent-color);
+    /* color: var(--accent-color); */
 }
+
+
+.quit-menu > a:first-child{
+    display: flex;
+    justify-content: flex-end;
+        svg {
+            width: 1.6rem;
+            height: auto;
+            transition: all 0.3s;
+        }
+        svg:hover{
+            fill: var(--accent-color);
+        }
+}
+
+
+
+
+/* .quit-menu > a:hover{
+    color: var(--accent-color);
+} */
 
 
 .menu {
     display: none;
     fill: var(--text-color);
+
+    a > svg {
+        width: 1.6rem;
+        height: auto;
+        transition: all 0.3s;
+
+    }
+    a > svg:hover{
+        fill: var(--accent-color);
+    }
     
     
 }
 
 .quit-menu {
     display: none;
+  
 }
 
 
@@ -381,6 +436,19 @@ li:hover::after{
     display: none; /* Hide overlay by default */
     pointer-events: auto; /* Prevent clicks on the background */
     z-index: 1000;
+}
+
+.overlay2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hide overlay by default */
+    pointer-events: auto; /* Prevent clicks on the background */
+    z-index: 1;
+
 }
 
 
