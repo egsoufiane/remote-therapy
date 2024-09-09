@@ -5,9 +5,6 @@ import hp2 from '../../assets/home-picture2.jpg';
 
 
 
-
-
-
 const Home = () => {
 
 //    let minL="8";
@@ -60,8 +57,19 @@ const Home = () => {
                     
                     <p>New user? <a href='/register'>Create an account</a></p> */}
 
+                    {/* {
+                        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                        .then(stream => {
+                          // Use the stream (e.g., display in a video element)
+                        })
+                       
+                      
+                    } */}
+
+              
                     
                  </div>
+                 
             </div>
         
           

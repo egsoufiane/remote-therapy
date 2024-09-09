@@ -13,6 +13,7 @@ import Faq from "./components/faq/Faq";
 import Reviews from "./components/reviews/Reviews";
 import Apply from "./components/apply/Apply";
 import Apply2 from "./components/apply/Apply2";
+import Recap from "./components/apply/recap";
 
 
 import {
@@ -62,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function App(){
 
     const [loading, setLoading] = useState(true);
+
+    
     // const [data, setData] = useState(null);
 
     // useEffect(() => {
@@ -74,6 +77,9 @@ function App(){
     //   setLoading(false);
   
     // }, []);
+
+
+
 
     useEffect(() => {
 
@@ -145,6 +151,7 @@ function Main() {
             <Route path="/apply2" element={<Apply2/>}/>
             <Route path="/faq" element={<Faq/>}/>
             <Route path="/contact" element={<Contact/>}/>
+            <Route path="/recap" element={<Recap/>}/>
             <Route path="*" element={<Navigate to="/"/>} />
             
             

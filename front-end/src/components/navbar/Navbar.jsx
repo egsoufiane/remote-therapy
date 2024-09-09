@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { FaBars } from "react-icons/fa6";
 
 
+
 /*sidebar show and hide  */
 
 const showSidebar = () => {
@@ -125,6 +126,7 @@ window.onscroll = function() {
     let btn = document.querySelector('.btn');
     let menu = document.querySelector('.menu');
     let logo = document.querySelector('.logo');
+    let logoE = document.querySelector('.logo-e');
 
     let path = window.location.pathname;
 
@@ -135,12 +137,14 @@ window.onscroll = function() {
             btn.classList.add("scrolled");
             menu.classList.add("scrolled");
             logo.classList.add("scrolled");
+            // logoE.style.fill = 'var(--accent-color)'; 
     
         } else {
             navbar.classList.remove("scrolled");
             btn.classList.remove("scrolled");
             menu.classList.remove("scrolled");
             logo.classList.remove("scrolled");
+            // logoE.style.fill = 'var(--text-color)'; 
     
 
         }
@@ -199,7 +203,7 @@ const Navbar = () => {
                             {/* quit menu*/ }
                             <div className='logo-container'>
                                 {/* <a href='/home'><img src={logo} alt="TherapyNow" className='logo'/></a>  */}
-                                <a ><h1 className='logo'>TH<FaBars  fill="var(--accent-color)"/>RAPYNOW</h1></a>
+                                <a ><h1 className='logo'>TH<FaBars className='logo-e' fill="var(--accent-color)"/>RAPYNOW</h1></a>
 
                             </div>
                         

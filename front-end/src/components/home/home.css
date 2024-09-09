@@ -67,6 +67,7 @@
 .home-slogan {
     padding: 2rem;
 
+
 }
 
 
@@ -126,6 +127,10 @@
         max-width: 90%;
         height: auto;
 
+    }
+
+    .home-slogan{
+        text-align: center;
     }
 
 

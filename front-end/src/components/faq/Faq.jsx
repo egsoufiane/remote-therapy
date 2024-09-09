@@ -139,10 +139,9 @@ const Faq = () => {
     return(
         <section className='faq-section'>
             <div className="faq-container">
-                <h1>Frequencty Asked Questions?</h1>
+                <h1 className='center'>Frequencty Asked Questions?</h1>
                 <div className='questions-container'>
 
-                    
                    
                     <div className="question">
                         <h4>Question number 1?</h4>

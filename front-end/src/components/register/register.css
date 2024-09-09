@@ -77,6 +77,22 @@
     flex-direction: column;
 }
 
+
+.input-unit{
+    display: flex;
+    min-width: 100%;
+    gap:0.1rem;
+    .hinput-unit{
+       display: flex;
+       flex-direction: column;
+        width: 100%;
+
+        select{
+            width:100%;
+        }
+    }
+}
+
 .select-input{
     width:100%;
 }

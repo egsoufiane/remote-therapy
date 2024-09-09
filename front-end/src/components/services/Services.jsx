@@ -154,7 +154,7 @@ const Services = () => {
                 <div className='services-header'>
                     <div className='services-intro'>                    
                         <h2>Welcome To Our Online Therapy Services</h2>
-                        <h3> we provide compassionate, personalized care through convenient online video therapy.</h3>
+                        <h3>We provide compassionate, personalized care through convenient online video therapy.</h3>
                         <p>
                             Our team of licensed therapists is dedicated to providing empathetic, expert care. With diverse specialties and a passion 
                             for helping others, they are here to support you on your journey to better mental health.

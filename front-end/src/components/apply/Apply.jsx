@@ -9,15 +9,11 @@ import { FaCircle } from "react-icons/fa";
 import {FaQuoteLeft} from "react-icons/fa";
 import pp from '../../assets/profile.jpg';
 import Apply2 from './Apply2';
+import Apply3 from './Apply3';
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-    Navigate,
-    useLocation
-  
-  } from "react-router-dom";
+
+
+
 
 
 
@@ -66,34 +62,56 @@ const Apply = () => {
 
 
 
+    /*handle form submit event */
+    useEffect(()=> {
+        const form = document.getElementById('apply-form');
+
+        form.addEventListener('submit', (event)=> {
+            event.preventDefault(); // prevent page reload
+
+            document.querySelector('.apply1').style.display='none';
+            document.querySelector('.apply2').style.display='flex';
+        });
+
+        document.getElementById('apply-form2').addEventListener('submit', (event) => {
+            event.preventDefault();
+    
+            document.querySelector('.apply2').style.display='none';
+            document.querySelector('.apply3').style.display='flex';
+          });
+
+    }, []);
+
+
+
+
     return (
         <section className='apply-section'>
             <div className='apply-container'>
                 <div className='application' id="start-application">
-                    <h1>Join Our team of <b Style='color:var(--accent-color);'>20391239</b> Therapists</h1>
-                    <h3>Choose an option</h3>
-                    <form action="/apply2" className="apply-form">
-                        <input type='submit' value='Psychologist' className='btn btn-primary'/>
-                        <input type='submit' value='Licensed Professional Counselor (LPC)' className='btn btn-primary'/>
-                        <input type='submit' value='Marriage and Family Therapist (MFT)' className='btn btn-primary'/>
-                        <input type='submit' value='Licensed Clinical Social Worker (LCSW)' className='btn btn-primary'/>
-                        <input type='submit' value='Child and Adolescent Therapist' className='btn btn-primary'/>
-                    </form>
+                <h1 className='center'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h1>
+                    <div className="apply1">
+                        
+                        <h2>What is your specialty?</h2>
+                        
+                        <form id='apply-form' className="apply-form">
+                            <input type='submit' value='Psychologist' className='btn btn-primary'/>
+                            <input type='submit' value='Licensed Professional Counselor (LPC)' className='btn btn-primary'/>
+                            <input type='submit' value='Marriage and Family Therapist (MFT)' className='btn btn-primary'/>
+                            <input type='submit' value='Licensed Clinical Social Worker (LCSW)' className='btn btn-primary'/>
+                            <input type='submit' value='Child and Adolescent Therapist' className='btn btn-primary'/>
+                        </form>
+                        <h3>01/03</h3>
+                    </div>
+                    <div className="apply2"><Apply2/></div>
+                    <div className="apply3"><Apply3/></div>
+                    
+                
                 </div>
-               <Routes>
-                <Route path="/apply2" element={<Apply2/>}/> 
-               </Routes>
                 <div className='benefits'>
                 
                    
-                    <h1><b Style='color:var(--accent-color);'>THERAPYNOW</b> vs Traditional Office Therapy</h1>
-                    {/* <ul className='benefits-list'>
-                        <li><h3>You make your own schedule</h3> </li>
-                        <li><h3>You make your own schedule</h3> </li>
-                        <li><h3>You make your own schedule</h3> </li>
-                        <li><h3>You make your own schedule</h3> </li>
-                    </ul>
-                    */}
+                    <h1 className='center'><b Style='color:var(--accent-color);'>THERAPYNOW</b> vs Traditional Office Therapy</h1>
 
                     <table>
                         <tr> 

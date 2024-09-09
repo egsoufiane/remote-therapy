@@ -61,7 +61,6 @@ const Register = ({showLogin}) => {
 
     
      
-
     return(
         
         <section className='container register-section'>
