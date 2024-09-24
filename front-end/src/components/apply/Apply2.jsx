@@ -46,7 +46,6 @@ const Apply2 = () => {
         
         // Set the states based on the selected country
 
-  
  
                 if (state) {
                     setCities(state.cities);
@@ -56,11 +55,24 @@ const Apply2 = () => {
         
         };
 
+    
+        //Apply2 render animation
+    // useEffect(()=> {
+    //     const apply2 = document.querySelector('.apply2-section');
+
+    //     apply2.addEventListener('load', ()=> ()=> {
+    //         apply2.classList.add('slide-in');
+
+    //     });
+
+    // }, []);
+
+
     return (
         <section className="apply2-section" >
             <div className='apply2-container'>
                 
-                <h1>Please fill in the information below</h1>
+                <h2>Please fill in the information below</h2>
                 <form id="apply-form2" className="application-form">
                     <input type='text' id='firstname' placeholder='First name' className='textfield' />
                     <input type='text' id='lastname' placeholder='Last name' className='textfield' />

@@ -30,7 +30,10 @@ const showSidebar = () => {
     sidebar.style.display = 'flex';
     overlay.style.display = 'flex';
 
+    const forceReflow = sidebar.offsetHeight;
 
+    // sidebar.classList.add('slide-in');
+    sidebar.classList.add('slide-in');
 }
 
 
@@ -42,11 +45,18 @@ const hideSidebar = () => {
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.querySelector('.overlay2');
 
-    menu.style.display = 'flex';
-    quitmenu.style.display ='none';
-    sidebar.style.display = 'none'; 
+ 
     overlay.style.display = 'none';
 
+    // Force a reflow to ensure the animation happens
+    // const forceReflow = sidebar.offsetHeight;
+
+    // sidebar.classList.remove('slide-in');
+    sidebar.classList.remove('slide-in');
+
+    menu.style.display = 'flex';
+    quitmenu.style.display ='none';
+      
 }
 
 
@@ -63,17 +73,26 @@ const showLogin = () => {
     logincontainer.style.display = 'flex';
     overlay.style.display = 'flex';
     registercontainer.style.display = 'none';
+
+    const forceRefloew = logincontainer.offsetHeight;
+    logincontainer.classList.add('slide-in');
+    registercontainer.classList.remove('slide-in');
   
 }
 
 const hideLogin = () => {
     const logincontainer = document.querySelector('.login-container');
+    const registercontainer = document.querySelector('.register-pop');
     const overlay = document.querySelector('.overlay');
 
-
+    logincontainer.classList.remove('slide-in');
+    registercontainer.classList.remove('slide-in');
 
     logincontainer.style.display = 'none';
     overlay.style.display = 'none';
+    
+
+
 
 }
 
@@ -87,16 +106,22 @@ const showRegister = () => {
     overlay.style.display = 'flex';
     logincontainer.style.display = 'none';
 
+    const forceReflow = registercontainer.offsetHeight;
+    registercontainer.classList.add('slide-in');
+    logincontainer.classList.remove('slide-in');
+
 }
 
 const hideRegister = () => {
-
+    const logincontainer = document.querySelector('.login-container');
     const overlay = document.querySelector('.overlay');
     const registercontainer = document.querySelector('.register-pop');
 
 
     registercontainer.style.display = 'none';
     overlay.style.display = 'none';
+    registercontainer.classList.remove('slide-in');
+    logincontainer.classList.remove('slide-in');
 
 }
 
@@ -110,10 +135,11 @@ const hidePopup = () => {
     logincontainer.style.display = 'none';
     overlay.style.display = 'none';
 
+    logincontainer.classList.remove('slide-in');
+    registercontainer.classList.remove('slide-in');
+
 
 }
-
-
 
 
 
@@ -145,7 +171,6 @@ window.onscroll = function() {
             menu.classList.remove("scrolled");
             logo.classList.remove("scrolled");
             // logoE.style.fill = 'var(--text-color)'; 
-    
 
         }
 
@@ -166,8 +191,11 @@ window.onscroll = function() {
 // style navbar based on current path
 
 window.onload = () => {
+
     const links = document.querySelectorAll('.nav-link');
+    
     links.forEach((link) => {
+        
         if(link.getAttribute('href') === window.location.pathname){
             link.classList.add('selected');
         }
@@ -181,6 +209,16 @@ const Navbar = () => {
     
     const iconSize = 16;
 
+    useEffect(()=>{
+        document.querySelector('.btn').addEventListener('click', ()=>{
+    
+          const root = document.querySelector(':root');
+        //   root.classList.add('clicked');
+        root.style.setProperty('--primary-color', "red");
+        
+        });
+      }, []);
+
 
 
     return(
@@ -189,26 +227,29 @@ const Navbar = () => {
        
        <div className='overlay' onClick={hidePopup}></div>
        <div className='overlay2' onClick={hideSidebar}></div>
-        <div className='navbar-section-outer'>
+       <div className='navbar-section-outer'>
         
                 <nav className='navbar-section'>
 
-                        <div className='logo-navbar'>
-                         
-                            <li className='menu' onClick={showSidebar}><a><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                                viewBox="0 -960 960 960" width="24px" 
-                                fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                                </svg></a>
-                            </li>
-                            {/* quit menu*/ }
-                            <div className='logo-container'>
-                                {/* <a href='/home'><img src={logo} alt="TherapyNow" className='logo'/></a>  */}
-                                <a ><h1 className='logo'>TH<FaBars className='logo-e' fill="var(--accent-color)"/>RAPYNOW</h1></a>
+                    
 
-                            </div>
-                        
-                        </div>
+                        <div className='logo-navbar'>
+
+                            <li className='menu' onClick={showSidebar}><a><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                                        viewBox="0 -960 960 960" width="24px" 
+                                        fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                                        </svg></a>
+                            </li>
+                              
+                                {/* quit menu*/ }
+                                <div className='logo-container'>
+                                    {/* <a href='/home'><img src={logo} alt="TherapyNow" className='logo'/></a>  */}
+                                    <a href="/home"><h2 className='logo'>TH<FaBars className='logo-e' fill="var(--accent-color)"/>RAPYNOW</h2></a>
+
+                                </div>
                             
+                        </div>
+                                
                             {/* <div className='nav-links'>
                                 <a href='/' className='nav-link'>Home</a>
                                 <a href='/about' className='nav-link'>About</a>
@@ -218,7 +259,7 @@ const Navbar = () => {
                             </div> */}
 
                         
-                            <ul className='nav-links'>   
+                        <ul className='nav-links'>   
                                 <li> <a id='myLink' href='/' className='nav-link'><FaHome size={iconSize} className='icon'/>Home</a></li>
                                 <li> <a href='/about' className='nav-link'><FaUser size={iconSize} className='icon'/>About</a></li>
                                 <li> <a href='/reviews' className='nav-link'><MdRateReview size={iconSize} className='icon'/>Reviews</a></li>
@@ -226,14 +267,12 @@ const Navbar = () => {
                                 <li><a href='/faq' className='nav-link'><FaQuestion size={iconSize} className='icon'/>FAQ</a></li>
                                 <li><a href='/apply' className='nav-link'><FaUser size={iconSize} className='icon'/>Apply</a></li>
                                 <li><a href='/contact' className='nav-link'><FaEnvelope size={iconSize} className='icon'/>Contact</a> </li> 
-                            </ul>
+                        </ul>
 
                         
-                            <a onClick={showLogin} className='show-login'>
+                        <a onClick={showLogin} className='show-login'>
                                 <button className='btn'>Sign in</button>
-                            </a>
-
-                
+                        </a>
 
                 </nav>
         
@@ -270,7 +309,7 @@ const Navbar = () => {
                             viewBox="0 -960 960 960" width="24px" fill="#000000">
                             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
                         </svg></a>
-                        
+
                 </div>
               
                 <Login/>

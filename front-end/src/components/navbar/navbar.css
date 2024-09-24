@@ -3,16 +3,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     
     /* gap: 1rem; */
 
     /* display: flex;
     flex-direction: column; */
-    z-index: 1; 
+    z-index: 10; 
     background-color: transparent;  
 
-   
 
 }
 
@@ -34,10 +33,11 @@
 
 .navbar-section{
     display: flex;
-    flex-direction: rows;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+    gap: 1rem;
     flex-wrap: wrap;
 
     /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
@@ -62,13 +62,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
 
 }
 
 
 
 .logo-container{
-    /* background-color: red;     */
+    /* background-color: red;   */
     height:100%;
     h1 {
         display: flex;
@@ -77,6 +78,13 @@
         font-size: 1.9rem;
     }
 
+    h2 {
+        
+        display:flex; 
+        justify-content:center; 
+        align-items:center;
+       
+    }
     
 }
 
@@ -99,7 +107,7 @@
 
 .nav-links{
     display: flex;
-    flex-direction: rows;
+    flex-direction: row;
     flex-wrap: wrap; 
     margin-right: 2rem;
     gap: 1rem;
@@ -112,9 +120,9 @@
    
     display: flex;
     margin: 0 0.5rem;
-    color: var(--black-color);
-    font-size: 1.1rem;
-    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 400;
     /* font-size: 18px; */
     transition: ease 0.3s;
     align-items: center;
@@ -266,8 +274,27 @@ li:hover::after{
     justify-content: flex-start;
     
     z-index: 999;
-    
+
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s;
+
+   
 }
+
+.sidebar.slide-in{
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s;
+}
+
+
+/* .sidebar.slide-out{
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s;
+   
+} */
 
 
 
@@ -354,6 +381,9 @@ li:hover::after{
   
 }
 
+.btn:hover{
+    border-color: var(--accent-color);
+}
 
 .btn.scrolled{
     color: black;
@@ -387,6 +417,14 @@ li:hover::after{
     padding: 2rem;
     z-index: 1001;
 
+    opacity:0;
+    transition: all 0.5s;
+
+}
+
+.login-container.slide-in{
+    opacity:1;
+    transition: all 0.5s;
 }
 
 .login-header{
@@ -418,13 +456,39 @@ li:hover::after{
     padding: 2rem;
     z-index: 1001;
 
+    opacity: 0;
+    transition: all 0.5s;
 
 }
+.register-pop.slide-in{
+    opacity: 1;
+}
 
-/* .quit-login{
-   align-self: flex-end;
-   margin: 10px;
-} */
+
+.quit-login{
+   /* align-self: flex-end;
+   margin: 10px; */
+   transition: all 0.3s;
+}
+
+.quit-login:hover{
+    svg{
+        fill: red;
+    }
+}
+
+.quit-register{
+    /* align-self: flex-end;
+    margin: 10px; */
+    transition: all 0.3s;
+ }
+ 
+ .quit-register:hover{
+     svg{
+         fill: red;
+     }
+ }
+ 
 
 .overlay{
     position: fixed;
@@ -462,12 +526,11 @@ li:hover::after{
     
     .menu{
         display:flex;
-        position: absolute;
+        /* position: absolute;
         top: 0;
         left: 0;
         margin-left: 20px;
-        margin-top: 20px;
-       
+        margin-top: 20px; */
     }
 
     .menu svg{
@@ -505,6 +568,10 @@ li:hover::after{
   
   
   @media screen and (max-width: 600px){
+    .logo-navbar{
+      font-size: 1rem;
+    
+    }
    
   }
   

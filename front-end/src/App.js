@@ -41,6 +41,15 @@ document.addEventListener("DOMContentLoaded", function() {
               el.classList.add('visible');
               }
           });
+
+
+          const cards = document.querySelectorAll('.review-card');
+          cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+                  if (rect.top < window.innerHeight) {
+                  card.classList.add('visible');
+                  }
+              });
       });     
 
 
@@ -53,12 +62,52 @@ document.addEventListener("DOMContentLoaded", function() {
               el.classList.add('visible');
               }
           });
+
+
+          const cards = document.querySelectorAll('.review-card');
+          cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+                  if (rect.top < window.innerHeight) {
+                  card.classList.add('visible');
+                  }
+              });
+            
+          //.stats-card
+          const statsCards = document.querySelectorAll('.stats-card');
+          statsCards.forEach(statsCard => {
+          const rect = statsCard.getBoundingClientRect();
+                  if (rect.top < window.innerHeight) {
+                  statsCard.classList.add('visible');
+                  }
+              });
+          
       });     
+
+
+      
 
 });
 
 
+const showRegister = () => {
+  const logincontainer = document.querySelector('.login-container');
+  const overlay = document.querySelector('.overlay');
+  const registercontainer = document.querySelector('.register-pop');
 
+
+  registercontainer.style.display = 'flex';
+  overlay.style.display = 'flex';
+  logincontainer.style.display = 'none';
+
+  const forceReflow = registercontainer.offsetHeight;
+  registercontainer.classList.add('slide-in');
+  logincontainer.classList.remove('slide-in');
+
+}
+
+
+
+  
 
 function App(){
 
@@ -84,6 +133,7 @@ function App(){
     useEffect(() => {
 
         setLoading(false); 
+   
       
     }, []);
 
@@ -120,6 +170,7 @@ function Main() {
   //     // document.body.style.background = 'red'; // Default color for other routes
   //   }
   // }, [location.pathname]);
+  
 
 
 
@@ -136,26 +187,25 @@ function Main() {
 
         {/* <Navbar className='navbar'/> */}
       
-        {(location.pathname !== '/login' && location.pathname !== '/register' && <Navbar />)}
+        {(location.pathname !== '/login' && location.pathname !== '/register' && <Navbar/>)}
 
         <div className="content">
-          <Routes>
-            <Route path="/" element={<Home/>} />
         
+          <Routes>
+            <Route path="/" element={<Home  showRegister={showRegister} />} />
             <Route path="/reviews" element={<Reviews/>}/>
             <Route path="/about" element={<About/>} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path='/services' element={<Services/>}/>
+            <Route path='/services' element={<Services showRegister={showRegister}/>}/>
             <Route path='/apply' element={<Apply/>}/>
             <Route path="/apply2" element={<Apply2/>}/>
             <Route path="/faq" element={<Faq/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/recap" element={<Recap/>}/>
-            <Route path="*" element={<Navigate to="/"/>} />
-            
-            
+            <Route path="*" element={<Navigate to="/"/>} />            
           </Routes>
+       
         </div>
         <Footer className='footer'/> 
    

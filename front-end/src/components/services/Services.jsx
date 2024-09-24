@@ -71,7 +71,7 @@ import service5 from '../../assets/lock.png';
 
 
 
-const Services = () => {
+const Services = ({showRegister}) => {
 
 
     /* Cards moving left right */
@@ -190,8 +190,8 @@ const Services = () => {
                                         typically last 50 minutes and are scheduled weekly or bi-weekly.
                                     </p>
                                     <div className='cta'>
-                                        <button className='btn btn-secondary'>Sign Up</button>
-                                        <button className='btn btn-primary'>Ask a Question!</button>
+                                        <button className='btn btn-primary' onClick={showRegister}>Sign Up</button>
+                                        <a href='/faq'><button className='btn btn-secondary' > Ask a Question!</button> </a>
                                     </div>
                                 </div>
 
@@ -206,8 +206,8 @@ const Services = () => {
                                         well-being.
                                     </p>
                                     <div className='cta'>
-                                        <button className='btn btn-secondary'>Sign Up</button>
-                                        <button className='btn btn-primary'>Ask a Question!</button>
+                                        <button className='btn btn-primary' onClick={showRegister}>Sign Up</button>
+                                        <a href='/faq'><button className='btn btn-secondary' > Ask a Question!</button> </a>
                                     </div>
                                 </div>
 
@@ -223,8 +223,8 @@ const Services = () => {
                                     Choose from support groups, skill-building groups, or discussion groups.
                                     </p>
                                     <div className='cta'>
-                                        <button className='btn btn-secondary'>Sign Up</button>
-                                        <button className='btn btn-primary'>Ask a Question!</button>
+                                        <button className='btn btn-primary' onClick={showRegister}>Sign Up</button>
+                                        <a href='/faq'><button className='btn btn-secondary' > Ask a Question!</button> </a>
                                     </div>
                                 </div>
             
@@ -238,8 +238,8 @@ const Services = () => {
                                     Visit our blog for insights and advice on various mental health topics.
                                     </p>
                                     <div className='cta'>
-                                        <button className='btn btn-secondary'>Sign Up</button>
-                                        <button className='btn btn-primary'>Ask a Question!</button>
+                                        <button className='btn btn-primary' onClick={showRegister}>Sign Up</button>
+                                        <a href='/faq'><button className='btn btn-secondary' > Ask a Question!</button> </a>
                                     </div>
                                 </div>
 
@@ -251,6 +251,7 @@ const Services = () => {
                             </div>
                 
                             <button className='arrow arrow-side arrow-right' ref={arrowRightRef} ><FaArrowRight/></button>
+                           
                         
                             <div className='arrows'>
                                 <button className='arrow arrow-left' ref={arrowLeftSmallRef} ><FaArrowLeft/></button>

@@ -111,7 +111,6 @@ const Faq = () => {
                         answer.classList.add("show");
                         arrowUp.classList.add('show');
                         arrowDown.classList.add('hide');
-                
 
                 });
 
@@ -119,6 +118,7 @@ const Faq = () => {
                     answer.classList.remove('show');
                     arrowUp.classList.remove('show');
                     arrowDown.classList.remove('hide');
+
                 })
             }
             
@@ -143,11 +143,11 @@ const Faq = () => {
                 <div className='questions-container'>
 
                    
-                    <div className="question">
+                    <a className="question">
                         <h4>Question number 1?</h4>
                         <a className='arrow-down' > <FaArrowDown/> </a>
                         <a className='arrow-up'> <FaArrowUp/> </a>
-                    </div>
+                    </a>
                     
                     <div className="answer" >
                         <p>
@@ -156,12 +156,12 @@ const Faq = () => {
                         </p>
                     </div>
 
-                    <div className="question">
+                    <a className="question">
                         <h4>Question number 2?</h4>
                         <a className='arrow-down'> <FaArrowDown/> </a>
                         <a className='arrow-up'> <FaArrowUp/> </a>
                         
-                    </div>  
+                    </a>  
                     <div className="answer" >
                         <p>
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsum tenetur earum quidem, ut, natus repudiandae 

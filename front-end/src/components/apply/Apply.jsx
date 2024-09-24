@@ -37,8 +37,7 @@ const Apply = () => {
             const infoBox = moreInfo.nextElementSibling;
     
             moreInfo.addEventListener('mouseover', () => {
-                
-                
+                 
                 infoBox.style.display = 'flex';
             });
 
@@ -68,16 +67,39 @@ const Apply = () => {
 
         form.addEventListener('submit', (event)=> {
             event.preventDefault(); // prevent page reload
+            const apply2 = document.querySelector('.apply2');
 
             document.querySelector('.apply1').style.display='none';
-            document.querySelector('.apply2').style.display='flex';
+            apply2.style.display='flex';
+
+           
+
+            // setTimeout(() => {
+            //     const apply2 = document.querySelector('.apply2');
+            //     apply2.classList.add('slide-in');
+            // }, 10);
+           
+            const forceReflow = apply2.offsetHeight; 
+
+        // Now apply the sliding animation
+        apply2.classList.add('slide-in');
+       
+    
+    
         });
 
         document.getElementById('apply-form2').addEventListener('submit', (event) => {
             event.preventDefault();
+            const apply3 = document.querySelector('.apply3');
     
             document.querySelector('.apply2').style.display='none';
             document.querySelector('.apply3').style.display='flex';
+
+            const forceReflow = apply3.offsetHeight;
+
+            apply3.classList.add('slide-in');
+
+
           });
 
     }, []);
@@ -111,9 +133,9 @@ const Apply = () => {
                 <div className='benefits'>
                 
                    
-                    <h1 className='center'><b Style='color:var(--accent-color);'>THERAPYNOW</b> vs Traditional Office Therapy</h1>
+                    <h1 className='center' Style="font-weight:500;"><b Style='color:var(--accent-color);'>THERAPYNOW</b> <b>vs</b> Traditional Office Therapy</h1>
 
-                    <table>
+                    <table> 
                         <tr> 
                             <th></th>
                             <th className='table-header'>THERAPYNOW</th>
@@ -131,11 +153,9 @@ const Apply = () => {
                             <td><FaXmark size={26}fill='red'/></td>
                         </tr>
                         <tr>
-                            <td>Get paid instantly <FaCircleInfo className='more-info'/> 
-                                <h6 className='info-box'>Loroekrznr</h6></td>
-                            <td className='right-row'><FaCheck size={20} fill='green'/>
-                               
-                            </td>
+                                <td>Get paid instantly <FaCircleInfo className='more-info'/> 
+                                    <h6 className='info-box'>Loroekrznr</h6></td>
+                                <td className='right-row'><FaCheck size={20} fill='green'/> </td>
                             <td><FaXmark size={26}fill='red'/></td>
                         </tr>
                         <tr>

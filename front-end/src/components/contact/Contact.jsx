@@ -10,7 +10,7 @@ const Contact = () =>{
                 <div className="message-area">
                     <h1>Contact Us</h1>
                     <p>
-                        Need to get in touch with us. Fill this form and we will get back to you as soon as possible.
+                        Need to get in touch with us? Fill in this form and we will get back to you as soon as possible.
                     </p>
                 </div>
                 <div className='infos-container card'>

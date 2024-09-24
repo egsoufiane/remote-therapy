@@ -56,9 +56,9 @@
 
 
 
-
 .question a {
     color: var(--white-color);
+    transition: all 0.3s;
 }
 
 .question a:hover{
@@ -93,7 +93,9 @@
     padding: 1rem;
     background-color: var(--primary-color);
 
+
 }
+
 
 .answer p {
     font-weight: 600;
@@ -151,7 +153,10 @@
        flex-direction: column;
         min-width: 100%;
     
-    
+    }
+
+    .questions-container{
+        width: 100%;
     }
 
 

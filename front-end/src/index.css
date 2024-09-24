@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -75,6 +79,11 @@ Text Color: Dark Charcoal (#333333)
   /* --primary-color:#E3F2FD;
   --secondary-color: #F5F5F5; */
 
+  /* --primary-color: #FBFCF8;
+  --secondary-color:#F0F8FF;
+  --white-color: #FAF9F6;
+  --bar-text-color: #FAF9F6; */
+
 
   --box-shadow-primary: #333333 0 0 2px;
   --box-shadow-secondary: #333333 0 0 10px;
@@ -95,7 +104,6 @@ Text Color: Dark Charcoal (#333333)
   
 
 
-
   --container-width-lg: 90%;
   --container-width-md: 85%;
   --containter-width-sm: 75%;
@@ -110,6 +118,15 @@ Text Color: Dark Charcoal (#333333)
   );
 
 
+}
+
+:root.clicked{
+  --bar-color: #8BC34A; 
+  --bar-text-color: #FFFFFF; 
+  --primary-color: #F0F4C3; 
+  --secondary-color: #C5E1A5; 
+  --text-color: #2E2E2E;
+  --accent-color: #FF7043; 
 }
 
 
@@ -130,7 +147,7 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  font-family: "Assistant", "Source sans 3", "Libre Franklin" , Ubuntu, Raleway;
+  font-family: Roboto ,"SUSE", "Segoe UI","Changa", "Assistant", "Source sans 3", "Libre Franklin" , Ubuntu, Raleway;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -335,9 +352,12 @@ hr {
 /* animations*/
 
 .slide-in-element{
+  transform: translateY(80px);
     opacity:0;
-    transform: translateY(80px);
-    transition: all 0.5s ease-out;
+    /* transition: transform 2s ease-out, opacity 2s ease-out; */
+    /* transition: all 8000ms; */
+    /* animation-duration: 8s; */
+    transition: all 1s;
 
 
 }
@@ -345,6 +365,38 @@ hr {
 .slide-in-element.visible{
     opacity:1;
     transform: translateY(0);
+    transition: all 1s;
+}
+
+.review-card{
+    /* transform: translateY(100px);
+    opacity:0;
+    transition: all 1s; */
+
+    transform: scale(0.2);
+    opacity: 0;
+    transition: all 1s;
+}
+
+.review-card.visible{
+  /* opacity:1;
+  transform: translateY(0);
+  transition: all 1s; */
+  transform: scale(1);
+  opacity: 1;
+  transition: all 1s;
+}
+
+.stats-card{
+  transform: translateY(80px);
+  opacity:0;
+  transition: all 1s;
+}
+
+.stats-card.visible{
+    opacity:1;
+    transform: translateY(0);
+    transition: all 1s;
 }
 
 
@@ -422,6 +474,7 @@ hr {
   color: white;
   color: var(--text-color);
   background-color: transparent;
+  border-color: var(--text-color);
 
  
   font-weight: 600;
@@ -437,7 +490,7 @@ hr {
 
 .btn:hover{
   filter: brightness(110%);
-  border-color: var(--accent-color);
+  /* border-color: var(--accent-color); */
 }
 
 
@@ -449,6 +502,12 @@ hr {
   color: var(--color-black);
   color: var(--text-color);
   transition: ease 0.2s;
+  background-color: var(--bar-color);
+  border-color: transparent;
+  color: var(--bar-text-color);
+
+  background-color: var(--accent-color);
+  color: var(--text-color);
 
 }
 
@@ -468,7 +527,7 @@ hr {
 
   border: 2px solid var(--accent-color);
   background-color: var(--primary-color);
-  color: var(--accent-color);
+  color: var(--text-color);
   
 }
 

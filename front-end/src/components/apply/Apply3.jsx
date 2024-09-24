@@ -112,7 +112,7 @@ const Apply3 = () => {
 
     return (
         <div className='apply2-container'>
-            <h1>Upload the neccessary documents</h1>
+            <h2>Upload the neccessary documents</h2>
             <form action='/recap' className="application-form3">
 
                     <div className="entryareaa"> 
