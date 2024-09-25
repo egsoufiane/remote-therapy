@@ -209,16 +209,6 @@ const Navbar = () => {
     
     const iconSize = 16;
 
-    useEffect(()=>{
-        document.querySelector('.btn').addEventListener('click', ()=>{
-    
-          const root = document.querySelector(':root');
-        //   root.classList.add('clicked');
-        root.style.setProperty('--primary-color', "red");
-        
-        });
-      }, []);
-
 
 
     return(

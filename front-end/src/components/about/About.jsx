@@ -56,7 +56,7 @@ const About = () => {
             <div className="about-title">
 
                     <h2>Here is a little bit about us</h2>
-                    <h1 Style='font-size: 3rem'>
+                    <h2 Style='font-size: 3rem; font-weight:600;'>
                     <Typewriter
                         options={{
                             strings: [
@@ -69,7 +69,7 @@ const About = () => {
         
                         }}
                     />
-                    </h1>
+                    </h2>
            
                 {/* <h1>What do we do?</h1> */}
             </div>

@@ -111,7 +111,7 @@ const Apply = () => {
         <section className='apply-section'>
             <div className='apply-container'>
                 <div className='application' id="start-application">
-                <h1 className='center'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h1>
+                <h2 className='center'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h2>
                     <div className="apply1">
                         
                         <h2>What is your specialty?</h2>
@@ -133,7 +133,7 @@ const Apply = () => {
                 <div className='benefits'>
                 
                    
-                    <h1 className='center' Style="font-weight:500;"><b Style='color:var(--accent-color);'>THERAPYNOW</b> <b>vs</b> Traditional Office Therapy</h1>
+                    <h2 className='center' Style="font-weight:500;"><b Style='color:var(--accent-color);'>THERAPYNOW</b> <b>vs</b> Traditional Office Therapy</h2>
 
                     <table> 
                         <tr> 
@@ -247,7 +247,7 @@ const Apply = () => {
                 
 
                 <div className="requirements">
-                    <h1>Requirements</h1>
+                    <h2>Requirements</h2>
                     <ul className='requirements-list' Style='list-style:circle'>
                         <li className='requierement'>
                            Must have a valid therapist license (e.g., LPC, LCSW, MFT)

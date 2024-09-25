@@ -203,12 +203,13 @@ section{
 }
 
 h1, h2, h3, h4, h5, h6{
-  color: var(--color-black);
+ 
   color: var(--text-color);
 }
 
 h1 {
-  font-size: 2rem;
+  /* font-size: 2rem; */
+  color: var(--accent-color);
 }
 
 
@@ -525,7 +526,7 @@ hr {
   transition: ease 0.2s;
 
 
-  border: 2px solid var(--accent-color);
+  border: 2px solid var(--text-color);
   background-color: var(--primary-color);
   color: var(--text-color);
   

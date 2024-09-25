@@ -139,7 +139,7 @@ const Faq = () => {
     return(
         <section className='faq-section'>
             <div className="faq-container">
-                <h1 className='center'>Frequencty Asked Questions?</h1>
+                <h2 className='center'>Frequencty Asked Questions?</h2>
                 <div className='questions-container'>
 
                    
@@ -195,7 +195,7 @@ const Faq = () => {
                 </div>
 
                 <div className="new-question">
-                    <h1>Submit A New Question</h1>
+                    <h2>Submit A New Question</h2>
                     <form>
                         <input type="text" placeholder="What's your question" className='textfield'/>
                         <input type="submit" value="Submit" className='btn btn-primary'/>
