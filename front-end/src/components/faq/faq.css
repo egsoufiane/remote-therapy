@@ -147,7 +147,6 @@
 
 .new-question {
     display: flex;
-    flex-direction: row;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -164,6 +163,7 @@
 
     form {
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         gap: 1rem;
