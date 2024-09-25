@@ -37,6 +37,18 @@
 
 }
 
+.faq{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    cursor: pointer;
+    svg {
+        color: var(--white-color);
+        font-size: 1.5rem;
+    }
+}
+
 .question {
     display: flex;
     justify-content: space-between;
@@ -45,7 +57,8 @@
     height: auto;
     padding: 1rem;
     /* border: 2px solid var(--black-color); */
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--white-color);
+
    
     /* cursor: pointer; */
   
@@ -56,14 +69,14 @@
 
 
 
-.question a {
+/* .question a {
     color: var(--white-color);
     transition: all 0.3s;
-}
+} */
 
-.question a:hover{
+/* .question a:hover{
     color: var(--accent-color);
-}
+} */
 
 .arrow-down{
     display: flex;
@@ -71,6 +84,15 @@
 
 .arrow-up{
     display: none;
+}
+
+.arrow-faq{
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.arrow-faq.clicked{
+    transform: rotate(180deg);
 }
 
 
@@ -82,19 +104,22 @@
 
 
 .answer{
-    display: none;
+    /* display: none; */
     /* flex-direction: column; */
-    justify-content: center;
-    align-items: space-between;;
-    flex-wrap: wrap;
-    flex-direction: wrap;
-    min-width: 100%;
-    height: auto;
-    padding: 1rem;
+    justify-content: flex-start;
+    align-items: space-between;
+    /* flex-wrap: wrap;
+    flex-direction: wrap; */
+    width: 100%;
+    /* padding: 1rem; */
     background-color: var(--primary-color);
-
+    overflow: hidden;
+    height: 0;
+    transition: all 0.5s;
 
 }
+
+
 
 
 .answer p {
@@ -103,7 +128,12 @@
 
 
 .answer.show{
-    display: flex;
+    
+    height: auto;
+    max-height: 100%;
+    padding: 1rem;
+    transition: all 0.5s;
+
 }
 
 .arrow-down.hide{
@@ -122,14 +152,13 @@
     align-items: flex-start;
     gap: 1rem;
     min-width: 30%;
-    padding: 1rem;
+
     margin: 2rem 0;
     padding: 0;
-
-
-    /* h2 {
-        align-self: flex-start;
-    } */
+    h2 {
+        padding-left: 2px;
+    }
+  
 
 
     form {
@@ -137,9 +166,8 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
-
         min-width: 100%;
-
+    
     
     }
 }
