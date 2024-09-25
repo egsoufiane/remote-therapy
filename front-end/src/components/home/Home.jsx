@@ -494,7 +494,7 @@ const Home = ({showRegister}) => {
         
         <section className='home-section container-h'>
 
-            {/* Firts Layout */}
+            {/* First Layout */}
             
             {/* <div className='container home-container'>
                 <div className='home-slogan'>
@@ -624,7 +624,8 @@ const Home = ({showRegister}) => {
                                     quia tempore minima, magnam vitae itaque exercitationem corrupti nobis, adipisci expedita quis velit.
                                      Ipsam tempora inventore molestiae.
                                 </p>
-                                    <div className='CTA-home'> 
+                                    <div className='CTA-home'>
+                                        <button className='btn btn-primary' onClick={showRegister}> Sign Up </button> 
                                         <button className='btn btn-secondary'><a href='/reviews'> Our Therapists </a></button>
                                     </div>
                             </div>
@@ -643,7 +644,7 @@ const Home = ({showRegister}) => {
                                     </p>
                                     <div className='CTA-home'> 
                                         <button className='btn btn-primary' onClick={showRegister}> Sign Up </button>
-                                         <button className='btn btn-secondary'><a href='/about'>Read More! </a></button> 
+                                        <button className='btn btn-secondary'><a href='/about'>Read More! </a></button> 
                                     </div>
                             </div>
                             <div className='home-img-container'>
@@ -693,7 +694,7 @@ const Home = ({showRegister}) => {
                                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, illum omnis! Earum at minus
                                         obcaecati omnis corrupti voluptatibus saepe! Rerum, praesentium at sequi nostrum enim
                                         molestias? Deserunt, hic quam? Animi.</p>
-                                        <a className='CTA-home' onClick={showRegister}>Get Started <MdKeyboardArrowRight/></a>
+                                    <a className='CTA-home' onClick={showRegister}>Get Started <MdKeyboardArrowRight/></a>
                             </div>
                         </div>
 

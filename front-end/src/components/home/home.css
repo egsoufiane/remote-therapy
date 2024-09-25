@@ -472,9 +472,10 @@
 }
 
 a.CTA-home{
+    display: flex;
     color: var(--accent-color);
     gap: 0;
-    align-self: flex-end;
+    justify-content: flex-end;
 }
 
 .btn-more-info{
