@@ -8,10 +8,15 @@ import hp4 from '../../assets/aboutH3.png';
 import hp5 from '../../assets/home6.png';
 import hp6 from '../../assets/home7.jpg';
 import hp7 from '../../assets/home8.png';
+import hp8 from '../../assets/home9.jpg';
+import hp9 from '../../assets/aboutH2.jpg';
+
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
-import Navbar from '../navbar/Navbar';
+import { FaCouch } from "react-icons/fa6";
+import { MdPrivacyTip } from "react-icons/md";
+
 
 
 
@@ -29,7 +34,7 @@ const circleClickOne = () => {
     circle2.style.background = 'var(--bar-text-color)';
     circle3.style.background = 'var(--bar-text-color)';
 
-    circle1.style.transform = 'scale(1.3)';
+    circle1.style.transform = 'scale(1.2)';
     circle2.style.transform = 'scale(1)';
     circle3.style.transform = 'scale(1)';
 
@@ -62,7 +67,7 @@ const circleClickTwo = () => {
     circle3.style.background = 'var(--bar-text-color)';
 
     circle1.style.transform = 'scale(1)';
-    circle2.style.transform = 'scale(1.3)';
+    circle2.style.transform = 'scale(1.2)';
     circle3.style.transform = 'scale(1)';
 
     // img1.style.display = 'none';
@@ -94,7 +99,7 @@ const circleClickThree = () => {
 
     circle1.style.transform = 'scale(1)';
     circle2.style.transform = 'scale(1)';
-    circle3.style.transform = 'scale(1.3)';
+    circle3.style.transform = 'scale(1.2)';
 
     // img1.style.display = 'none';
     // img2.style.display = 'none';
@@ -391,14 +396,14 @@ const Home = ({showRegister}) => {
                         if(prevCircle && prevCircle.classList.contains('circle')){
                             
                             prevCircle.style.backgroundColor = 'var(--bar-color)';
-                            prevCircle.style.transform = 'scale(1.3)';
+                            prevCircle.style.transform = 'scale(1.2)';
                     
                             
                         }else{
                             currentCircle.style.backgroundColor = 'white';
                             currentCircle.style.transform = 'scale(1)';
                             circles[2].style.backgroundColor = 'var(--bar-color)';
-                            circles[2].style.transform = 'scale(1.3)';
+                            circles[2].style.transform = 'scale(1.2)';
                             imgsContainer.scrollTo({
                                 left: imgsContainer.scrollWidth - imgsContainer.clientWidth,
                                 behavior: 'smooth'
@@ -437,14 +442,14 @@ const Home = ({showRegister}) => {
                         if(nextCircle && nextCircle.classList.contains('circle')){
                             
                             nextCircle.style.backgroundColor = 'var(--bar-color)';
-                            nextCircle.style.transform = 'scale(1.3)';
+                            nextCircle.style.transform = 'scale(1.2)';
                     
                             
                         }else{
                             currentCircle.style.backgroundColor = 'white';
                             circles[0].style.backgroundColor = 'var(--bar-color)';
                             currentCircle.style.transform = 'scale(1)';
-                            circles[0].style.transform = 'scale(1.3)';
+                            circles[0].style.transform = 'scale(1.2)';
                             imgsContainer.scrollTo({
                                 left: 0,
                                 behavior: 'smooth'
@@ -455,28 +460,30 @@ const Home = ({showRegister}) => {
                 
             }
 
-            const slides = document.querySelector('.slides');
-            slides.addEventListener('scroll', ()=> {
-                setTimeout(() =>{
-                    const slideWidth = slides.clientWidth;
-                    const currentScroll = slides.scrollLeft;
-                    const halfSlide = slideWidth / 2;
+            //Handling swiping
 
-                    if(currentScroll % slideWidth > halfSlide){
-                        slides.scrollBy({
-                            left: slideWidth - (currentScroll % slideWidth),
-                            behavior: 'smooth'
-                        });
+            // const slides = document.querySelector('.slides');
+            // slides.addEventListener('scroll', ()=> {
+            //     setTimeout(() =>{
+            //         const slideWidth = slides.clientWidth;
+            //         const currentScroll = slides.scrollLeft;
+            //         const halfSlide = slideWidth / 2;
+
+            //         if(currentScroll % slideWidth > halfSlide){
+            //             slides.scrollBy({
+            //                 left: slideWidth - (currentScroll % slideWidth),
+            //                 behavior: 'smooth'
+            //             });
     
-                    }else{
-                        slides.scrollBy({
-                            left: -(currentScroll % slideWidth),
-                            behavior: 'smooth'
-                        });
-                    }
-                }, "500");
+            //         }else{
+            //             slides.scrollBy({
+            //                 left: -(currentScroll % slideWidth),
+            //                 behavior: 'smooth'
+            //             });
+            //         }
+            //     }, "1000");
                  
-            });
+            // });
 
     
         }, []);
@@ -594,49 +601,53 @@ const Home = ({showRegister}) => {
                     <div className="slides">
                         <div className='slide'>
                             <div className="home-description-3">
-                                <h1>Your Path to Healing, Anytime, Anywhere</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ducimus provident sunt aliquam omnis 
-                                    esse quidem numquam quo voluptas neque.</p>
-                                    <div className='CTA-home'> 
-                                        <a onClick={showRegister}><button className='btn btn-primary'> Sign Up </button></a>
-                                        <a href='/about'> <button className='btn btn-secondary'>Read More!</button> </a>
-                                    </div>
+                                <h2 Style='font-weight: 400'>Your Path to Healing, <b>Anytime, Anywhere</b></h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus soluta dolorum quas reiciendis 
+                                    quia tempore minima, magnam vitae itaque exercitationem corrupti nobis, adipisci expedita quis velit.
+                                     Ipsam tempora inventore molestiae.
+                                </p>
+                                <div className='CTA-home'> 
+                                    <button className='btn btn-primary' onClick={showRegister}> Sign Up </button>
+                                    <button className='btn btn-secondary'><a href='/about'>Read More! </a></button> 
+                                </div>
                             </div>
 
                             <div className='home-img-container'>
-                                <img src={hp7} alt="home picture" className='home-picture-3'/>
+                                <img src={hp5} alt="home" className='home-picture-3'/>
                             </div>   
                         </div>
 
                         <div className='slide'>
                             <div className="home-description-3">
-                                <h1>Your Path to Healing, Anytime, Anywhere</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ducimus provident sunt aliquam omnis 
-                                    esse quidem numquam quo voluptas neque.</p>
+                                <h2>A divers Group of Therapists</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus soluta dolorum quas reiciendis 
+                                    quia tempore minima, magnam vitae itaque exercitationem corrupti nobis, adipisci expedita quis velit.
+                                     Ipsam tempora inventore molestiae.
+                                </p>
                                     <div className='CTA-home'> 
-                                        <a onClick={showRegister}><button className='btn btn-primary'> Sign Up </button></a>
-                                        <a href='/about'> <button className='btn'>Read More!</button> </a>
+                                        <button className='btn btn-secondary'><a href='/reviews'> Our Therapists </a></button>
                                     </div>
                             </div>
 
                             <div className='home-img-container'>
-                                <img src={hp} alt="home picture" className='home-picture-3'/>
+                                <img src={hp8} alt="home" className='home-picture-3'/>
                             </div>   
                         </div>
 
                         <div className='slide'>
-                            <div className="home-description-3">
-                                <h1>Your Path to Healing, Anytime, Anywhere</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ducimus provident sunt aliquam omnis 
-                                    esse quidem numquam quo voluptas neque.</p>
+                        <div className="home-description-3">
+                                    <h2 Style='font-weight: 400'>Your Safe <b> Space Online</b></h2>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae unde quibusdam esse, a commodi 
+                                    veniam praesentium enim ex incidunt impedit ea vel cupiditate. Incidunt atque voluptas sit
+                                     cumque exercitationem in?
+                                    </p>
                                     <div className='CTA-home'> 
-                                        <a onClick={showRegister}><button className='btn btn-primary'> Sign Up </button></a>
-                                        <a href='/about'> <button className='btn'>Read More!</button> </a>
+                                        <button className='btn btn-primary' onClick={showRegister}> Sign Up </button>
+                                         <button className='btn btn-secondary'><a href='/about'>Read More! </a></button> 
                                     </div>
                             </div>
-
                             <div className='home-img-container'>
-                                <img src={hp5} alt="home picture" className='home-picture-3'/>
+                                <img src={hp7} alt="home" className='home-picture-3'/>
                             </div>   
                         </div>
                     </div>
@@ -656,7 +667,7 @@ const Home = ({showRegister}) => {
                 {/* <a href='#therapy-types' > <IoIosArrowDown size={40} className='arrow-next-section' /></a> */}
 
                 <div id='therapy-types' className='therapy-types-container'>
-                    <h1 Style='color:var(--bar-text-color)'>What are you looking for?</h1>
+                    <h2 Style='color: var(--bar-text-color)'>What are you looking for?</h2>
 
                     <div className="therapy-type-cards">
 
@@ -702,7 +713,80 @@ const Home = ({showRegister}) => {
                     </div>
                     <a  href="/services"> <button className='btn btn-secondary'>More services</button> </a>
                 </div>
-                <div className='another-section'><h1>More information</h1></div>
+                <div className='therapy-benefits-section'>
+                    <h2 Style='font-size: 2rem; font-weight: 400'>Benefits of <b>THERAPYNOW</b></h2>
+                    <div className="therapy-benefits-container">
+
+                        <div className='therapy-benefits-cards'>
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Flexible scheduling allows clients to fit sessions into their busy lives without needing to 
+                                    commute, saving both time and money.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><MdPrivacyTip/></div>
+                                <p className='benefits-description'>
+                                    Remote therapy can provide a higher level of privacy for those who may feel uncomfortable visiting a therapist's 
+                                    office.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                            <div className="therapy-benefits-card card">
+                                <div className='benefits-icon'><FaCouch/></div>
+                                <p className='benefits-description'>
+                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
+                                    people living in rural or remote areas, or those with mobility issues.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
             </div>
 
 
