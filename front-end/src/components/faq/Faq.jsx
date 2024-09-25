@@ -363,7 +363,7 @@ const Faq = () => {
 
                 <div className="new-question">
                     <h2>Submit A New Question</h2>
-                    <form>
+                    <form className='new-question-form'>
                         <input type="text" placeholder="What's your question" className='textfield'/>
                         <input type="submit" value="Submit" className='btn btn-primary'/>
                     </form>
