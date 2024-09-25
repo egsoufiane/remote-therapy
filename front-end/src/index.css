@@ -3,6 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 
 * {
   margin: 0;
@@ -71,6 +73,8 @@ Text Color: Dark Charcoal (#333333)
   --accent-color: #FF6B6B;
   --black-color: #1a0d0d;
   --white-color: #fffffffd;
+
+  --secondary-color: #B2C7D9;
   
   /* --bar-color: white; */
   /* --bar-text-color: black; */
@@ -120,14 +124,6 @@ Text Color: Dark Charcoal (#333333)
 
 }
 
-:root.clicked{
-  --bar-color: #8BC34A; 
-  --bar-text-color: #FFFFFF; 
-  --primary-color: #F0F4C3; 
-  --secondary-color: #C5E1A5; 
-  --text-color: #2E2E2E;
-  --accent-color: #FF7043; 
-}
 
 
 html{
@@ -147,7 +143,7 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  font-family: Roboto ,"SUSE", "Segoe UI","Changa", "Assistant", "Source sans 3", "Libre Franklin" , Ubuntu, Raleway;
+  font-family:  "SUSE", "Roboto", "Segoe UI","Changa", "Assistant", "Source sans 3", "Libre Franklin" , Ubuntu, Raleway;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -198,7 +194,7 @@ body {
 } */
 
 section{
-  padding-top: 80px;
+  padding-top: 60px;
 
 }
 

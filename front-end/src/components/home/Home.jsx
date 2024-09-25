@@ -715,7 +715,7 @@ const Home = ({showRegister}) => {
                     <a  href="/services"> <button className='btn btn-secondary'>More services</button> </a>
                 </div>
                 <div className='therapy-benefits-section'>
-                    <h2 Style='font-size: 2rem; font-weight: 400'>Benefits of <b>THERAPYNOW</b></h2>
+                    <h2 Style='font-size: 2rem; font-weight: 400; text-align:center'>Benefits of <b>THERAPYNOW</b></h2>
                     <div className="therapy-benefits-container">
 
                         <div className='therapy-benefits-cards'>
