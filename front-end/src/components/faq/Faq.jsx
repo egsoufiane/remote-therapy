@@ -374,35 +374,73 @@ const Faq = () => {
 }
 
 
-const fqData = [    
+const fqData = [
     {
-        question:'Question 1',
-        answer:'Lorem ipsum dolor sit ameLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi dolo',
+      question: "What is remote therapy?",
+      answer: "Remote therapy allows you to receive professional counseling from licensed therapists via video calls or phone sessions."
     },
     {
-        question:'Question 2',
-        answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi dolor molestias tenetur dolorem soluta, alias temporibus doloribus laudantium corporis autem, nobis aut accusamus veniam fuga perferendis, beatae eum quia',
-    },
-
-    {
-        question:'Question 1?',
-        answer:'Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloe',
+      question: "How do I book a session?",
+      answer: "You can book a session by visiting our scheduling page, selecting an available time, and completing the booking form."
     },
     {
-        question:'Question 2',
-        answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi dolor molestLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloias tenetur dolorem soluta, alias temporibus doloribus laudantium corporis autem, nobis aut accusamus veniam fuga perferendis, beatae eum quia',
-    },
-
-    {
-        question:'Question 1',
-        answer:'Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloe',
+      question: "Is remote therapy secure?",
+      answer: "Yes, we use encrypted platforms to ensure your privacy and confidentiality during sessions."
     },
     {
-        question:'Question 2',
-        answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi dolor molestLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum animi doloias tenetur dolorem soluta, alias temporibus doloribus laudantium corporis autem, nobis aut accusamus veniam fuga perferendis, beatae eum quia',
+      question: "What should I prepare for my first session?",
+      answer: "For your first session, make sure you have a stable internet connection and a quiet, private space where you feel comfortable talking."
     },
-
-]
+    {
+      question: "Can I reschedule or cancel my appointment?",
+      answer: "Yes, you can reschedule or cancel your appointment up to 24 hours in advance without any fees."
+    },
+    {
+      question: "How long does a typical session last?",
+      answer: "A typical therapy session lasts about 50 minutes, but this can vary depending on your therapist and your needs."
+    },
+    {
+      question: "Do you offer therapy for couples or families?",
+      answer: "Yes, we offer remote therapy sessions for individuals, couples, and families. You can choose the type of session when booking."
+    },
+    {
+      question: "What types of therapy do you offer?",
+      answer: "We offer a wide range of therapy options including cognitive behavioral therapy (CBT), psychodynamic therapy, mindfulness-based therapy, and more."
+    },
+    {
+      question: "Is therapy covered by insurance?",
+      answer: "Coverage for therapy depends on your insurance provider. We recommend checking with your insurance company to see if remote therapy is covered."
+    },
+    {
+      question: "How do I know if remote therapy is right for me?",
+      answer: "Remote therapy is a great option if you prefer the convenience of accessing therapy from home, have a busy schedule, or live in an area with limited access to therapists."
+    },
+    {
+      question: "What if I have technical difficulties during the session?",
+      answer: "If you experience technical difficulties, your therapist will help you troubleshoot or reschedule the session as needed."
+    },
+    {
+      question: "Can I choose my therapist?",
+      answer: "Yes, you can choose a therapist based on their profile, specialties, and availability. We also offer assistance in matching you with a therapist that fits your needs."
+    },
+    {
+      question: "Do you offer free consultations?",
+      answer: "Yes, we offer a free initial consultation to help you decide if remote therapy is right for you and to match you with the appropriate therapist."
+    },
+    {
+      question: "How do I pay for my sessions?",
+      answer: "You can pay for your sessions through our secure online payment system. We accept all major credit cards and some digital payment methods."
+    },
+    {
+      question: "Can I get a refund if I cancel my session?",
+      answer: "Refunds are available if you cancel your session at least 24 hours in advance. Cancellations made less than 24 hours before the session may incur a fee."
+    },
+    {
+      question: "How often should I attend therapy sessions?",
+      answer: "The frequency of therapy sessions depends on your needs and goals. Some people prefer weekly sessions, while others may meet less frequently."
+    }
+  ]
+  
 
 
 

@@ -40,7 +40,7 @@
     align-items: center;
     padding: 0 1rem;
     gap: 1rem;
-    flex-wrap: wrap;
+
 
     /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px; */
@@ -121,7 +121,7 @@
 .nav-link{
    
     display: flex;
-    margin: 0 0.5rem;
+    margin: 0 0.4rem;
     color: var(--text-color);
     font-size: 1rem;
     font-weight: 400;
@@ -524,8 +524,10 @@ li:hover::after{
     
     .nav-links{
         display: none;
+        
     }
-    
+
+
     .menu{
         display:flex;
         /* position: absolute;
@@ -570,10 +572,14 @@ li:hover::after{
   
   
   @media screen and (max-width: 600px){
+
+    
     .logo-navbar{
-      font-size: 1rem;
+      font-size: 0.8rem;
     
     }
+
+
    
   }
   
