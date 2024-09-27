@@ -560,11 +560,11 @@ li:hover::after{
 
    
     .login-container{
-        width: 90%;
+        width: 50%;
     }
 
     .register-pop{
-        width:90%;
+        width: 50%;
     }
   
   
@@ -578,7 +578,13 @@ li:hover::after{
       font-size: 0.8rem;
     
     }
+    .login-container{
+        width: 90%;
+    }
 
+    .register-pop{
+        width:90%;
+    }
 
    
   }

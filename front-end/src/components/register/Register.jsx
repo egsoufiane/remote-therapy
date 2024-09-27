@@ -80,9 +80,9 @@ const Register = ({showLogin}) => {
                         <input type='text' id='lastname' name='lastname' className='textfield lastname' placeholder='Lastname'/>
                      </div>
 
-                    <div className='input-unit'>
+                    {/* <div className='input-unit'>
                         <input type='text' id='address' name='address' className='textfield address' placeholder='Address'/>
-                    </div>
+                    </div> */}
 
               
                     <div className='input-unit'>
@@ -119,11 +119,10 @@ const Register = ({showLogin}) => {
                             </select> 
                         </div>
                   
-                       
                     </div>
 
                         <div className='hinput-unit'>   
-                            <label for='sexe' className='register-label'>Sexe</label>
+                            <label for='sex' className='register-label'>Sex</label>
                             <div className='sexe-options'>
                                 <input type="radio" id='gender' value="male" name="gender"/>
                                 <label for='male'>Male</label>
@@ -145,7 +144,6 @@ const Register = ({showLogin}) => {
 
                 </form>
                 <Oath />
-                
                 <hr/>
                 <p className='center'>Already have an account? <a onClick={showLogin}>Login Now</a></p>
 
