@@ -304,7 +304,7 @@ const Navbar = () => {
               
                 <Login/>
 
-                <a className='center' href='#'>Forgotten password?</a>
+                
 
                 <hr/>
                 

@@ -1,6 +1,7 @@
 import React from 'react'
 import './login.css'
 import logo from '../../assets/logo6.png';
+import Oath from '../oath/Oath';
 
 const Login = () => {
 
@@ -34,6 +35,11 @@ const Login = () => {
                             </div>
                             <input type='sumbit' value='Log In' className='btn btn-primary'/>
                         </form>
+                        {/* <a className='center' href='#'>Forgotten password?</a> */}
+                                                
+
+                       <Oath/>
+
                         {/* <form method='post' action='/loggedin' className='login-form'>
             
                             <label for="email" >Email address:</label>

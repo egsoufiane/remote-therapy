@@ -4,6 +4,7 @@ import logo from '../../assets/logo6.png';
 import countryData1 from '../../assets/countries1.json';
 import countryData from '../../assets/countries.json';
 import {useState} from 'react'
+import Oath from '../oath/Oath';
 
 
 const Register = ({showLogin}) => {
@@ -143,13 +144,14 @@ const Register = ({showLogin}) => {
                     <input type='submit' id='submit' value='Register' className='btn btn-primary'/>
 
                 </form>
+                <Oath />
                 
                 <hr/>
                 <p className='center'>Already have an account? <a onClick={showLogin}>Login Now</a></p>
 
             </div>
 
- {/* select country and city */}
+ {/* select country and city */}    
         
  
         </section>
