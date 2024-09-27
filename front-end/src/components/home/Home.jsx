@@ -21,6 +21,8 @@ import { MdPrivacyTip } from "react-icons/md";
 
 
 
+
+
 const circleClickOne = () => {
     const circle1 = document.querySelector('.circle1');
     const circle2 = document.querySelector('.circle2');
@@ -130,6 +132,7 @@ const rgbString = ({ r, g, b }) => {
     
     return 'rgb(${r}, ${g}, ${b})';
 }
+
 
 
 
@@ -356,7 +359,8 @@ const Home = ({showRegister}) => {
 
 
     // Sliding scrolling Thrid Layout
-     useEffect(() => {
+     
+    useEffect(() => {
 
             const arrowLeft = document.querySelector('.arrow-home-left');
             const arrowRight = document.querySelector('.arrow-home-right');
@@ -460,6 +464,63 @@ const Home = ({showRegister}) => {
                 
             }
 
+            //Automatic scrolling - Trigger Right Click Logic 
+            const autoScroll = () => {
+                setTimeout(() => {
+              
+                        imgsContainer.scrollBy({
+                            left: imgsContainer.clientWidth,
+                            behavior: 'smooth'
+                        });
+        
+           
+                        let circles = document.querySelectorAll('.circle');
+                        let currentCircle = null;
+                        let nextCircle = null;
+        
+                            circles.forEach((circle) => {
+        
+                                const bgColor = window.getComputedStyle(circle).backgroundColor;
+                                if(bgColor === rgbS){
+                                    currentCircle = circle;
+                                    nextCircle = currentCircle.nextElementSibling;
+                                }
+        
+                                
+                            });
+        
+                            if(currentCircle){
+                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.transform = 'scale(1)';
+                            }
+        
+                            if(nextCircle && nextCircle.classList.contains('circle')){
+                                
+                                nextCircle.style.backgroundColor = 'var(--bar-color)';
+                                nextCircle.style.transform = 'scale(1.2)';
+                        
+                                
+                            }else{
+                                currentCircle.style.backgroundColor = 'white';
+                                circles[0].style.backgroundColor = 'var(--bar-color)';
+                                currentCircle.style.transform = 'scale(1)';
+                                circles[0].style.transform = 'scale(1.2)';
+                                imgsContainer.scrollTo({
+                                    left: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+               
+                    // To keep scrolling
+                    autoScroll();
+               
+                }, 8000);
+            }
+
+            //Calling autoScroll
+            autoScroll();
+           
+
             //Handling swiping
 
             // const slides = document.querySelector('.slides');
@@ -481,9 +542,63 @@ const Home = ({showRegister}) => {
             //                 behavior: 'smooth'
             //             });
             //         }
-            //     }, "1000");
+            //     }, 1000);
                  
             // });
+
+     
+
+            // Debouncing function to avoid excessive scrolling make it not clungy
+
+            let debounceTimeout;
+            const debounce = (func, delay) => {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(func, delay);
+            };
+
+            const slides = document.querySelector('.slides');
+            slides.addEventListener('scroll', () => {
+                debounce(() => {
+                    const slideWidth = slides.clientWidth;
+                    const currentScroll = slides.scrollLeft;
+                    const halfSlide = slideWidth / 2;
+                                
+                    if (currentScroll % slideWidth > halfSlide) {
+                        slides.scrollBy({
+                            left: slideWidth - (currentScroll % slideWidth),
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        slides.scrollBy({
+                            left: -(currentScroll % slideWidth),
+                            behavior: 'smooth'
+                        });
+
+                    }
+ 
+                    //Style circles when scrolling
+                    const circles = document.querySelectorAll('.circle');
+
+                    // Calculate the current slide index
+                    const currentSlideIndex = Math.round(currentScroll / slideWidth);
+                    console.log("currentScroll / slideWidth: ", currentScroll / slideWidth,"currentSlideIndex", currentSlideIndex);
+
+
+                    // Reset all circles to default 
+                    circles.forEach(circle => {
+                        circle.style.backgroundColor = "var(--white-color)";
+                        circle.style.transform = "scale(1)";
+
+                    });
+                    
+                    // Highlight the circle corresponding to the current slide
+                    if (currentSlideIndex < circles.length) {
+                        circles[currentSlideIndex].style.backgroundColor = "var(--bar-color)";
+                        circles[currentSlideIndex].style.transform = "scale(1.2)";
+                    }
+
+                }, 200);
+            });
 
     
         }, []);

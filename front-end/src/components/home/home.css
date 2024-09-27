@@ -134,8 +134,8 @@
 
 .circle{
     content:'';
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.7rem;
+    height: 0.7rem;
     /* background-color: var(--bar-text-color); */
     background-color: white;
     border-radius: 50%;
@@ -257,7 +257,6 @@
     
     /* max-width: 100%; */
     /* filter: brightness(90%); */
-    
     
 }
 
