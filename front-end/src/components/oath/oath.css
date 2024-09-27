@@ -1,0 +1,54 @@
+.oath{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    min-width: 100%;
+
+}
+
+.oath-icons{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    min-width: 100%;
+}
+
+
+.oath-logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    background-color: var(--white-color);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 4px;
+    transition: all 0.5s;
+}
+
+.oath-logo-container:hover{
+    /* border-color: var(--accent-color); */
+    /* border: 1px solid var(--textfield-color); */
+    border-color: var(--bar-color);
+    border-radius: 3px;
+    
+    
+
+}
+
+
+.oath-logo{
+    width: 100%;
+
+    /* border: 1px solid var(--bar-color);
+    border-radius: 3px;
+    padding: 3px; */
+}
+
+
+
+
