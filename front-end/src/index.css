@@ -410,7 +410,7 @@ hr {
 .stair-element{
   opacity:0;
   transform: translateY(80px);
-  transition: all 0.2s;
+  /* transition: all 0.2s; */
 }
 
 .stair-element.visible{

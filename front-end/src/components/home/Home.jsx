@@ -24,76 +24,91 @@ import { FaClock } from "react-icons/fa6";
 import { IoEarth } from "react-icons/io5";
 
 
-
-
+// To limit how often function is executed - prevent successive function triggering ex: multiple successive clicks
+let debounceTimeout;
+const debounce = (func, delay) => {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(func, delay);
+};
 
 
 
 const circleClickOne = () => {
-    const circle1 = document.querySelector('.circle1');
-    const circle2 = document.querySelector('.circle2');
-    const circle3 = document.querySelector('.circle3');
+    debounce(()=> {
+        const circle1 = document.querySelector('.circle1');
+        const circle2 = document.querySelector('.circle2');
+        const circle3 = document.querySelector('.circle3');
+    
+        // const img1 = document.querySelector('.hp1');
+        // const img2 = document.querySelector('.hp2');
+        // const img3 = document.querySelector('.hp3');
+    
+        circle1.style.background = 'var(--bar-color)';
+        circle2.style.background = 'var(--bar-text-color)';
+        circle3.style.background = 'var(--bar-text-color)';
+    
+        circle1.style.transform = 'scale(1.2)';
+        circle2.style.transform = 'scale(1)';
+        circle3.style.transform = 'scale(1)';
+    
+        // img1.style.display = 'flex';
+        // img2.style.display = 'none';
+        // img3.style.display = 'none';
+    
+        const imgsContainer = document.querySelector('.slides');
+    
+        imgsContainer.scrollTo({
+            left: 0,
+            behavior: 'smooth'
+        });
 
-    // const img1 = document.querySelector('.hp1');
-    // const img2 = document.querySelector('.hp2');
-    // const img3 = document.querySelector('.hp3');
-
-    circle1.style.background = 'var(--bar-color)';
-    circle2.style.background = 'var(--bar-text-color)';
-    circle3.style.background = 'var(--bar-text-color)';
-
-    circle1.style.transform = 'scale(1.2)';
-    circle2.style.transform = 'scale(1)';
-    circle3.style.transform = 'scale(1)';
-
-    // img1.style.display = 'flex';
-    // img2.style.display = 'none';
-    // img3.style.display = 'none';
-
-    const imgsContainer = document.querySelector('.slides');
-
-    imgsContainer.scrollTo({
-        left: 0,
-        behavior: 'smooth'
-    });
+    }, 200);
+   
 
 
 
 }
 
 const circleClickTwo = () => {
-    const circle1 = document.querySelector('.circle1');
-    const circle2 = document.querySelector('.circle2');
-    const circle3 = document.querySelector('.circle3');
 
-    // const img1 = document.querySelector('.hp1');
-    // const img2 = document.querySelector('.hp2');
-    // const img3 = document.querySelector('.hp3');
+    debounce(() => {
+        const circle1 = document.querySelector('.circle1');
+        const circle2 = document.querySelector('.circle2');
+        const circle3 = document.querySelector('.circle3');
+    
+        // const img1 = document.querySelector('.hp1');
+        // const img2 = document.querySelector('.hp2');
+        // const img3 = document.querySelector('.hp3');
+    
+        circle1.style.background = 'var(--bar-text-color)';
+        circle2.style.background = 'var(--bar-color)';
+        circle3.style.background = 'var(--bar-text-color)';
+    
+        circle1.style.transform = 'scale(1)';
+        circle2.style.transform = 'scale(1.2)';
+        circle3.style.transform = 'scale(1)';
+    
+        // img1.style.display = 'none';
+        // img2.style.display = 'flex';
+        // img3.style.display = 'none';
+        const imgsContainer = document.querySelector('.slides');
+    
+        imgsContainer.scrollTo({
+            left: (imgsContainer.scrollWidth - imgsContainer.clientWidth)/2,
+            behavior: 'smooth'
+        });
 
-    circle1.style.background = 'var(--bar-text-color)';
-    circle2.style.background = 'var(--bar-color)';
-    circle3.style.background = 'var(--bar-text-color)';
+    }, 200);
 
-    circle1.style.transform = 'scale(1)';
-    circle2.style.transform = 'scale(1.2)';
-    circle3.style.transform = 'scale(1)';
-
-    // img1.style.display = 'none';
-    // img2.style.display = 'flex';
-    // img3.style.display = 'none';
-    const imgsContainer = document.querySelector('.slides');
-
-    imgsContainer.scrollTo({
-        left: (imgsContainer.scrollWidth - imgsContainer.clientWidth)/2,
-        behavior: 'smooth'
-    });
+   
 
 
 
 }
 
 const circleClickThree = () => {
-    const circle1 = document.querySelector('.circle1');
+    debounce(() => {
+        const circle1 = document.querySelector('.circle1');
     const circle2 = document.querySelector('.circle2');
     const circle3 = document.querySelector('.circle3');
 
@@ -119,6 +134,10 @@ const circleClickThree = () => {
         left: imgsContainer.scrollWidth - imgsContainer.clientWidth,
         behavior: 'smooth'
     });
+
+    }, 200);
+    
+    
 
 
 }
@@ -377,95 +396,105 @@ const Home = ({showRegister}) => {
             if (arrowLeft && arrowRight && imgsContainer) {
     
                 arrowLeft.addEventListener("click", () => {
-                    imgsContainer.scrollBy({
-                        left: -imgsContainer.clientWidth,
-                        behavior: 'smooth'
-                    });
-    
-                    let circles = document.querySelectorAll('.circle');
-                    let currentCircle = null;
-                    let prevCircle = null;
-    
-                        circles.forEach((circle) => {
-    
-                            const bgColor = window.getComputedStyle(circle).backgroundColor;
-                            if(bgColor === rgbS){
-                                currentCircle = circle;
-                                prevCircle = currentCircle.previousElementSibling;
-                            }
-    
-                            
-                        });
-    
-                        if(currentCircle){
-                            currentCircle.style.backgroundColor = 'white';
-                            currentCircle.style.transform = 'scale(1)';
-    
-                        }
-    
-                        if(prevCircle && prevCircle.classList.contains('circle')){
-                            
-                            prevCircle.style.backgroundColor = 'var(--bar-color)';
-                            prevCircle.style.transform = 'scale(1.2)';
                     
-                            
-                        }else{
-                            currentCircle.style.backgroundColor = 'white';
-                            currentCircle.style.transform = 'scale(1)';
-                            circles[2].style.backgroundColor = 'var(--bar-color)';
-                            circles[2].style.transform = 'scale(1.2)';
-                            imgsContainer.scrollTo({
-                                left: imgsContainer.scrollWidth - imgsContainer.clientWidth,
-                                behavior: 'smooth'
+                    debounce( () => {
+                        imgsContainer.scrollBy({
+                            left: -imgsContainer.clientWidth,
+                            behavior: 'smooth'
+                        });
+        
+                        let circles = document.querySelectorAll('.circle');
+                        let currentCircle = null;
+                        let prevCircle = null;
+        
+                            circles.forEach((circle) => {
+        
+                                const bgColor = window.getComputedStyle(circle).backgroundColor;
+                                if(bgColor === rgbS){
+                                    currentCircle = circle;
+                                    prevCircle = currentCircle.previousElementSibling;
+                                }
+        
+                                
                             });
-                        }
+        
+                            if(currentCircle){
+                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.transform = 'scale(1)';
+        
+                            }
+        
+                            if(prevCircle && prevCircle.classList.contains('circle')){
+                                
+                                prevCircle.style.backgroundColor = 'var(--bar-color)';
+                                prevCircle.style.transform = 'scale(1.2)';
+                        
+                                
+                            }else{
+                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.transform = 'scale(1)';
+                                circles[2].style.backgroundColor = 'var(--bar-color)';
+                                circles[2].style.transform = 'scale(1.2)';
+                                imgsContainer.scrollTo({
+                                    left: imgsContainer.scrollWidth - imgsContainer.clientWidth,
+                                    behavior: 'smooth'
+                                });
+                            }
+                    }, 200);
+
+                  
                 });
                 
     
                 arrowRight.addEventListener("click", () => {
-                    imgsContainer.scrollBy({
-                        left: imgsContainer.clientWidth,
-                        behavior: 'smooth'
-                    });
-    
-       
-                    let circles = document.querySelectorAll('.circle');
-                    let currentCircle = null;
-                    let nextCircle = null;
-    
-                        circles.forEach((circle) => {
-    
-                            const bgColor = window.getComputedStyle(circle).backgroundColor;
-                            if(bgColor === rgbS){
-                                currentCircle = circle;
-                                nextCircle = currentCircle.nextElementSibling;
-                            }
-    
-                            
+
+                    debounce(() => {
+                        imgsContainer.scrollBy({
+                            left: imgsContainer.clientWidth,
+                            behavior: 'smooth'
                         });
-    
-                        if(currentCircle){
-                            currentCircle.style.backgroundColor = 'white';
-                            currentCircle.style.transform = 'scale(1)';
-                        }
-    
-                        if(nextCircle && nextCircle.classList.contains('circle')){
-                            
-                            nextCircle.style.backgroundColor = 'var(--bar-color)';
-                            nextCircle.style.transform = 'scale(1.2)';
-                    
-                            
-                        }else{
-                            currentCircle.style.backgroundColor = 'white';
-                            circles[0].style.backgroundColor = 'var(--bar-color)';
-                            currentCircle.style.transform = 'scale(1)';
-                            circles[0].style.transform = 'scale(1.2)';
-                            imgsContainer.scrollTo({
-                                left: 0,
-                                behavior: 'smooth'
-                            });
-                        }
+        
            
+                        let circles = document.querySelectorAll('.circle');
+                        let currentCircle = null;
+                        let nextCircle = null;
+        
+                            circles.forEach((circle) => {
+        
+                                const bgColor = window.getComputedStyle(circle).backgroundColor;
+                                if(bgColor === rgbS){
+                                    currentCircle = circle;
+                                    nextCircle = currentCircle.nextElementSibling;
+                                }
+        
+                                
+                            });
+        
+                            if(currentCircle){
+                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.transform = 'scale(1)';
+                            }
+        
+                            if(nextCircle && nextCircle.classList.contains('circle')){
+                                
+                                nextCircle.style.backgroundColor = 'var(--bar-color)';
+                                nextCircle.style.transform = 'scale(1.2)';
+                        
+                                
+                            }else{
+                                currentCircle.style.backgroundColor = 'white';
+                                circles[0].style.backgroundColor = 'var(--bar-color)';
+                                currentCircle.style.transform = 'scale(1)';
+                                circles[0].style.transform = 'scale(1.2)';
+                                imgsContainer.scrollTo({
+                                    left: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                    }, 200);
+
+                   
+
                 });
                 
             }
@@ -556,11 +585,7 @@ const Home = ({showRegister}) => {
 
             // Debouncing function to avoid excessive scrolling make it not clungy
 
-            let debounceTimeout;
-            const debounce = (func, delay) => {
-                clearTimeout(debounceTimeout);
-                debounceTimeout = setTimeout(func, delay);
-            };
+    
 
             const slides = document.querySelector('.slides');
             slides.addEventListener('scroll', () => {
