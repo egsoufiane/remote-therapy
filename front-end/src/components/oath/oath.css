@@ -22,19 +22,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    background-color: var(--white-color);
+    width: 2rem;
+    /* background-color: var(--white-color);
     border: 1px solid transparent;
     border-radius: 3px;
-    padding: 4px;
+    padding: 4px; */
+    margin: 3px;
     transition: all 0.5s;
 }
 
 .oath-logo-container:hover{
     /* border-color: var(--accent-color); */
     /* border: 1px solid var(--textfield-color); */
-    border-color: var(--bar-color);
-    border-radius: 3px;
+    /* border-color: var(--bar-color);
+    border-radius: 3px; */
+
+    transform: translateY(-4px);
+    
     
     
 
