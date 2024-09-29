@@ -407,6 +407,20 @@ hr {
 }
 
 
+.stair-element{
+  opacity:0;
+  transform: translateY(80px);
+  transition: all 0.2s;
+}
+
+.stair-element.visible{
+  
+  opacity:1;
+  transform: translateY(0);
+  
+}
+
+
 
 
 .container-h{
@@ -544,7 +558,6 @@ hr {
   border-color:  var(--border-color);
   background-color: var(--inputfield-color);
   width: 100%;
-
 }
 
 .textfield:focus{

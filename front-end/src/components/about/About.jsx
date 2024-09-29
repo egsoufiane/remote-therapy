@@ -208,43 +208,43 @@ const About = () => {
                         <p>The numbers speak for themselves—our clients experience real, lasting change through our remote therapy services.</p>
                     </div>
                     <div className="stats-cards">
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>95%</h2>
                             <h3>of clients report feeling better after just 3 sessions</h3>
                            
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>1,500+</h2>
                             <h3>successful therapy sessions completed each month</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>98%</h2>
                             <h3>client satisfaction rate across all therapy services</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>24/7</h2>
                             <h3>availability for scheduling and support</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>85%</h2>
                             <h3>of users feel more confident managing stress and anxiety</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>12,000+</h2>
                             <h3>people have started their mental wellness journey with us</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>300+</h2>
                             <h3>licensed therapists specializing in various fields, ready to help you</h3>
                         </div>
 
-                        <div className="stats-card">
+                        <div className="stats-card stair-element">
                             <h2 className='number'>99%</h2>
                             <h3>of sessions are successfully completed without technical issues</h3>
                         </div>
@@ -258,7 +258,7 @@ const About = () => {
                 <div className='about-reviews'>
                     <h2>Our lastest reviews</h2>
                     <div className='about-reviews-cards'>
-                        <div className='about-review-card'>
+                        <div className='about-review-card stair-element'>
                             <div className='profile-img-container'>
                                 <img className='profile-picture' src={pp2} alt='profile-picture'/>
                             </div>
@@ -270,7 +270,7 @@ const About = () => {
                             <h5>Review date</h5>
                         </div>
 
-                        <div className='about-review-card'>
+                        <div className='about-review-card stair-element'>
                             <div className='profile-img-container'>
                                 <img className='profile-picture' src={pp} alt='profile-picture'/>
                             </div>
@@ -282,7 +282,7 @@ const About = () => {
                             <h5>Review date</h5>
                         </div>
 
-                          <div className='about-review-card'>
+                          <div className='about-review-card stair-element'>
                           <div className='profile-img-container'>
                                 <img className='profile-picture' src={pp2} alt='profile-picture'/>
                             </div>
@@ -293,7 +293,6 @@ const About = () => {
                             <h3>Therapist name</h3>
                             <h5>Review date</h5>
                         </div>
-
                     </div>
                     <a  href='/reviews'><button className='btn'>Read more reviews</button> </a>
                 </div>

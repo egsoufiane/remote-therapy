@@ -16,6 +16,12 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaCouch } from "react-icons/fa6";
 import { MdPrivacyTip } from "react-icons/md";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { VscSmiley } from "react-icons/vsc";
+import { RiLoopRightFill } from "react-icons/ri";
+import { MdDiversity1 } from "react-icons/md";
+import { FaClock } from "react-icons/fa6";
+import { IoEarth } from "react-icons/io5";
 
 
 
@@ -782,12 +788,12 @@ const Home = ({showRegister}) => {
 
                 {/* <a href='#therapy-types' > <IoIosArrowDown size={40} className='arrow-next-section' /></a> */}
 
-                <div id='therapy-types' className='therapy-types-container'>
+                <div id='therapy-types' className='therapy-types-container slide-in-element'>
                     <h2 Style='color: var(--bar-text-color)'>What are you looking for?</h2>
 
                     <div className="therapy-type-cards">
 
-                        <div className="therapy-type-card">
+                        <div className="therapy-type-card stair-element">
                             <div className='img-therapy-container'>
                                 <img src={hp} alt="therapy type" className="img-therapy-type" />
                             </div>
@@ -800,7 +806,7 @@ const Home = ({showRegister}) => {
                             </div>
                         </div>
 
-                        <div className="therapy-type-card">
+                        <div className="therapy-type-card stair-element">
                             <div className='img-therapy-container'>
                                 <img src={hp2} alt="therapy type" className="img-therapy-type" />
                             </div>
@@ -813,7 +819,7 @@ const Home = ({showRegister}) => {
                             </div>
                         </div>
 
-                        <div className="therapy-type-card">
+                        <div className="therapy-type-card stair-element">
                             <div className='img-therapy-container'>
                                 <img src={hp3} alt="therapy type" className="img-therapy-type" />
                             </div>
@@ -829,12 +835,13 @@ const Home = ({showRegister}) => {
                     </div>
                     <a  href="/services"> <button className='btn btn-secondary'>More services</button> </a>
                 </div>
-                <div className='therapy-benefits-section'>
+
+                <div className='therapy-benefits-section slide-in-element'>
                     <h2 Style='font-size: 2rem; font-weight: 400; text-align:center'>Benefits of <b>THERAPYNOW</b></h2>
                     <div className="therapy-benefits-container">
 
                         <div className='therapy-benefits-cards'>
-                            <div className="therapy-benefits-card card">
+                            <div className="therapy-benefits-card card stair-element">
                                 <div className='benefits-icon'><FaCouch/></div>
                                 <p className='benefits-description'>
                                     Clients can access therapy from the comfort of their homes, which is especially beneficial for
@@ -842,15 +849,15 @@ const Home = ({showRegister}) => {
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><FaRegCalendarAlt/></div>
                                 <p className='benefits-description'>
                                     Flexible scheduling allows clients to fit sessions into their busy lives without needing to 
                                     commute, saving both time and money.
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
+                            <div className="therapy-benefits-card card stair-element">
                                 <div className='benefits-icon'><MdPrivacyTip/></div>
                                 <p className='benefits-description'>
                                     Remote therapy can provide a higher level of privacy for those who may feel uncomfortable visiting a therapist's 
@@ -858,43 +865,42 @@ const Home = ({showRegister}) => {
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><VscSmiley/></div>
                                 <p className='benefits-description'>
-                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
-                                    people living in rural or remote areas, or those with mobility issues.
+                                    Being in a familiar environment can help reduce anxiety for clients who might find in-person sessions 
+                                    intimidating
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><RiLoopRightFill  /></div>
                                 <p className='benefits-description'>
-                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
-                                    people living in rural or remote areas, or those with mobility issues.
+                                    It allows clients to continue therapy during times of travel, relocation, or global events like
+                                     a pandemic, ensuring consistent support
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><MdDiversity1/></div>
                                 <p className='benefits-description'>
-                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
-                                    people living in rural or remote areas, or those with mobility issues.
+                                    Clients have access to a larger pool of therapists, as geographic location is no longer a 
+                                    barrier.
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><FaClock /></div>
                                 <p className='benefits-description'>
-                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
-                                    people living in rural or remote areas, or those with mobility issues.
+                                    Clients can choose the most comfortable setting, even participating in sessions while traveling or during work
+                                     breaks.
                                 </p>
                             </div>
 
-                            <div className="therapy-benefits-card card">
-                                <div className='benefits-icon'><FaCouch/></div>
+                            <div className="therapy-benefits-card card stair-element">
+                                <div className='benefits-icon'><IoEarth/></div>
                                 <p className='benefits-description'>
-                                    Clients can access therapy from the comfort of their homes, which is especially beneficial for
-                                    people living in rural or remote areas, or those with mobility issues.
+                                    With remote therapy, geographical boundaries are no longer a limitation. 
                                 </p>
                             </div>
 

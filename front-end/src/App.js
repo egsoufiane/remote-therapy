@@ -80,6 +80,40 @@ document.addEventListener("DOMContentLoaded", function() {
                   statsCard.classList.add('visible');
                   }
               });
+
+          
+          //stairs sliding animation
+
+          // const stairsElementChilds = document.querySelectorAll('.about-review-card');
+          const stairsElementChilds = document.querySelectorAll('.stair-element');
+          let delay = 0.2;
+
+          for(let i = 0; i < stairsElementChilds.length; i++){
+            delay += 0.2;
+    
+            stairsElementChilds[i].style.transition = 'all '+delay+'s';
+      
+          }
+
+          // stairsElementChilds.forEach((stair) => {
+          //   const rect = stair.getBoundingClientRect();
+   
+          //     if(rect.top < window.innerHeight){
+          //       stair.classList.add('visible');
+          //     }
+ 
+          // });
+
+          for(let i = 0; i < stairsElementChilds.length; i++){
+              const rect = stairsElementChilds[i].getBoundingClientRect();
+   
+              if(rect.top < window.innerHeight){
+                stairsElementChilds[i].classList.add('visible');
+              }
+
+          }
+
+          
           
       });     
 
