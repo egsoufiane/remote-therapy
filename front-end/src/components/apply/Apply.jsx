@@ -111,8 +111,8 @@ const Apply = () => {
         <section className='apply-section'>
             <div className='apply-container'>
                 <div className='application' id="start-application">
-                <h2 className='center'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h2>
-                    <div className="apply1">
+                    <h2 className='center side-slide-left'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h2>
+                    <div className="apply1 slide-in-element">
                         
                         <h2>What is your specialty?</h2>
                         
@@ -130,7 +130,8 @@ const Apply = () => {
                     
                 
                 </div>
-                <div className='benefits'>
+
+                <div className='benefits slide-in-element'>
                 
                    
                     <h2 className='center' Style="font-weight:500;"><b Style='color:var(--accent-color);'>THERAPYNOW</b> <b>vs</b> Traditional Office Therapy</h2>
@@ -187,7 +188,7 @@ const Apply = () => {
                     </table>
                 </div>
 
-                <div className='therapists-testemonies'>
+                <div className='therapists-testemonies slide-in-element'>
                     <h1>Testimonies</h1>
                     <div className='testimonies-cards reviews-cards'>
                         <div className="testimony-card review-card card">
@@ -246,7 +247,7 @@ const Apply = () => {
 
                 
 
-                <div className="requirements">
+                <div className="requirements slide-in-element">
                     <h2>Requirements</h2>
                     <ul className='requirements-list' Style='list-style:circle'>
                         <li className='requierement'>

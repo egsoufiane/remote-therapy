@@ -151,7 +151,7 @@ const Services = ({showRegister}) => {
     return (
         <section className="services-section">
             <div className='services-container'>
-                <div className='services-header'>
+                <div className='services-header slide-in-element'>
                     <div className='services-intro'>                    
                         <h2>Welcome To Our Online Therapy Services</h2>
                         <h3>We provide compassionate, personalized care through convenient online video therapy.</h3>
@@ -265,14 +265,14 @@ const Services = ({showRegister}) => {
             
 
                 <div className="technical-services slide-in-element">
-                    <div className='services-intro'>
+                    <div className='services-intro side-slide-left'>
                         <h2> Your Safe Space Online</h2>  
                         <h3>Our platform is designed to make your sessions accessible and convenient, so you can focus on what matters most—your 
                             well-being.</h3>
                     </div>
                     
                     <div className="technical-cards">
-                        <div className='card tech-card'>
+                        <div className='card tech-card stair-element'>
                             <img src={service1} alt='video-call' className='service-img'/>
                             <div className="tech-service-description">
                                 <h2>
@@ -285,7 +285,7 @@ const Services = ({showRegister}) => {
                             </div>
 
                         </div>
-                        <div className='card tech-card'>
+                        <div className='card tech-card stair-element'>
                             <img src={service2} alt='video-call' className='service-img'/>
                             <div className="tech-service-description">
                                 <h2>
@@ -298,7 +298,7 @@ const Services = ({showRegister}) => {
                             </div>
 
                         </div>
-                        <div className='card tech-card'>
+                        <div className='card tech-card stair-element'>
                             <img src={service3} alt='video-call' className='service-img'/>
                             <div className="tech-service-description">
                                 <h2>
@@ -310,7 +310,7 @@ const Services = ({showRegister}) => {
                                 </p>
                             </div>
                         </div>
-                        <div className='card tech-card'>
+                        <div className='card tech-card stair-element'>
                             <img src={service4} alt='video-call' className='service-img'/>
                             <div className="tech-service-description">
                                 <h2>
@@ -322,7 +322,7 @@ const Services = ({showRegister}) => {
                                 </p>
                             </div>
                         </div>
-                        <div className='card tech-card'>
+                        <div className='card tech-card stair-element'>
                             <img src={service5} alt='video-call' className='service-img'/>
                             <div className="tech-service-description">
                                 <h2>

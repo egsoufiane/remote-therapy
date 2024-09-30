@@ -28,60 +28,100 @@ import { useState, useEffect } from "react";
 
 
 
-const body = document.querySelector('body');
-
-/*slide in animation  */
-document.addEventListener("DOMContentLoaded", function() {
-
-      window.addEventListener('load', () => {
-      const elements = document.querySelectorAll('.show-in-element');
-      elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-              if (rect.top < window.innerHeight) {
-              el.classList.add('visible');
-              }
-          });
 
 
-          const cards = document.querySelectorAll('.review-card');
-          cards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-                  if (rect.top < window.innerHeight) {
-                  card.classList.add('visible');
-                  }
-              });
-      });     
+// window.addEventListener('scroll', handleScroll);
 
 
+const handleLoad = () => {
 
-      window.addEventListener('scroll', () => {
-      const elements = document.querySelectorAll('.slide-in-element');
-      elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-              if (rect.top < window.innerHeight) {
-              el.classList.add('visible');
-              }
-          });
-
-
-          const cards = document.querySelectorAll('.review-card');
-          cards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-                  if (rect.top < window.innerHeight) {
-                  card.classList.add('visible');
-                  }
-              });
-            
-          //.stats-card
-          const statsCards = document.querySelectorAll('.stats-card');
-          statsCards.forEach(statsCard => {
-          const rect = statsCard.getBoundingClientRect();
-                  if (rect.top < window.innerHeight) {
-                  statsCard.classList.add('visible');
-                  }
-              });
-
+          const showInElements = document.querySelectorAll('.show-in-element');
+                showInElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight ) {
+                        el.classList.add('visible');
+                        }
+                    });
           
+  
+            const cards = document.querySelectorAll('.review-card');
+            cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+                    if (rect.top < window.innerHeight ) {
+                    card.classList.add('visible');
+                    }
+                });
+
+
+            const elements = document.querySelectorAll('.slide-in-element');
+            const slideUpElements = document.querySelectorAll('.slide-up-element');
+            const sideElements = document.querySelectorAll('.side-slide-left');
+                          elements.forEach(el => {
+                          const rect = el.getBoundingClientRect();
+                                  if (rect.top < window.innerHeight ) {
+                                  el.classList.add('visible');
+                                  }
+                              });
+                
+                          slideUpElements.forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                                    if (rect.top < window.innerHeight ) {
+                                    el.classList.add('visible');
+                                    }
+                                  });
+                        sideElements.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                                if (rect.top < window.innerHeight) {
+                                el.classList.add('visible');
+                                }
+                          });
+                                    
+
+}
+
+const handleScroll = () => {
+  
+            const showInElements = document.querySelectorAll('.show-in-element');
+            showInElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight ) {
+                    el.classList.add('visible');
+                    }
+                });
+
+
+            const cards = document.querySelectorAll('.review-card');
+            cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+                  if (rect.top < window.innerHeight) {
+                  card.classList.add('visible');
+                  }
+              });
+
+
+            const elements = document.querySelectorAll('.slide-in-element');
+            const slideUpElements = document.querySelectorAll('.slide-up-element');
+                        const sideElements = document.querySelectorAll('.side-slide-left');
+            elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                    }
+                });
+  
+            slideUpElements.forEach(el => {
+              const rect = el.getBoundingClientRect();
+                      if (rect.top < window.innerHeight) {
+                      el.classList.add('visible');
+                      }
+                    });
+          sideElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+                  if (rect.top < window.innerHeight) {
+                  el.classList.add('visible');
+                  }
+            });
+
           //stairs sliding animation
 
           // const stairsElementChilds = document.querySelectorAll('.about-review-card');
@@ -113,14 +153,155 @@ document.addEventListener("DOMContentLoaded", function() {
 
           }
 
+
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // window.addEventListener('load', handleLoad);
+  window.addEventListener('scroll', handleScroll);
+  // window.addEventListener('scroll', handleLoad);
+  // window.addEventListener('load', handleScroll);
+  // window.addEventListener('resize', handleLoad);
+  // window.addEventListener('resize', handleScroll);
+  setTimeout(handleLoad, 300);
+
+});
+
+
+
+
+
+
+
+/*slide in animation  */
+// document.addEventListener("DOMContentLoaded", function() {
+
+//       window.addEventListener('load', () => {
+//       const elements = document.querySelectorAll('.show-in-element');
+//       elements.forEach(el => {
+//       const rect = el.getBoundingClientRect();
+//               if (rect.top < window.innerHeight) {
+//               el.classList.add('visible');
+//               }
+//           });
+
+
+//           const cards = document.querySelectorAll('.review-card');
+//           cards.forEach(card => {
+//           const rect = card.getBoundingClientRect();
+//                   if (rect.top < window.innerHeight) {
+//                   card.classList.add('visible');
+//                   }
+//               });
+          
+//       });     
+
+
+//       window.addEventListener('load', () => {
+
+//           const elements = document.querySelectorAll('.slide-in-element');
+//           const slideUpElements = document.querySelectorAll('.slide-up-element');
+//           const sideElements = document.querySelectorAll('.side-slide-left');
+//           elements.forEach(el => {
+//           const rect = el.getBoundingClientRect();
+//                   if (rect.top < window.innerHeight) {
+//                   el.classList.add('visible');
+//                   }
+//               });
+
+//           slideUpElements.forEach(el => {
+//             const rect = el.getBoundingClientRect();
+//                     if (rect.top < window.innerHeight) {
+//                     el.classList.add('visible');
+//                     }
+//               });
+
+
+//           sideElements.forEach(el => {
+//             const rect = el.getBoundingClientRect();
+//                     if (rect.top < window.innerHeight) {
+//                     el.classList.add('visible');
+//                     }
+//               });
+
+          
+
+            
+//         });     
+  
+
+
+
+//       window.addEventListener('scroll', () => {
+//       const elements = document.querySelectorAll('.slide-in-element');
+//       elements.forEach(el => {
+//       const rect = el.getBoundingClientRect();
+//               if (rect.top < window.innerHeight) {
+//               el.classList.add('visible');
+//               }
+//           });
+
+
+//           const cards = document.querySelectorAll('.review-card');
+//           cards.forEach(card => {
+//           const rect = card.getBoundingClientRect();
+//                   if (rect.top < window.innerHeight) {
+//                   card.classList.add('visible');
+//                   }
+//               });
+            
+//           //.stats-card
+//           const statsCards = document.querySelectorAll('.stats-card');
+//           statsCards.forEach(statsCard => {
+//           const rect = statsCard.getBoundingClientRect();
+//                   if (rect.top < window.innerHeight) {
+//                   statsCard.classList.add('visible');
+//                   }
+//               });
+
+          
+//           //stairs sliding animation
+
+//           // const stairsElementChilds = document.querySelectorAll('.about-review-card');
+//           const stairsElementChilds = document.querySelectorAll('.stair-element');
+//           let delay = 0.2;
+
+//           for(let i = 0; i < stairsElementChilds.length; i++){
+//             delay += 0.2;
+    
+//             stairsElementChilds[i].style.transition = 'all '+delay+'s';
+      
+//           }
+
+//           // stairsElementChilds.forEach((stair) => {
+//           //   const rect = stair.getBoundingClientRect();
+   
+//           //     if(rect.top < window.innerHeight){
+//           //       stair.classList.add('visible');
+//           //     }
+ 
+//           // });
+
+//           for(let i = 0; i < stairsElementChilds.length; i++){
+//               const rect = stairsElementChilds[i].getBoundingClientRect();
+   
+//               if(rect.top < window.innerHeight){
+//                 stairsElementChilds[i].classList.add('visible');
+//               }
+
+//           }
+
           
           
-      });     
+//       });     
 
 
       
 
-});
+// });
 
 
 const showRegister = () => {

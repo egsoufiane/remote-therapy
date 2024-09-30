@@ -7,13 +7,13 @@ const Contact = () =>{
     return(
         <section className='contact-section'>
             <div className="contact-container">
-                <div className="message-area">
+                <div className="message-area slide-up-element">
                     <h1>Contact Us</h1>
                     <p>
                         Need to get in touch with us? Fill in this form and we will get back to you as soon as possible.
                     </p>
                 </div>
-                <div className='infos-container card'>
+                <div className='infos-container card slide-in-element'>
                     <form className='contact-form'>
                         <div className='name'>
                             <div className='entryareac'>

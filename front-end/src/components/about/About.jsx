@@ -53,7 +53,7 @@ import pp2 from '../../assets/profile2.jpg';
 const About = () => {
     return(
         <section className='about-section'>
-            <div className="about-title">
+            <div className="about-title slide-in-element">
 
                     <h2>Here is a little bit about us</h2>
                     <h2 Style='font-size: 3rem; font-weight:600;'>
@@ -78,14 +78,14 @@ const About = () => {
 
                 <div className='healing-together-section'>
                     <div className='about-header-title'>
-                        <h2 Style="font-weight:600">Healing together</h2>
-                        <hr/>
+                        <h2 className='slide-in-element' Style="font-weight:600">Healing together</h2>
+                        <hr className='slide-in-element'/>
                     </div>
 
-                    <div className='box '>
+                    <div className='box slide-in-element'>
 
                         {/* <h2>Our Story</h2> */}
-                        <div className='about-box box-left slide-in-element'> 
+                        <div className='about-box box-left '> 
                             
                             <div className='img-container'>
                                 
@@ -104,8 +104,8 @@ const About = () => {
                         </div>
                     </div>
                 
-                    <div className='box box-middle '>
-                        <div className='about-box box-right slide-in-element'>
+                    <div className='box box-middle slide-in-element'>
+                        <div className='about-box box-right'>
                             <div>
                             <div className='about-descritpion'>
                                     <h2>Your Path to Mental Wellness,<b> Anywhere</b></h2>
@@ -140,9 +140,9 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className='box'>
+                    <div className='box slide-in-element'>
                     
-                        <div className='about-box box-left slide-in-element'>
+                        <div className='about-box box-left'>
                         
                             <div className='img-container'>
                                 <img src={about3} alt='ph' className='about-img'/>

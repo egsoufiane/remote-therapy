@@ -746,7 +746,7 @@ const Home = ({showRegister}) => {
 
                     <div className="slides">
                         <div className='slide'>
-                            <div className="home-description-3">
+                            <div className="home-description-3 slide-up-element">
                                 <h2 Style='font-weight: 400'>Your Path to Healing, <b>Anytime, Anywhere</b></h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus soluta dolorum quas reiciendis 
                                     quia tempore minima, magnam vitae itaque exercitationem corrupti nobis, adipisci expedita quis velit.
@@ -758,7 +758,7 @@ const Home = ({showRegister}) => {
                                 </div>
                             </div>
 
-                            <div className='home-img-container'>
+                            <div className='home-img-container slide-in-element'>
                                 <img src={hp5} alt="home" className='home-picture-3'/>
                             </div>   
                         </div>
@@ -801,7 +801,7 @@ const Home = ({showRegister}) => {
              
                   
 
-                    <div className='circles'>
+                    <div className='circles side-slide-left'>
                             <div className='circle circle1' onClick={circleClickOne}/>
                             <div className='circle circle2' onClick={circleClickTwo}/>
                             <div className='circle circle3' onClick={circleClickThree}/>

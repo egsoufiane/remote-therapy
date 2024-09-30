@@ -365,6 +365,32 @@ hr {
     transition: all 1s;
 }
 
+.slide-up-element{
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all 1s;
+}
+
+.slide-up-element.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.side-slide-left{
+
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 1s;
+}
+
+.side-slide-left.visible{
+  opacity: 1;
+  transform: translateX(0);
+
+}
+
+
+
 .review-card{
     /* transform: translateY(100px);
     opacity:0;
@@ -486,6 +512,7 @@ hr {
   color: var(--text-color);
   background-color: transparent;
   border-color: var(--text-color);
+  cursor: pointer;
 
  
   font-weight: 600;

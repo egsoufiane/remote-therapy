@@ -212,8 +212,8 @@ const Faq = () => {
     return(
         <section className='faq-section'>
             <div className="faq-container">
-                <h2 className='center'>Frequencty Asked Questions?</h2>
-                <div className='questions-container'>
+                <h2 className='center side-slide-left'>Frequencty Asked Questions?</h2>
+                <div className='questions-container slide-in-element'>
 
                    
                     {/* <a className="question">
