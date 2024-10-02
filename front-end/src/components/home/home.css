@@ -348,12 +348,14 @@
     width: 0.7rem;
     height: 0.7rem;
     /* background-color: var(--bar-text-color); */
-    background-color: white;
+    background-color: var(--lightgray-color);
     border-radius: 50%;
     border: 1px solid var(--black-color);
     /* box-shadow: var(--box-shadow-primary); */
     transition: all 0.5s;
     cursor: pointer;
+
+   
 }
 
 
@@ -402,6 +404,7 @@
     padding: 2rem;
     /* background-color: var(--white-color); */
     background-color: var(--bar-color);
+
 }
 
 .therapy-type-cards{

@@ -25,9 +25,7 @@ import {
 
 } from "react-router-dom";
 import { useState, useEffect } from "react";
-
-
-
+import Videocall from "./components/videocall/Videocall";
 
 
 // window.addEventListener('scroll', handleScroll);
@@ -162,14 +160,12 @@ const handleScroll = () => {
 document.addEventListener("DOMContentLoaded", function() {
   // window.addEventListener('load', handleLoad);
   window.addEventListener('scroll', handleScroll);
-  // window.addEventListener('scroll', handleLoad);
   // window.addEventListener('load', handleScroll);
   // window.addEventListener('resize', handleLoad);
-  // window.addEventListener('resize', handleScroll);
+
   setTimeout(handleLoad, 300);
 
 });
-
 
 
 
@@ -303,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // });
 
-
+//Show register here to be able to click get started
 const showRegister = () => {
   const logincontainer = document.querySelector('.login-container');
   const overlay = document.querySelector('.overlay');
@@ -418,6 +414,9 @@ function Main() {
             <Route path="/faq" element={<Faq/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/recap" element={<Recap/>}/>
+            <Route path="/videocall" element={<Videocall/>}/>
+
+            
             <Route path="*" element={<Navigate to="/"/>} />            
           </Routes>
        

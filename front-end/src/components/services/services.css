@@ -222,10 +222,10 @@
 
 .arrow{
     align-self: center;
-    color: black;
+    color: var(--bar-color);
     font-size: 1.3rem;
     padding: 1rem;
-    background-color:  white;
+    background-color:  var(--white-color);
     box-shadow: var(--box-shadow-primary);
     border-radius: 50%;
     text-align: center;
@@ -237,10 +237,9 @@
 
 .arrow:hover{
     font-weight: 500;
-    color: white;
-    background-color: black;
-    box-shadow: var(--box-shadow-secondary);
-
+    color: var(--white-color);
+    background-color: var(--bar-color);
+    
 }
 
 .arrows{

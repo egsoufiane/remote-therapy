@@ -413,7 +413,7 @@ li:hover::after{
     flex-direction: column;
     width: 30%;
     /* gap:2rem; */
-    background-color: #FFFFFF;
+    background-color: var(--white-color);
   
   
     padding: 2rem;
@@ -454,7 +454,7 @@ li:hover::after{
     justify-content: center;
     width: 30%;
     /* gap:2rem; */
-    background-color: #FFFFFF;  
+    background-color: var(--white-color);
     padding: 2rem;
     z-index: 1001;
 

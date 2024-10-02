@@ -24,6 +24,10 @@ import { FaClock } from "react-icons/fa6";
 import { IoEarth } from "react-icons/io5";
 
 
+//Circle colors
+const selectedColor = 'var(--bar-color)';
+const notSelectedColor = 'var(--lightgray-color)';
+
 // To limit how often function is executed - prevent successive function triggering ex: multiple successive clicks
 let debounceTimeout;
 const debounce = (func, delay) => {
@@ -43,9 +47,9 @@ const circleClickOne = () => {
         // const img2 = document.querySelector('.hp2');
         // const img3 = document.querySelector('.hp3');
     
-        circle1.style.background = 'var(--bar-color)';
-        circle2.style.background = 'var(--bar-text-color)';
-        circle3.style.background = 'var(--bar-text-color)';
+        circle1.style.background = selectedColor;
+        circle2.style.background = notSelectedColor;
+        circle3.style.background = notSelectedColor;
     
         circle1.style.transform = 'scale(1.2)';
         circle2.style.transform = 'scale(1)';
@@ -80,9 +84,9 @@ const circleClickTwo = () => {
         // const img2 = document.querySelector('.hp2');
         // const img3 = document.querySelector('.hp3');
     
-        circle1.style.background = 'var(--bar-text-color)';
-        circle2.style.background = 'var(--bar-color)';
-        circle3.style.background = 'var(--bar-text-color)';
+        circle1.style.background = notSelectedColor;
+        circle2.style.background = selectedColor;
+        circle3.style.background = notSelectedColor;
     
         circle1.style.transform = 'scale(1)';
         circle2.style.transform = 'scale(1.2)';
@@ -116,9 +120,9 @@ const circleClickThree = () => {
     // const img2 = document.querySelector('.hp2');
     // const img3 = document.querySelector('.hp3');
 
-    circle1.style.background = 'var(--bar-text-color)';
-    circle2.style.background = 'var(--bar-text-color)';
-    circle3.style.background = 'var(--bar-color)';
+    circle1.style.background = notSelectedColor;
+    circle2.style.background = notSelectedColor;
+    circle3.style.background = selectedColor;
 
     circle1.style.transform = 'scale(1)';
     circle2.style.transform = 'scale(1)';
@@ -155,7 +159,7 @@ const hex2rgb = (hex) => {
 
 const rgbString = ({ r, g, b }) => {
     
-    return 'rgb(${r}, ${g}, ${b})';
+    return 'rgb('+r+', '+g+', '+b+')';
 }
 
 
@@ -419,21 +423,21 @@ const Home = ({showRegister}) => {
                             });
         
                             if(currentCircle){
-                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.backgroundColor = notSelectedColor;
                                 currentCircle.style.transform = 'scale(1)';
         
                             }
         
                             if(prevCircle && prevCircle.classList.contains('circle')){
                                 
-                                prevCircle.style.backgroundColor = 'var(--bar-color)';
+                                prevCircle.style.backgroundColor = selectedColor;
                                 prevCircle.style.transform = 'scale(1.2)';
                         
                                 
                             }else{
-                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.backgroundColor = notSelectedColor;
                                 currentCircle.style.transform = 'scale(1)';
-                                circles[2].style.backgroundColor = 'var(--bar-color)';
+                                circles[2].style.backgroundColor = selectedColor;
                                 circles[2].style.transform = 'scale(1.2)';
                                 imgsContainer.scrollTo({
                                     left: imgsContainer.scrollWidth - imgsContainer.clientWidth,
@@ -471,19 +475,19 @@ const Home = ({showRegister}) => {
                             });
         
                             if(currentCircle){
-                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.backgroundColor = notSelectedColor;
                                 currentCircle.style.transform = 'scale(1)';
                             }
         
                             if(nextCircle && nextCircle.classList.contains('circle')){
                                 
-                                nextCircle.style.backgroundColor = 'var(--bar-color)';
+                                nextCircle.style.backgroundColor = selectedColor;
                                 nextCircle.style.transform = 'scale(1.2)';
                         
                                 
                             }else{
-                                currentCircle.style.backgroundColor = 'white';
-                                circles[0].style.backgroundColor = 'var(--bar-color)';
+                                currentCircle.style.backgroundColor = notSelectedColor;
+                                circles[0].style.backgroundColor = selectedColor;
                                 currentCircle.style.transform = 'scale(1)';
                                 circles[0].style.transform = 'scale(1.2)';
                                 imgsContainer.scrollTo({
@@ -525,19 +529,19 @@ const Home = ({showRegister}) => {
                             });
         
                             if(currentCircle){
-                                currentCircle.style.backgroundColor = 'white';
+                                currentCircle.style.backgroundColor = notSelectedColor;
                                 currentCircle.style.transform = 'scale(1)';
                             }
         
                             if(nextCircle && nextCircle.classList.contains('circle')){
                                 
-                                nextCircle.style.backgroundColor = 'var(--bar-color)';
+                                nextCircle.style.backgroundColor = selectedColor;
                                 nextCircle.style.transform = 'scale(1.2)';
                         
                                 
                             }else{
-                                currentCircle.style.backgroundColor = 'white';
-                                circles[0].style.backgroundColor = 'var(--bar-color)';
+                                currentCircle.style.backgroundColor = notSelectedColor;
+                                circles[0].style.backgroundColor = selectedColor;
                                 currentCircle.style.transform = 'scale(1)';
                                 circles[0].style.transform = 'scale(1.2)';
                                 imgsContainer.scrollTo({
@@ -617,14 +621,14 @@ const Home = ({showRegister}) => {
 
                     // Reset all circles to default 
                     circles.forEach(circle => {
-                        circle.style.backgroundColor = "var(--white-color)";
+                        circle.style.backgroundColor = notSelectedColor;
                         circle.style.transform = "scale(1)";
 
                     });
                     
                     // Highlight the circle corresponding to the current slide
                     if (currentSlideIndex < circles.length) {
-                        circles[currentSlideIndex].style.backgroundColor = "var(--bar-color)";
+                        circles[currentSlideIndex].style.backgroundColor = selectedColor;
                         circles[currentSlideIndex].style.transform = "scale(1.2)";
                     }
 

@@ -203,7 +203,7 @@ const About = () => {
                 </div>
 
                 <div className='stats'>
-                    <div className='stats-header'>
+                    <div className='stats-header side-slide-left'>
                         <h3 Style='font-weight:400'>Our Impact in <b Style='font-weight:700'>Numbers</b></h3>
                         <p>The numbers speak for themselves—our clients experience real, lasting change through our remote therapy services.</p>
                     </div>
@@ -256,7 +256,7 @@ const About = () => {
                 </div>
 
                 <div className='about-reviews'>
-                    <h2>Our lastest reviews</h2>
+                    <h2 className='side-slide-left'>Our lastest reviews</h2>
                     <div className='about-reviews-cards'>
                         <div className='about-review-card stair-element'>
                             <div className='profile-img-container'>

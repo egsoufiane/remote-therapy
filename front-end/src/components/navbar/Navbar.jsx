@@ -217,9 +217,9 @@ const Navbar = () => {
        
        <div className='overlay' onClick={hidePopup}></div>
        <div className='overlay2' onClick={hideSidebar}></div>
-       <div className='navbar-section-outer slide-up-element'>
+       <div className='navbar-section-outer'>
         
-                <nav className='navbar-section'>
+                <nav className='navbar-section slide-up-element'>
 
                     
 

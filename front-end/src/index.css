@@ -74,7 +74,9 @@ Text Color: Dark Charcoal (#333333)
   --black-color: #1a0d0d;
   --white-color: #fffffffd;
 
+  --white-color: #FFFAFA;
   --secondary-color: #B2C7D9;
+  --lightgray-color: rgba(213, 213, 213, 0.5);
   
   /* --bar-color: white; */
   /* --bar-text-color: black; */
