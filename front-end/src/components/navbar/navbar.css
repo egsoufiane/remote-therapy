@@ -384,7 +384,7 @@ li:hover::after{
 }
 
 .btn:hover{
-    border-color: var(--accent-color);
+    /* border-color: var(--accent-color); */
 }
 
 .btn.scrolled{
@@ -392,6 +392,7 @@ li:hover::after{
     border-color: black;
     color: var(--bar-text-color);
     border-color: var(--bar-text-color);
+    
     
 
 }

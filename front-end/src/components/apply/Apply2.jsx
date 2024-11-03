@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import countryData from '../../assets/countries.json';
 
 
 
-const Apply2 = () => {
+const Apply2 = (props) => {
 
     const [selectedCountry, setSelectedCountry] = useState("");
     const [states, setStates] = useState([]);
@@ -15,6 +16,9 @@ const Apply2 = () => {
     const handleCountryChange = (event) => {
       const selectedCountry = event.target.value;
       setSelectedCountry(selectedCountry);
+
+      props.handleInput(event);
+    
   
       // Find the selected country in the data
       const country = countryData.find((item) => item.name === selectedCountry);
@@ -39,6 +43,8 @@ const Apply2 = () => {
     const handleStateChange = (event) => {
         const selectedState = event.target.value;
         setSelectedState(selectedState);
+
+        props.handleInput(event);
     
         // Find the selected country in the data
         const state = states.find((item) => item.name === selectedState);
@@ -55,6 +61,7 @@ const Apply2 = () => {
         
         };
 
+
     
         //Apply2 render animation
     // useEffect(()=> {
@@ -68,23 +75,61 @@ const Apply2 = () => {
     // }, []);
 
 
+
+
+    // const handleInput = (e) => {
+    //     const {name,value} = e.target;
+    //     setformData({
+    //         ...formData,
+    //         [name]:value
+    //     })
+    // }
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        //handle submitting data
+        axios.post('http://127.0.0.1:8000/users/register_therapist/', props.formData,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            console.log(res);
+            console.log(res.data);
+        }).catch(error => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+        })
+
+    }
+
+
     return (
         <section className="apply2-section" >
             <div className='apply2-container'>
-                
                 <h2>Please fill in the information below</h2>
-                <form id="apply-form2" className="application-form">
-                    <input type='text' id='firstname' placeholder='First name' className='textfield' />
-                    <input type='text' id='lastname' placeholder='Last name' className='textfield' />
-                    <input type='email' id='email' placeholder='Email address' className='textfield' />
-                    <input type='text' id='address' placeholder='Address' className='textfield' />
-                    {/* <select value='select a country'>
-                        <option value='oujda '>Oujda</option>
-                        <option value='rabat'>Rabat</option>
-                        <option valye='casablanca'>Casablanca
-                        </option>
-                    </select> */}
+                <form id="apply-form2" className="application-form" onSubmit={handleSubmit}>
+                    <div className='input-unit' Style='width:100%'>   
+                        <input type='text' id='firstname' name='firstname' className='textfield firstname' placeholder='Firstname' Style='width:100%;' onChange={props.handleInput}/>
+                        <input type='text' id='lastname' name='lastname' className='textfield lastname' placeholder='Lastname' Style='width:100%;' onChange={props.handleInput}/>
+                     </div>
+
+                     <div className='input-unit'>   
+                        <input type='date' id='birthday' name='birthday' className='textfield date' Style='width: auto' onChange={props.handleInput}/>
+                       
+                     </div>
+                     <div>
+                        <label for='sex' className='register-label'>Sex</label>
+                            <div className='sexe-options' >
+                                <input type="radio" id='male' value="male" name="sexe" onChange={props.handleInput}/>
+                                <label htmlFor='male'>Male</label>
+                                <input type="radio" id='female' value="female" name="sexe" onChange={props.handleInput}/>
+                                <label htmlFor='female' Style='align-self: center'>Female</label> 
+                            </div>
+                     </div>
+                        
                     
+
                     <div className='input-unit-apply'>
                         <div className='hinput-unit'>
                             <label htmlFor='country' className='register-label' >Country</label>
@@ -110,7 +155,7 @@ const Apply2 = () => {
 
                         <div className='hinput-unit'>
                             <label htmlFor='country' className='register-label' >City</label>
-                            <select id='city' name="city"  >
+                            <select id='city' name="city" onChange={props.handleInput} >
                                 <option value="">Select a city</option>
                                 {cities.map((city) => (
                                     <option value={city.name}>{city.name}</option>
@@ -118,9 +163,13 @@ const Apply2 = () => {
                                     }
                             </select> 
                         </div>
-                  
-                       
                     </div>
+                    
+                
+                    <input type='text' id='username' name='username' className='textfield username' placeholder='Username' onChange={props.handleInput}/>
+                
+                    <input type='email' id='email' name='email' placeholder='Email address' className='textfield' onChange={props.handleInput}/>
+                    <input type='password' id='password' name='password' placeholder='Password' className='textfield' onChange={props.handleInput}/>
 
                     
 

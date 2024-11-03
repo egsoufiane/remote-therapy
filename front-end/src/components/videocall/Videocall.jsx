@@ -14,6 +14,8 @@ import { AiOutlineVideoCamera } from "react-icons/ai";
 import { IoMdAdd } from "react-icons/io";
 
 
+import { FaUser } from "react-icons/fa";
+
 
 
 
@@ -155,14 +157,31 @@ const Videocall = () => {
 
 
 
+    const logOut = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('isClient');
+        localStorage.removeItem('isTherapist');
+        window.location.href='/'
+    }
+
+
     
 
     return (
-        <section className="apply2-section" Style='display :flex; flex-direction:column; justify-content:center; align-items:center'>
-            <h1>Apply 2</h1>
+        <section className="videocall-section" Style='display :flex; flex-direction:column; justify-content:center; align-items:center'>
+            <h1>Videocall</h1>
             <div id ="video-container" className="video-container">
-                <video id="video" Style='width: 100%; height: auto' autoPlay/>
-                <div className='videocall-bar'>
+                <div className='video-container-2'>
+                    <video id="video" autoPlay className='video'/>
+                    <div className='caller-1 caller'>
+                        <FaUser/>
+                    </div>
+                    <video id="video-other" autoPlay className='video'/>
+                    <div className='caller-2 caller'>
+                        <FaUser/>
+                    </div>
+
+                    <div className='videocall-bar'>
                     {/* <img src={sc} alt='start-call' id="start-btn"  className='call-img start-call'/>
                     <img src={ec} alt='end-call' id="stop-btn"  className='call-img end-call'/> */}
                         <div className='call-icon-wrapper' id="start-call" ><IoCall className="call-options"/></div>
@@ -173,9 +192,19 @@ const Videocall = () => {
                         <div className='call-icon-wrapper'><IoMdAdd id="add-person" className="call-options"/></div>
                         <div className='call-icon-wrapper' id="stop-call"><MdCallEnd  className="call-options"/></div>
 
-                </div>
-
             </div>
+                </div>
+                <div className='chatting-area'>
+                    <div className='chat-messages'/>
+                    <div className='new-message'>
+                        <input type='text' className='msg textfield'/>
+                        <button className='btn btn-primary'>Send</button>
+                    </div>
+            </div>
+            </div>
+
+            <button onClick={logOut}>Logout</button>
+
 
                 
         </section>

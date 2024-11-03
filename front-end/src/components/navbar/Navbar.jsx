@@ -156,7 +156,7 @@ window.onscroll = function() {
 
     let path = window.location.pathname;
 
-    if(path!=='/register' && path !=='/login'){
+    if(navbar){
 
         if (window.pageYOffset > 60) {
             navbar.classList.add("scrolled");

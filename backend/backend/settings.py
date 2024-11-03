@@ -83,8 +83,11 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
 
-    env('ALLOWED_ORIGIN_1'),
-    env('ALLOWED_ORIGIN_2'),
+    # env('ALLOWED_ORIGIN_1'),
+    # env('ALLOWED_ORIGIN_2'),
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+
 ]
 
 

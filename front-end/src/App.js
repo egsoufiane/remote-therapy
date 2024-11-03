@@ -16,6 +16,7 @@ import Apply2 from "./components/apply/Apply2";
 import Recap from "./components/apply/recap";
 
 
+
 import {
   BrowserRouter as Router,
   Route,
@@ -25,7 +26,10 @@ import {
 
 } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import Videocall from "./components/videocall/Videocall";
+import ClientDashboard from "./components/private-components/client-dashboard/ClientDashboard";
+import TherapistDashboard from "./components/private-components/therapis-dashboard/TherapistDashboard";
 
 
 // window.addEventListener('scroll', handleScroll);
@@ -153,7 +157,6 @@ const handleScroll = () => {
 
 
 }
-
 
 
 
@@ -381,6 +384,9 @@ function Main() {
   //     // document.body.style.background = 'red'; // Default color for other routes
   //   }
   // }, [location.pathname]);
+  const authToken = localStorage.getItem('accessToken');
+  const isClient = localStorage.getItem('isClient')==='true';
+  const isTherapist = localStorage.getItem('isTherapist')==='true';
   
 
 
@@ -398,30 +404,63 @@ function Main() {
 
         {/* <Navbar className='navbar'/> */}
       
-        {(location.pathname !== '/login' && location.pathname !== '/register' && <Navbar/>)}
+        {/* {(location.pathname !== '/login' && location.pathname !== '/register' && <Navbar/>)} */}
 
         <div className="content">
-        
-          <Routes>
-            <Route path="/" element={<Home  showRegister={showRegister} />} />
-            <Route path="/reviews" element={<Reviews/>}/>
-            <Route path="/about" element={<About/>} />
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path='/services' element={<Services showRegister={showRegister}/>}/>
-            <Route path='/apply' element={<Apply/>}/>
-            <Route path="/apply2" element={<Apply2/>}/>
-            <Route path="/faq" element={<Faq/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/recap" element={<Recap/>}/>
-            <Route path="/videocall" element={<Videocall/>}/>
 
+          {authToken && isClient &&
+          
+            // <Routes>
+            //   <Route path="/" element={<ClientDashboard />} />
+            //   <Route path="*" element={<Navigate to="/"/>} />            
+            // </Routes>
+
+            <ClientDashboard />
+          
+          }
+          
+          {authToken && isTherapist &&
+          
+          // <Routes>
+          //   <Route path="/" element={<ClientDashboard />} />
+          //   <Route path="*" element={<Navigate to="/"/>} />            
+          // </Routes>
+         
+           <TherapistDashboard/>
             
-            <Route path="*" element={<Navigate to="/"/>} />            
-          </Routes>
-       
+        }
+        
+
+
+            {!authToken &&
+                  <>
+                    <Navbar/>
+                    <Routes>
+                    <Route path="/" element={<Home  showRegister={showRegister} />} />
+                    <Route path="/reviews" element={<Reviews/>}/>
+                    <Route path="/about" element={<About/>} />
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path='/services' element={<Services showRegister={showRegister}/>}/>
+                    <Route path='/apply' element={<Apply/>}/>
+                    <Route path="/apply2" element={<Apply2/>}/>
+                    <Route path="/faq" element={<Faq/>}/>
+                    <Route path="/contact" element={<Contact/>}/>
+                    <Route path="/recap" element={<Recap/>}/>
+                  
+                    <Route path="*" element={<Navigate to="/"/>} />            
+                  </Routes>
+                  <Footer className='footer'/> 
+                  </>
+                
+            }
+    
+
+        
+    
+      
         </div>
-        <Footer className='footer'/> 
+        
    
 
     </div>

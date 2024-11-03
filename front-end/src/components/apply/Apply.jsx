@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
+import axios from 'axios';
 import './apply.css';
 import { FaCheck } from "react-icons/fa";
 import { FaSquareXmark } from "react-icons/fa6";
@@ -29,6 +30,33 @@ import Apply3 from './Apply3';
 
 
 const Apply = () => {
+    const [formData, setformData] = useState({
+
+        username : '',
+        firstname : '',
+        lastname : '',
+        birthday: '',
+        sexe: '',
+        city:'',
+        state:'',
+        country: '',
+        email: '',
+        password: '',
+        specialization: '',
+        bio: '',
+        experienceyears: null,
+    
+    });
+
+
+
+    const handleInput = (e) => {
+        const {name,value} = e.target;
+        setformData({
+            ...formData,
+            [name]:value
+        })
+    }
 
     useEffect(() => {
         const moreInfos = document.querySelectorAll('.more-info');
@@ -60,49 +88,105 @@ const Apply = () => {
     }, []);
 
 
+    
+    const specialtyClick = (event)=> {
+         handleInput(event);
+        // event.preventDefault(); // prevent page reload
+        const apply2 = document.querySelector('.apply3');
+
+        document.querySelector('.apply1').style.display='none';
+        apply2.style.display='flex';
+
+       
+
+        // setTimeout(() => {
+        //     const apply2 = document.querySelector('.apply2');
+        //     apply2.classList.add('slide-in');
+        // }, 10);
+       
+        const forceReflow = apply2.offsetHeight; 
+
+       
+        // Now apply the sliding animation
+        apply2.classList.add('slide-in');
+
+    };
 
     /*handle form submit event */
     useEffect(()=> {
-        const form = document.getElementById('apply-form');
+        // const form = document.getElementById('apply-form');
 
-        form.addEventListener('submit', (event)=> {
-            event.preventDefault(); // prevent page reload
+        // const specialtyClick = (event)=> {
+        //     event.preventDefault(); // prevent page reload
+        //     const apply2 = document.querySelector('.apply2');
+
+        //     document.querySelector('.apply1').style.display='none';
+        //     apply2.style.display='flex';
+
+           
+
+        //     // setTimeout(() => {
+        //     //     const apply2 = document.querySelector('.apply2');
+        //     //     apply2.classList.add('slide-in');
+        //     // }, 10);
+           
+        //     const forceReflow = apply2.offsetHeight; 
+
+        // // Now apply the sliding animation
+        // apply2.classList.add('slide-in');
+    
+        // };
+
+        // document.getElementById('application-form3').addEventListener('submit', (event) => {
+        //     event.preventDefault();
+
+        //     //handle submitting data
+        //     // axios.post('http://127.0.0.1:8000/users/register_therapist/', formData,{
+        //     //     headers: {
+        //     //         'Content-Type': 'application/json'
+        //     //     }
+        //     // }).then(res => {
+        //     //     console.log(res);
+        //     //     console.log(res.data);
+        //     // }).catch(error => {
+        //     //     console.error('Error:', error.response ? error.response.data : error.message);
+        //     // })
+
+
+
+        //     const apply2 = document.querySelector('.apply2');
+    
+        //     document.querySelector('.apply2').style.display='none';
+        //     document.querySelector('.apply3').style.display='flex';
+
+        //     const forceReflow = apply2.offsetHeight;
+
+        //     apply2.classList.add('slide-in');
+           
+
+        //   });
+
+
+
+    },[]);
+
+    
+    //handle apply3 form go from apply3 goto apply2
+    const nextForm = (event) => {
+        event.preventDefault();
+
             const apply2 = document.querySelector('.apply2');
+    
+            document.querySelector('.apply3').style.display='none';
+            document.querySelector('.apply2').style.display='flex';
 
-            document.querySelector('.apply1').style.display='none';
-            apply2.style.display='flex';
+            const forceReflow = apply2.offsetHeight;
 
+            apply2.classList.add('slide-in');
            
 
-            // setTimeout(() => {
-            //     const apply2 = document.querySelector('.apply2');
-            //     apply2.classList.add('slide-in');
-            // }, 10);
-           
-            const forceReflow = apply2.offsetHeight; 
 
-        // Now apply the sliding animation
-        apply2.classList.add('slide-in');
-       
-    
-    
-        });
-
-        document.getElementById('apply-form2').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const apply3 = document.querySelector('.apply3');
-    
-            document.querySelector('.apply2').style.display='none';
-            document.querySelector('.apply3').style.display='flex';
-
-            const forceReflow = apply3.offsetHeight;
-
-            apply3.classList.add('slide-in');
-
-
-          });
-
-    }, []);
+    }
 
 
 
@@ -110,30 +194,30 @@ const Apply = () => {
     return (
         <section className='apply-section'>
             <div className='apply-container'>
+                
                 <div className='application' id="start-application">
                     <h2 className='center side-slide-left'>Join Our team of <b Style='color:var(--accent-color);'>203239</b> Therapists</h2>
                     <div className="apply1 slide-in-element">
                         
                         <h2>What is your specialty?</h2>
                         
-                        <form id='apply-form' className="apply-form">
-                            <input type='submit' value='Psychologist' className='btn btn-primary'/>
-                            <input type='submit' value='Licensed Professional Counselor (LPC)' className='btn btn-primary'/>
-                            <input type='submit' value='Marriage and Family Therapist (MFT)' className='btn btn-primary'/>
-                            <input type='submit' value='Licensed Clinical Social Worker (LCSW)' className='btn btn-primary'/>
-                            <input type='submit' value='Child and Adolescent Therapist' className='btn btn-primary'/>
-                        </form>
+                        <div id='apply-form' className="apply-form">
+                            <button value='Psychologist' name='specialization' className='btn btn-primary' onClick={specialtyClick}>Psychologist</button>
+                            <button value='Licensed Professional Counselor (LPC)' name='specialization'  className='btn btn-primary' onClick={specialtyClick}>Licensed Professional Counselor (LPC)</button>
+                            <button value='Marriage and Family Therapist (MFT)' name='specialization' className='btn btn-primary' onClick={specialtyClick}>Marriage and Family Therapist (MFT)</button>
+                            <button value='Licensed Clinical Social Worker (LCSW)' name='specialization' className='btn btn-primary' onClick={specialtyClick}>Licensed Clinical Social Worker (LCSW)</button>
+                            <button value='Child and Adolescent Therapist' name='specialization' className='btn btn-primary' onClick={specialtyClick}>Child and Adolescent Therapist</button>
+                        </div>
                         <h3>01/03</h3>
                     </div>
-                    <div className="apply2"><Apply2/></div>
-                    <div className="apply3"><Apply3/></div>
+                    <div className="apply2"><Apply2 formData={formData} setformData={setformData} handleInput={handleInput}/></div>
+                    <div className="apply3"><Apply3 nextForm={nextForm} formData={formData} setformData={setformData} handleInput={handleInput}/></div>
                     
                 
                 </div>
 
                 <div className='benefits slide-in-element'>
                 
-                   
                     <h2 className='center' Style="font-weight:500;"><b Style='color:var(--accent-color);'>THERAPYNOW</b> <b>vs</b> Traditional Office Therapy</h2>
 
                     <table> 
@@ -183,8 +267,6 @@ const Apply = () => {
                         </tr>
 
 
-
-                       
                     </table>
                 </div>
 

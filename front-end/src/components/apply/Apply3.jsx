@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { FaCloudArrowUp } from "react-icons/fa6";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const Apply3 = () => {
+const Apply3 = (props) => {
   
   
 
@@ -89,11 +89,8 @@ const Apply3 = () => {
                     if(file){
                         uploadedFile.style.display = 'none';
                         file.value = '';
-                    
                     }
                     
-         
-
 
             });
 
@@ -104,16 +101,14 @@ const Apply3 = () => {
 
 
 
-
-
-
     const iconSize = 25;
 
 
     return (
         <div className='apply2-container'>
-            <h2>Upload the neccessary documents</h2>
-            <form action='/recap' className="application-form3">
+            <h2 Style='width 100%; display: flex, flex-wrap: wrap;'>Upload the neccessary documents</h2>
+           
+            <form className="application-form3" onSubmit={props.nextForm}>
 
                     <div className="entryareaa"> 
                         <p>Upload your ID</p>  
@@ -175,9 +170,14 @@ const Apply3 = () => {
 
                     <div className="entryareaa"> 
 
-                        <p>Additional information</p>
-                        <textarea name="Text1" cols="40" rows="8" Style='background-color: rgb(237, 237, 237)'/>
+                        <p>Bio</p>
+                        <textarea id='bio' name="bio" cols="40" rows="8" maxlength="600"onChange={props.handleInput} Style='background-color: rgb(237, 237, 237)'/>
                     </div>
+                    <div className='entryareaa'>
+                        <p>Years of Experience:</p>
+                        <input type='number' min='0' name='experienceyears' onChange={props.handleInput} Style="display: inline-block; width: 5ch; padding: 2px; text-align: center;" />
+                    </div>
+
 
                     <input type='submit' value='Next' className='btn btn-primary' Style='align-self: flex-end; width: 20%;'/>
                 
