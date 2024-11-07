@@ -28,11 +28,26 @@ const ClientDashboard = () => {
 
     }
 
+    //Hide sidebar
+    const hideSidebar = () => {
+        const overlay = document.querySelector('.overlay3');
+        const sidebar = document.querySelector('.sidebar-dashboard');
+        overlay.style.display = 'none';
+        
+        sidebar.classList.remove('slide-in');
+        // const forceReflow = sidebar.offsetHeight;
+
+        // sidebar.style.display = 'none';
+
+        document.body.style.overflow = 'auto';
+
+    }
+
 
     return(
         <section className='dashboard-section'>
         <div onClick={hideEditPopup} className='overlay'/>
-
+        <div onClick={hideSidebar} className='overlay3'/>
 
         <Sidebar/>
         <Routes >

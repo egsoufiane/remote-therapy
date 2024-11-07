@@ -7,6 +7,9 @@ import Header from '../header/Header';
 import { FaRegEnvelope } from "react-icons/fa6";
 import countryData from '../../../assets/countries.json';
 
+import Skeleton from '@mui/material/Skeleton';
+
+const apiURL=process.env.REACT_APP_API_URL;
 
 const Profile = (props) => {
 
@@ -22,6 +25,17 @@ const Profile = (props) => {
         country: '',
     });
 
+    const [fullName, setfullName] = useState('');
+
+    const [honorific, sethonorific] = useState('');
+
+    const [isLoading, setisLoading] = useState(true);
+
+    const numberOfSkeletons = 10;
+
+    const [formattedDate, setformattedDate] = useState('');
+
+
 
     //handle user input
     const handleInput = (e) => {
@@ -35,7 +49,7 @@ const Profile = (props) => {
     }
 
     useEffect(()=> {
-        axios.get('http://127.0.0.1:8000/users/user/',{
+        axios.get(apiURL+'/users/user/',{
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization': `Bearer ${props.accessToken}`
@@ -46,58 +60,98 @@ const Profile = (props) => {
                 firstname: res.data.profile.firstname,
                 lastname: res.data.profile.lastname,
                 birthday: res.data.profile.birthday,
+                sexe: res.data.profile.sexe,
                 email: res.data.email,
                 city: res.data.profile.city,
                 state: res.data.profile.state,
                 country: res.data.profile.country,
             })
+            setTimeout(() =>{
+                setisLoading(false);
+            },'3000');
+           
             console.log(res.data)
 
-        }).catch(err =>{
-            console.log(err.message);
-        });
+            }).catch(err =>{
+                console.log(err.message);
+            });
 
 
     }, []);
 
-            //Update username
-            const updateProfile = (e) => {
-                e.preventDefault();
-    
-                axios.put('http://127.0.0.1:8000/users/user/',userData,{
-                    headers:{
-                        'Content-Type' : 'application/json',
-                        'Authorization': `Bearer ${props.accessToken}`
-                    }
-    
-                }).then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    hideEditPopup();
-    
-                }).catch(err => {
-                    console.log("error")
-                })
-    
-            }
+    useEffect(() =>{
+            //set fullname
+            let fn = userData.firstname;
+            let ln = userData.lastname
+            fn = fn.charAt(0).toUpperCase() + fn.slice(1);
+            ln= ln.charAt(0).toUpperCase() + ln.slice(1);
+            setfullName(fn+' '+ln);
 
-            //Edit Popip
-            const editPopup = () => {
-                const overlay = document.querySelector('.overlay');
-                const ppoc = document.querySelector('.update-profile-container');
-                overlay.style.display = 'flex';
-                ppoc.style.display = 'flex';
+            //set honorific
+            if(userData.sexe === 'male'){
+                sethonorific('Mr')
             }
-
-            //Hide Edit Popup
-            const hideEditPopup = () => {
-                const overlay = document.querySelector('.overlay');
-                const ppoc = document.querySelector('.update-profile-container');
-                overlay.style.display = 'none';
-                ppoc.style.display = 'none';
-                
+            else if(userData.sexe ==='female'){
+                sethonorific('Mrs')
             }
+                    
 
+    }, [userData]);
+
+        //Update user profile data
+        const updateProfile = (e) => {
+            e.preventDefault();
+
+            axios.put(apiURL+'/users/user/',userData,{
+                headers:{
+                    'Content-Type' : 'application/json',
+                    'Authorization': `Bearer ${props.accessToken}`
+                }
+
+            }).then(res => {
+                console.log(res);
+                console.log(res.data);
+                hideEditPopup();
+
+            }).catch(err => {
+                console.log("error")
+            })
+
+        }
+
+        //Edit Popup
+        const editPopup = () => {
+            const overlay = document.querySelector('.overlay');
+            const ppoc = document.querySelector('.update-profile-container');
+            overlay.style.display = 'flex';
+            ppoc.style.display = 'flex';
+        }
+
+        //Hide Edit Popup
+        const hideEditPopup = () => {
+            const overlay = document.querySelector('.overlay');
+            const ppoc = document.querySelector('.update-profile-container');
+            overlay.style.display = 'none';
+            ppoc.style.display = 'none';
+            
+        }
+
+        //formatting bday 
+        useEffect(() =>{
+
+            if (userData && userData.birthday) {
+                const bday = new Date(userData.birthday);
+
+                const formatter = new Intl.DateTimeFormat('en-US', { 
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit", });
+    
+                setformattedDate(formatter.format(bday));  
+            }
+            
+        }, [userData]);
+        
 
     return(
         <section className='profile-section section-2'>
@@ -165,23 +219,35 @@ const Profile = (props) => {
             <h1 Style='align-self: flex-start; padding-left: 2rem'>My Profile</h1>
             <div className='profile-container'>
                 
-                
-                <div className='user-card card'>
-                    <div className='profile-img-container2'>
-                        <img src={pp} alt='pp' className='profile-picture2'/>
-                    </div>
-                    <h2 Style='color: var(--bar-text-color);'>{userData.username}</h2>
-                    <button onClick={editPopup}className='btn btn-secondary'><CiEdit /> Edit profile</button>
 
-                    <ul className='profile-nav'>
+            { isLoading? (
+                        <div className='user-card card'>
+                            <Skeleton variant="circular" width={100} height={100} />
+                            <Skeleton variant="text" width={60} />
+                            <Skeleton variant="rounded" width={120} height={50} />  
+                        </div>
+                        
+                    ) : (
+
+                        <div className='user-card card'>
+                            <div className='profile-img-container2'>
+                                <img src={pp} alt='pp' className='profile-picture2'/>
+                            </div>
+                            <h3 Style='color: var(--bar-text-color);'>{honorific+'. '+fullName}</h3>
+                            <button onClick={editPopup}className='btn btn-secondary'><CiEdit /> Edit profile</button>
+
+                        </div>
+                
+                    )}
+                
+                
+                <ul className='profile-nav'>
                         <li><a href='/profile' className='nav-link'>My Profile</a></li>
                         <li><a className='nav-link'>Change Password</a></li>
                         <li><a className='nav-link'>Notifications</a></li>
                         <li><a className='nav-link'>Privacy</a></li>
-                    </ul>
-                </div>
-                
-         
+                </ul>
+
                 <div className='profile-body'>
                     <ul>
                         <li><a href='/profile' className='nav-link'>My Profile</a></li>
@@ -190,84 +256,113 @@ const Profile = (props) => {
                         <li><a className='nav-link'>Privacy</a></li>
                     </ul>
 
-                    <div className='info-block'>
-                        <h2>Goals:</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id qui cum, adipisci 
-                            necessitatibus numquam dignissimos inventore dolor voluptates deserunt alias sunt
-                             similique doloribus officiis animi praesentium suscipit, libero eius tempore.</p>
-                    </div>
-                    <div className='info-block'>
-                        <h2>
-                            Firstname:
-                        </h2>
-                        <p>
-                            {userData.firstname}
-                        </p>
-                    </div>
-                    <div className='info-block'>
-                        <h2>
-                            Lastname:
-                        </h2>
-                        <p>
-                            {userData.lastname}
-                        </p>
-                    </div>
+                    {isLoading ? (
+                            // Show skeletons while loading
+                            <div Style='height: 100%; width: 100%; gap: 1rem; display:flex; flex-direction: column'>
+                        
+                                {Array.from({ length: numberOfSkeletons }).map((_, index) => (
+                                    <div key={index} className="skeleton-item">
+                                    <Skeleton variant="text" width="50%" />
+                                    <Skeleton variant="text" width="30%" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                     
+                        <div Style='height: 100%; width: 100%; gap: 1rem; display:flex; flex-direction: column'> 
 
-                    <div className='info-block'>
-                        <h2>
-                            Birthday:
-                        </h2>
-                        <p>
-                            {userData.birthday}
-                        </p>
-                    </div>
-              
-                    <div className='info-block'>
-                        <h2>
-                            Email:
-                        </h2>
-                        <p>
-                            {userData.email}
-                        </p>
-                    </div>
-                    <div className='info-block'>
-                        <h2>
-                            City:
-                        </h2>
-                        <p>
-                            {userData.city}
-                        </p>
-                    </div>
+                            <div className='info-block'>
+                                <h2>Goals:</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id qui cum, adipisci 
+                                    necessitatibus numquam dignissimos inventore dolor voluptates deserunt alias sunt
+                                    similique doloribus officiis animi praesentium suscipit, libero eius tempore.</p>
+                            </div>
+                            <div className='info-block'>
+                                <h2>
+                                    Firstname:
+                                </h2>
+                                <p>
+                                    {userData.firstname}
+                                </p>
+                            </div>
 
-                    <div className='info-block'>
-                        <h2>
-                            State:
-                        </h2>
-                        <p>
-                            {userData.state}
-                        </p>
-                    </div>
+                            <div className='info-block'>
+                                <h2>
+                                    Email:
+                                </h2>
+                                <p>
+                                    {userData.username}
+                                </p>
+                            </div>
+                            
+                            <div className='info-block'>
+                                <h2>
+                                    Lastname:
+                                </h2>
+                                <p>
+                                    {userData.lastname}
+                                </p>
+                            </div>
 
-                    <div className='info-block'>
-                        <h2>
-                            Country:
-                        </h2>
-                        <p>
-                            {userData.country}
-                        </p>
-                    </div>
+                            <div className='info-block'>
+                                <h2>
+                                    Birthday:
+                                </h2>
+                                <p>
+                                    {formattedDate}
+                                </p>
+                            </div>
+                    
+                            <div className='info-block'>
+                                <h2>
+                                    Email:
+                                </h2>
+                                <p>
+                                    {userData.email}
+                                </p>
+                            </div>
+                            <div className='info-block'>
+                                <h2>
+                                    City:
+                                </h2>
+                                <p>
+                                    {userData.city}
+                                </p>
+                            </div>
 
-                    <div className='info-block'>
-                        <h2>
-                            My Therapist Infos:
-                        </h2>
-                        <p>
-                            <b>Email:</b >MyTherapist@mail.com<br/>
-                            <b>Emergency Phone Number:</b> +293903929394<br/>
-                            <b>Message:</b> <a><FaRegEnvelope/></a><br/>
-                        </p>
+                            <div className='info-block'>
+                                <h2>
+                                    State:
+                                </h2>
+                                <p>
+                                    {userData.state}
+                                </p>
+                            </div>
+
+                            <div className='info-block'>
+                                <h2>
+                                    Country:
+                                </h2>
+                                <p>
+                                    {userData.country}
+                                </p>
+                            </div>
+
+                            <div className='info-block'>
+                                <h2>
+                                    My Therapist Infos:
+                                </h2>
+                                <p>
+                                    <b>Email:</b >MyTherapist@mail.com<br/>
+                                    <b>Emergency Phone Number:</b> +293903929394<br/>
+                                    <b>Message:</b> <a><FaRegEnvelope/></a><br/>
+                                </p>
+                            </div>
+
+                        </div>
+                    )}
+
                     </div>
-                </div>
 
           
             </div>

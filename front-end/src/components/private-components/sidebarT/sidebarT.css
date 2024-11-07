@@ -3,6 +3,7 @@
     left:0;
     top: 0;
     z-index: 1000;
+
     height: 100vh;
     width: 20%;
     display: flex;
@@ -12,9 +13,6 @@
     padding: 1rem 2rem;
     gap:3rem;
     background-color: var(--bar-color);
-
-  
-
     a{
         color: var(--bar-text-color);
     }
@@ -32,11 +30,9 @@
             margin-top: auto;
         } */
 
-
        
     }
 
-  
     a{
         display: flex;
         flex-direction: row;
@@ -44,24 +40,13 @@
         gap: 1rem;
     }
 
-    
-
 }
-
-
-.sidebar-dashboard.slide-in{
-    opacity: 1;
-    transform: translateX(0);
-    transition: all 0.5s;
-}
-
 
 .sidebar-top{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-
 
 }
 
@@ -78,14 +63,10 @@
 }
 
 
-
 @media screen and (max-width: 1024px){
     .sidebar-dashboard{
         display: none;
         width: 80%;
-        opacity: 0;
-        transform: translateX(-100%);
-        transition: all 0.5s;
     }
 
     .quit-menu{

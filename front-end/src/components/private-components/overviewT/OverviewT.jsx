@@ -15,7 +15,10 @@ import { BarChart, Bar, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Toolti
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
+import { Skeleton } from '@mui/material';
+
 import pp from '../../../assets/profile.jpg'
+
 
 const ageData = [
     { ageGroup: '0-18', count: 120 },
@@ -33,16 +36,21 @@ const genderData = [
 
 const COLORS = ['#33a2ff', '#ff33ca'];
 
+const apiURL=process.env.REACT_APP_API_URL;
 
 const OverviewT = () => {
     const [fullName, setfullName] = useState('');
 
     const [value, onChange] = useState(new Date());
 
+    const [isLoading,setisLoading] = useState(true);
+
+    const [honorific, sethonorific] = useState('');
+
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
-        axios.get('http://127.0.0.1:8000/users/username/',{
+        axios.get(apiURL+'/users/username/',{
             headers:{
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
@@ -56,6 +64,12 @@ const OverviewT = () => {
             ln= ln.charAt(0).toUpperCase() + ln.slice(1);
             setfullName(fn+' '+ln);
 
+            sethonorific(res.data.sexe === 'male'? 'Mr' : 'Mrs');
+
+       
+            setisLoading(false);
+
+
         }).catch(err => {
 
         })
@@ -68,11 +82,17 @@ const OverviewT = () => {
             <section className='therapist-content'>
 
                 <div className='welcome-msg'>
-                    <h1>Welcome, <b Style='color: var(--text-color)'>Mr. {fullName}</b></h1>
+                    {isLoading ? (
+                      
+                        <b Style='color: var(--text-color)'><Skeleton variant='text' width={220} /> </b>): (
+                        <h1>Welcome, <b Style='color: var(--text-color)'>{honorific+' '+fullName}</b> </h1>
+                    )}
+                        
                     <h3>Have a good day at work!</h3>
                 </div>
               
                 <div className='stats-cards'>
+              
                     <div className='stat-card' Style='background-color: teal;'>
                         <CiCalendar/>
                         <div>
@@ -261,13 +281,18 @@ const OverviewT = () => {
                             <a href='/appointments' Style='background-color: var(--lightgray-color); padding: 5px; border-radius: 5px'>2024 <IoIosArrowDown/></a>
                         </div>
                         
-                        <div className='client-appt-cards card' Style="width: 100%; height: 20rem;">
+                        <div className='client-appt-cards card' Style="width: 100%; height: 20rem; padding: 0.2rem;">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={ageData}>
                             <XAxis      
                                 dataKey="ageGroup" 
+                                tick={{ fontSize: 12 }} 
+                                interval={0}
+                                
                             />
-                            <YAxis />
+                            <YAxis  
+                                tick={{ fontSize: 12 }}  
+                                />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="count" fill="green" /> {/* Customize color as needed */}
@@ -275,7 +300,6 @@ const OverviewT = () => {
                         </ResponsiveContainer>
                         </div>
                         
-
 
 
                     </div>
@@ -356,100 +380,101 @@ const OverviewT = () => {
 
                 <div className='recent-clients'>
                     <h3>Recent Clients</h3>
-                    <table className='recent-clients-table'>
-                        <tr className='table1-header'>
-                            <th>
-                                Client name
-                            </th>
-                            <th>
-                                PatientID
-                            </th>
-                            <th>
-                                Date 
-                            </th>
-                            <th>
-                                Gender
-                            </th>
-                            <th>
-                                Age
-                            </th>
-                            <th>
-                                Diagnosis
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
+                    <div className='table-container'>
+                        <table className='recent-clients-table'>
+                            <tr className='table1-header'>
+                                <th>
+                                    Client name
+                                </th>
+                                <th>
+                                    PatientID
+                                </th>
+                                <th>
+                                    Date 
+                                </th>
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                    Age
+                                </th>
+                                <th>
+                                    Diagnosis
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
 
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
 
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
 
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
 
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
 
-                        <tr>
-                            <td>Haruki Murakami</td>
-                            <td>2</td>
-                            <td>10 April 2024</td>
-                            <td>Male</td>
-                            <td>33</td>
-                            <td>Bipolar</td>
-                            <td>Active</td>
-                            <td><BsThreeDotsVertical/></td>
-                        </tr>
-            
-                    </table>
-                   
+                            <tr>
+                                <td>Haruki Murakami</td>
+                                <td>2</td>
+                                <td>10 April 2024</td>
+                                <td>Male</td>
+                                <td>33</td>
+                                <td>Bipolar</td>
+                                <td>Active</td>
+                                <td><BsThreeDotsVertical/></td>
+                            </tr>
+                
+                        </table>
+                    </div>
                 </div>
                     
             </section>

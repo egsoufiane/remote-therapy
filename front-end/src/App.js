@@ -29,7 +29,7 @@ import { useState, useEffect } from "react";
 
 import Videocall from "./components/videocall/Videocall";
 import ClientDashboard from "./components/private-components/client-dashboard/ClientDashboard";
-import TherapistDashboard from "./components/private-components/therapis-dashboard/TherapistDashboard";
+import TherapistDashboard from "./components/private-components/therapist-dashboard/TherapistDashboard";
 
 
 // window.addEventListener('scroll', handleScroll);

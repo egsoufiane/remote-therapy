@@ -6,18 +6,22 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import Header from '../header/Header';
 
+import { Skeleton } from '@mui/material';
 
+const apiURL=process.env.REACT_APP_API_URL;
 
 const Overview = () => {
 
 
     const [fullName, setfullName] = useState('');
+    const [honorific, sethonorific] = useState('');
+    const [isLoading,setisLoading] = useState(true);
 
  
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
-        axios.get('http://127.0.0.1:8000/users/username/',{
+        axios.get(apiURL+'/users/username/',{
             headers:{
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
@@ -30,6 +34,10 @@ const Overview = () => {
             fn = fn.charAt(0).toUpperCase() + fn.slice(1);
             ln= ln.charAt(0).toUpperCase() + ln.slice(1);
             setfullName(fn+' '+ln);
+
+            sethonorific(res.data.sexe === 'male'? 'Mr' : 'Mrs');
+
+            setisLoading(false);
 
         }).catch(err => {
 
@@ -71,7 +79,11 @@ const Overview = () => {
             <Header/>
             <section className='client-content'>
                 <h1 Style='font-size:2rem'>Welcome</h1>
-                <h2>{fullName}</h2>
+                {isLoading ? (
+                    <Skeleton variant='text' width={220} /> 
+                ) : ( 
+                    <h2>{honorific+' '+fullName}</h2>
+                )}
                 <div className='dashboard-cards'>
                     <div className='client-card card'>
                         <h2>Upcoming Session</h2>

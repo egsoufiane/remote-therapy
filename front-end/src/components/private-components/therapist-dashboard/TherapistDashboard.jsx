@@ -1,8 +1,8 @@
 import React from 'react'
 import './TherapistDashboard.css'
 
-import Sidebar from '../sidebar/Sidebar';
-import Overview from '../overview/Overview';
+import SidebarT from '../sidebarT/SidebarT';
+
 
 import {
     BrowserRouter as Router,
@@ -15,6 +15,8 @@ import {
 import Appointment from '../appointment/Appointment';
 import Profile from '../profile/Profile';
 import OverviewT from '../overviewT/OverviewT';
+import ProfileT from '../profileT/ProfileT';
+import ScheduleT from '../scheduleT/ScheduleT';
 
 
 const TherapistDashboard = () => {
@@ -30,18 +32,35 @@ const TherapistDashboard = () => {
 
     }
 
+    //Hide sidebar
+    const hideSidebar = () => {
+    const overlay = document.querySelector('.overlay3');
+    const sidebar = document.querySelector('.sidebar-dashboard');
+    overlay.style.display = 'none';
+    
+    sidebar.classList.remove('slide-in');
+    // const forceReflow = sidebar.offsetHeight;
+
+    // sidebar.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+}
+
+
 
     return (
 
         <section className='dashboard-section'>
         <div onClick={hideEditPopup} className='overlay'/>
+        <div onClick={hideSidebar} className='overlay3'/>
 
 
-        <Sidebar/>
+        <SidebarT/>
         <Routes >
             <Route path="/" element={<OverviewT/>} />
+            <Route path="/schedule" element={<ScheduleT/>} />
+            <Route path='/profile' element= {<ProfileT accessToken = {accessToken}/>}/>
             <Route path="*" element={<Navigate to="/"/>} />  
-
         </Routes>
         
             

@@ -8,6 +8,8 @@ import Oath from '../oath/Oath';
 import axios from 'axios'
 
 
+const apiURL=process.env.REACT_APP_API_URL;
+
 const Register = ({showLogin}) => {
 
     const [selectedCountry, setSelectedCountry] = useState("");
@@ -100,7 +102,7 @@ const Register = ({showLogin}) => {
         const handleSubmit = (e) => {
             e.preventDefault();
     
-            axios.post('http://127.0.0.1:8000/users/register_client/', formData, {
+            axios.post(apiURL+'/users/register_client/', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

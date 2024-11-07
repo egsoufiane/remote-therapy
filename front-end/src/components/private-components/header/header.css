@@ -86,6 +86,102 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    
+    
+    > svg:first-child {
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        transition: all 0.3s;
+    }
+
+    > svg:first-child:hover {
+        transform: scale(1.2)
+    }
+}
+
+.header-ips{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+.header-ps{
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-arrow{
+    position: relative;
+    
+}
+
+.header-profile-dropdown{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    background-color: var(--bar-color);
+    /* padding: 1.5rem; */
+    border-radius: 4px;
+    width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2), 2px 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    
+    ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-evenly;
+        width: 100%;
+        gap: 0;
+       
+        li{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1rem;
+          
+            color: var(--bar-text-color);
+            a{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 1rem;
+                color: var(--bar-text-color);
+                width: 100%;
+               
+                
+                svg{
+                    font-size: 1.02rem;
+                }
+            }
+
+        }
+
+        li:last-child{
+            border-top: 2px solid rgba(255, 255, 255, 0.23);
+        }
+
+        li:hover{
+            background-color: rgba(97, 96, 96, 0.2);
+           
+            
+        }
+
+
+    }
+
+}
+
+.dropdown-arrow:hover .header-profile-dropdown{
+    display: block;
+}
+.header-profile-dp-ul{
+   
+
 }
 
 
@@ -98,4 +194,31 @@
         display: flex;
     }
 
+
+
+    .profile-header{
+   
+        gap: 1rem;
+
+    }
+
+    .profile-header{
+  
+        
+        svg{
+            margin-right: 0;
+        
+        }
+
+    }
+    
+
+}
+
+@media screen and (max-width : 600px) {
+
+    .header-ps{
+        display: none;
+    }
+    
 }

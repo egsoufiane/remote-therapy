@@ -34,6 +34,7 @@ const showSidebar = () => {
 
     // sidebar.classList.add('slide-in');
     sidebar.classList.add('slide-in');
+    document.body.style.overflow = 'hidden';
 }
 
 
@@ -56,6 +57,8 @@ const hideSidebar = () => {
 
     menu.style.display = 'flex';
     quitmenu.style.display ='none';
+
+    document.body.style.overflow = 'auto';
       
 }
 
@@ -77,6 +80,8 @@ const showLogin = () => {
     const forceRefloew = logincontainer.offsetHeight;
     logincontainer.classList.add('slide-in');
     registercontainer.classList.remove('slide-in');
+
+    document.body.style.overflow = 'hidden';
   
 }
 
@@ -91,6 +96,7 @@ const hideLogin = () => {
     logincontainer.style.display = 'none';
     overlay.style.display = 'none';
     
+    document.body.style.overflow = 'auto';
 
 
 
@@ -122,6 +128,7 @@ const hideRegister = () => {
     overlay.style.display = 'none';
     registercontainer.classList.remove('slide-in');
     logincontainer.classList.remove('slide-in');
+    document.body.style.overflow = 'auto';
 
 }
 
@@ -137,6 +144,7 @@ const hidePopup = () => {
 
     logincontainer.classList.remove('slide-in');
     registercontainer.classList.remove('slide-in');
+    document.body.style.overflow = 'auto';
 
 
 }
