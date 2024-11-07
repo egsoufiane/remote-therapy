@@ -65,9 +65,8 @@ from django.db import models
 
 
 
-
 class CustomUser(AbstractUser):
-    USERNAME_FIELD = 'email'
+    # USERNAME_FIELD = 'email'
     username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
     first_name = None
@@ -78,7 +77,7 @@ class CustomUser(AbstractUser):
     is_client = models.BooleanField(default=False)
     is_therapist = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = ['username']
+    # REQUIRED_FIELDS = ['username']
     
     def save(self, *args, **kwargs):
     # Ensure that is_verified is True for superusers

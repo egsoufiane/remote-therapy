@@ -11,7 +11,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
 
 #Login handling
-
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
@@ -26,7 +25,6 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 #         password = data['password']
 #         if CustomUser.objects.filter(username=username).exists():
 #             return JsonResponse({'error': 'Username already taken'}, status=400)
-
 
 #         user = CustomUser.objects.create_user(username=username,email=email, first_tname=firstname, last_name=lastname)
 #         user.set_password(password)
@@ -98,13 +96,19 @@ class Home(APIView):
             cp = user.clientprofile
             firstname = cp.firstname
             lastname = cp.lastname
+            specialization = ''
+            sexe=cp.sexe
         elif(user.is_therapist == True):
             tp = user.therapistprofile
             firstname = tp.firstname
             lastname = tp.lastname
+            specialization = tp.specialization
+            sexe=tp.sexe
 
         content = {'firstname': firstname,
-                    'lastname' : lastname}
+                    'lastname' : lastname,
+                    'specialization': specialization,
+                    'sexe':sexe}
 
 
         
@@ -117,7 +121,7 @@ class Profile(APIView):
     
     def get(self, request):
         user = request.user
-        cp = user.clientprofile
+     
         # username= user.username
         # firstname = user.first_name
         # lastname = user.last_name
@@ -125,10 +129,18 @@ class Profile(APIView):
         # city = user.city
         # country = user.country
 
-        SerilizedUser = CustomUserSerializer(user)
-        SerializedClientProfile = ClientProfileSerializer(cp)
-        content = SerilizedUser.data
-        content['profile'] = SerializedClientProfile.data
+        if(user.is_client == True):
+            cp = user.clientprofile
+            SerilizedUser = CustomUserSerializer(user)
+            SerializedClientProfile = ClientProfileSerializer(cp)
+            content = SerilizedUser.data
+            content['profile'] = SerializedClientProfile.data
+        elif(user.is_therapist == True):
+            tp = user.therapistprofile
+            SerilizedUser = CustomUserSerializer(user)
+            SerializedTherapistProfile = TherapistProfileSerializer(tp)
+            content = SerilizedUser.data
+            content['profile'] = SerializedTherapistProfile.data
 
         # content = {
         #         'username' : username,
@@ -145,15 +157,28 @@ class Profile(APIView):
 
     def put(self, request):
         user = request.user
-        cp = user.clientprofile
+       
         data = json.loads(request.body)
 
-        # Update the username field of the user
-        user.username = data['username']
-        cp.firstname = data['firstname']
-        cp.lastname = data['lastname']
-        user.save()  # Save the changes to the database
-        cp.save()
+
+        if(user.is_client):
+            cp = user.clientprofile
+
+            # Update the username field of the user
+            user.username = data['username']
+            cp.firstname = data['firstname']
+            cp.lastname = data['lastname']
+            user.save()  # Save the changes to the database
+            cp.save()
+        elif(user.is_therapist):
+            tp = user.therapistprofile
+
+            user.username = data['username']
+            tp.firstname = data['firstname']
+            tp.lastname = data['lastname']
+            user.save()  # Save the changes to the database
+            tp.save()
+
 
         return Response('Update success')
 

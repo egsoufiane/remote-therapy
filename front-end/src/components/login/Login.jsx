@@ -3,16 +3,22 @@ import './login.css'
 import logo from '../../assets/logo6.png';
 import Oath from '../oath/Oath';
 import axios from 'axios'
+import { GoEyeClosed } from "react-icons/go";
+import { RxEyeOpen } from "react-icons/rx";
+
+const apiURL=process.env.REACT_APP_API_URL;
+
+
+
 
 const Login = () => {
 
     let maxL = '30';
     let minL ='8';
 
-
     
     const [formData, setformData] = useState({
-        email:'',
+        username:'',
         password:'',
     })
 
@@ -27,7 +33,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://127.0.0.1:8000/api/token/',formData,{
+        axios.post(apiURL+'/api/token/',formData,{
             headers:{
                 'Content-type': 'application/json'
             } 
@@ -54,8 +60,24 @@ const Login = () => {
         });
 
 
-
     }
+
+     //toggle password visibility
+    const toggleEye = () => {
+    const eyeClosed = document.querySelector('.eye-closed');
+    const eyeOpen = document.querySelector('.eye-open');
+    const passwordInput = document.getElementById('password');
+    if(passwordInput.type === 'password'){
+        eyeClosed.style.display = 'none';
+        eyeOpen.style.display = 'flex';
+        passwordInput.type = 'text';
+    }else if(passwordInput.type === 'text'){
+        eyeClosed.style.display = 'flex';
+        eyeOpen.style.display = 'none';
+        passwordInput.type = 'password';
+    }
+   
+}
 
     return (
         
@@ -72,11 +94,15 @@ const Login = () => {
                  
                         <form className='login-form' onSubmit={handleSubmit}>
                             <div className='input-unit'>
-                                <input type='email' id='email' name='email' className='textfield email' placeholder='Email' onChange={handleInput}/>
+                                {/* <input type='email' id='email' name='email' className='textfield email' placeholder='Email' onChange={handleInput}/> */}
+                                <input type='text' id='username' name='username' className='textfield username' placeholder='Username or Email' onChange={handleInput}/>
                             </div>
                     
                             <div className='input-unit'>
                                 <input type='password' id='password' name='password' className='textfield password' placeholder='Password' onChange={handleInput}/>
+                                <GoEyeClosed className='eye-closed' onClick={toggleEye}/>
+                                <RxEyeOpen className='eye-open' onClick={toggleEye}/>
+                                
                             </div>
                             <div className="checkbox-input">
                                 <input type='checkbox' value='rememberme'/>

@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','192.168.0.3']
 
 
 # Application definition
@@ -87,9 +87,10 @@ CORS_ALLOWED_ORIGINS = [
     # env('ALLOWED_ORIGIN_2'),
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-
+    
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 SIMPLE_JWT = {
