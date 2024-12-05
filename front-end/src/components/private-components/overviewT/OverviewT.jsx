@@ -366,7 +366,7 @@ const OverviewT = () => {
 
                         </div>
 
-                       <div className='calendar'>
+                       <div >
                             <h3>Calendar</h3>
                             <Calendar onChange={onChange} value={value} />
                        </div>

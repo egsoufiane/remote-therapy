@@ -58,7 +58,7 @@ const TherapistDashboard = () => {
         <SidebarT/>
         <Routes >
             <Route path="/" element={<OverviewT/>} />
-            <Route path="/schedule" element={<ScheduleT/>} />
+            <Route path="/schedule" element={<ScheduleT accessToken = {accessToken}/>} />
             <Route path='/profile' element= {<ProfileT accessToken = {accessToken}/>}/>
             <Route path="*" element={<Navigate to="/"/>} />  
         </Routes>

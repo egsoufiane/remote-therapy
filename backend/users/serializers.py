@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from django.utils import timezone
-from .models import CustomUser, ClientProfile, TherapistProfile
+from .models import CustomUser, ClientProfile, TherapistProfile, TherapistAvailability, SpecificDayAvailability
 
 
 
@@ -127,3 +127,15 @@ class TherapistProfileSerializer(serializers.ModelSerializer):
         #     'is_verified', 
         #     'is_staff'
         # ]
+
+
+class TherapistAvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TherapistAvailability
+        fields = '__all__'
+
+
+class SpecificDayAvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecificDayAvailability
+        fields = '__all__'

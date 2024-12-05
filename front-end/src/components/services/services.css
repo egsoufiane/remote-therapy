@@ -226,6 +226,7 @@
     font-size: 1.3rem;
     padding: 1rem;
     background-color:  var(--white-color);
+    color: var(--black-color);
     box-shadow: var(--box-shadow-primary);
     border-radius: 50%;
     text-align: center;
@@ -237,7 +238,7 @@
 
 .arrow:hover{
     font-weight: 500;
-    color: var(--white-color);
+    color: var(--bar-text-color);
     background-color: var(--bar-color);
     
 }

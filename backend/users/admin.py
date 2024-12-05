@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, ClientProfile, TherapistProfile
+from .models import CustomUser, ClientProfile, TherapistProfile, TherapistAvailability, SpecificDayAvailability
 
 # @admin.register(CustomUser)
 # class CustomUserAdmin(UserAdmin):
@@ -67,10 +67,23 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(ClientProfile)
 class ClientProfileAdmin(admin.ModelAdmin):
-    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user_id')
+    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user')
     search_fields = ('firstname', 'lastname')
     
 @admin.register(TherapistProfile)
-class ClientProfileAdmin(admin.ModelAdmin):
-    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user_id')
+class TherapistProfileAdmin(admin.ModelAdmin):
+    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user')
     search_fields = ('firstname', 'lastname')
+
+
+@admin.register(TherapistAvailability)
+class TherapistAvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('id','day_of_week','therapist', 'start_time', 'end_time', 'is_available')
+    search_fields = ('id','therapist', 'date')
+
+
+@admin.register(SpecificDayAvailability)
+class TherapistAvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('id', 'date', 'therapist', 'start_time', 'end_time', 'is_available')
+    search_fields = ('id','therapist', 'date')
+

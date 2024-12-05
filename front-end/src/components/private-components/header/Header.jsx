@@ -8,11 +8,34 @@ import { LuUser } from "react-icons/lu";
 import { CiSettings } from "react-icons/ci";
 import { IoMoonOutline } from "react-icons/io5";
 import { RiShutDownLine } from "react-icons/ri";
-import { RxSwitch } from "react-icons/rx";
+// import { RxSwitch } from "react-icons/rx";
+import { FaToggleOn } from "react-icons/fa";
+import { FaToggleOff } from "react-icons/fa";
+
 import pp from '../../../assets/profile.jpg'
 
 import { Skeleton } from '@mui/material';
 const apiURL=process.env.REACT_APP_API_URL;
+
+
+
+    //toggle LighDark mode
+
+
+    // const toggleDark = document.querySelector('.toggleDark');
+    // const toggleLight  = document.querySelector('.toggleLight');
+
+    // toggleDark.addEventListener('click', ()=>{
+    //     toggleDark.style.display = 'none';
+    //     toggleLight.style.display = 'flex';
+    // });
+
+    // toggleLight.addEventListener('click', ()=>{
+    //     toggleDark.style.display = 'flex';
+    //     toggleLight.style.display = 'none';
+    // });
+
+
 
 const Header = () => {
     const [fullName, setfullName] = useState('');
@@ -69,6 +92,7 @@ const Header = () => {
         window.location.href='/';
     }
 
+
     return(
         <header className='dashboard-header'>
              <li className='menu' onClick={showSidebar}><a><svg xmlns="http://www.w3.org/2000/svg" height="24px"
@@ -115,7 +139,10 @@ const Header = () => {
                         <ul className='header-profile-dp-ul'>
                             <li><a href='/profile' ><LuUser/>Profile</a></li>
                             <li><a ><CiSettings/>Settings</a></li>
-                            <li><a ><IoMoonOutline/>Interface </a> <RxSwitch size={26}/></li>
+                            <li><a ><IoMoonOutline/>Interface </a> 
+                            <FaToggleOn size={30} className='toggleDark'/>
+                            <FaToggleOff size={30} className='toggleLight'/>
+                            </li>
                             <li onClick={logOut}><a ><RiShutDownLine/>Logout</a></li>
                         </ul>
                     </div>

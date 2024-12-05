@@ -29,7 +29,11 @@
     padding: 2rem;
     gap:1rem;
     height: 100%;
-    transform: all 0.3s;    
+    transform: all 0.3s;  
+    
+    background-color: var(--white-color);
+    border-radius: 10px;
+    box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);
 
     svg{
         font-size: 1.5rem;

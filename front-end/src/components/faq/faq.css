@@ -48,7 +48,7 @@
     width: 100%;
     cursor: pointer;
     svg {
-        color: var(--white-color);
+        color: var(--bar-text-color);
         font-size: 1.5rem;
     }
 }

@@ -507,7 +507,7 @@
     }
     
     p{
-        color: var(--white-color);
+        color: var(--bar-text-color);
     }
 }
 
@@ -534,7 +534,7 @@
     border-bottom: 2px solid var(--accent-color);
 
     h3{
-        color: var(--white-color);
+        color: var(--bar-text-color);
     }
 
    

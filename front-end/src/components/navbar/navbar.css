@@ -262,7 +262,7 @@ li:hover::after{
     height: 100vh;
 
    
-    min-width: 300px;
+    width: 80%;
     background-color: var(--color-white);
     background-color: var(--bar-color);
     /* backdrop-filter: blur(10px); */

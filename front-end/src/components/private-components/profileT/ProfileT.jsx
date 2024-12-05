@@ -305,9 +305,7 @@ const ProfileT = (props) => {
                         </ul>
 
              
-                  
-
-
+                
                 
                         {isLoading ? (
                             // Show skeletons while loading
@@ -357,7 +355,7 @@ const ProfileT = (props) => {
 
                                 <div className='info-block'>
                                     <h2>
-                                        Email:
+                                        Username:
                                     </h2>
                                     <p>
                                         {userData.username}

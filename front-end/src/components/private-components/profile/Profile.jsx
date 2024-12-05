@@ -285,16 +285,7 @@ const Profile = (props) => {
                                     {userData.firstname}
                                 </p>
                             </div>
-
-                            <div className='info-block'>
-                                <h2>
-                                    Email:
-                                </h2>
-                                <p>
-                                    {userData.username}
-                                </p>
-                            </div>
-                            
+                      
                             <div className='info-block'>
                                 <h2>
                                     Lastname:
@@ -313,6 +304,15 @@ const Profile = (props) => {
                                 </p>
                             </div>
                     
+                            <div className='info-block'>
+                                <h2>
+                                    Email:
+                                </h2>
+                                <p>
+                                    {userData.username}
+                                </p>
+                            </div>
+                            
                             <div className='info-block'>
                                 <h2>
                                     Email:
