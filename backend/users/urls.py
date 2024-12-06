@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register_client, register_therapist
+from .views import register_client, register_therapist, get_recurring_schedule
 from .views import Home, Profile, ScheduleAvailability, SpecialAvailability, OneDayAvaialbility
 
 urlpatterns = [
@@ -11,5 +11,7 @@ urlpatterns = [
     path('schedule_availability/', ScheduleAvailability.as_view(), name="schedule_availability"),
     path('special_availability/', SpecialAvailability.as_view(), name="special_availability"),
     path('specific_day_availability/', OneDayAvaialbility.as_view(), name="specific_day_availability"),
+    path('recurring_schedule/', get_recurring_schedule, name='recurring_schedule'),
+
 
 ]

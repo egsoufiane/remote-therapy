@@ -306,11 +306,48 @@ from itertools import groupby
 from operator import itemgetter
 from django.db.models import F
 
+#get recurring schedule alone
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def get_recurring_schedule(request):
+
+    DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    user = request.user
+
+    ta = TherapistAvailability.objects.filter(therapist=user).annotate(
+        day=F('day_of_week'), 
+        start=F('start_time'), 
+        end=F('end_time'), 
+        available=F('is_available')
+    ).values('day', 'start', 'end', 'available')
+
+    # Group by day_of_week
+    grouped_data = {}
+    for day, slots in groupby(sorted(ta, key=itemgetter('day')), key=itemgetter('day')):
+        grouped_data[day] = [
+            {
+                'from': slot['start'].strftime('%H:%M') if slot['start'] else '',
+                'to': slot['end'].strftime('%H:%M') if slot['end'] else '',
+                'is_available': slot['available']
+            }
+            for slot in slots
+        ]
+
+        # Sort grouped data by the custom days order
+    ordered_grouped_data = {
+        day: grouped_data[day] for day in DAYS_ORDER if day in grouped_data
+    }
+
+    return Response(ordered_grouped_data)
+
+
 #Therapist Availability
 class ScheduleAvailability(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-
+    
+    #get recurring schedule alone
     # def get(self, request):
     #     user = request.user
     #     ta = TherapistAvailability.objects.all().filter(therapist = user)
@@ -349,6 +386,8 @@ class ScheduleAvailability(APIView):
 
     #     return Response(ordered_grouped_data)
 
+
+    # get data with special and recurring schedule combined
     def get(self, request):
         DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         user = request.user
@@ -425,6 +464,102 @@ class ScheduleAvailability(APIView):
 
         return Response(ordered_grouped_data)
 
+    # def get(self, request):
+    #     DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    #     user = request.user
+
+    #     # Extract query parameters
+    #     start_of_week = request.query_params.get('startOfWeek')
+    #     end_of_week = request.query_params.get('endOfWeek')
+
+    #     if not start_of_week or not end_of_week:
+    #         return Response({"error": "Invalid date range"}, status=400)
+
+    #     # Convert strings to date objects
+    #     start_of_week = datetime.strptime(start_of_week, '%Y-%m-%d').date()
+    #     end_of_week = datetime.strptime(end_of_week, '%Y-%m-%d').date()
+
+    #     # Prepare a dictionary to store availability
+    #     grouped_data = {}
+
+    #     # Iterate through the days in the week
+    #     current_date = start_of_week
+    #     while current_date <= end_of_week:
+    #         day_of_week = current_date.strftime('%A')  # Get day name (e.g., Monday)
+
+    #         # Fetch specific availability for the current date
+    #         specific_availability = SpecificDayAvailability.objects.filter(
+    #             therapist=user, date=current_date
+    #         ).annotate(
+    #             start=F('start_time'),
+    #             end=F('end_time'),
+    #             available=F('is_available')
+    #         ).values('start', 'end', 'available')
+
+    #         if specific_availability.exists():
+    #             # Use specific availability if it exists
+    #             grouped_data[day_of_week] = [
+    #                 {
+    #                     'from': slot['start'].strftime('%H:%M'),
+    #                     'to': slot['end'].strftime('%H:%M'),
+    #                     'is_available': slot['available']
+    #                 }
+    #                 for slot in specific_availability
+    #             ]
+    #         else:
+    #             # Fallback to default availability for the day of the week
+    #             default_availability = TherapistAvailability.objects.filter(
+    #                 therapist=user, day_of_week=day_of_week
+    #             ).annotate(
+    #                 start=F('start_time'),
+    #                 end=F('end_time'),
+    #                 available=F('is_available')
+    #             ).values('start', 'end', 'available')
+
+    #             grouped_data[day_of_week] = [
+    #                 {
+    #                     'from': slot['start'].strftime('%H:%M') if slot['start'] else '',
+    #                     'to': slot['end'].strftime('%H:%M') if slot['end'] else '',
+    #                     'is_available': slot['available']
+    #                 }
+    #                 for slot in default_availability
+    #             ]
+
+    #         current_date += timedelta(days=1)
+
+    #     # Ensure all days in the week are included in the response, even if no data exists
+    #     for day in DAYS_ORDER:
+    #         if day not in grouped_data:
+    #             grouped_data[day] = []
+
+    #     # Sort grouped data by the custom days order
+    #     ordered_grouped_data = {
+    #         day: grouped_data[day] for day in DAYS_ORDER if day in grouped_data
+    #     }
+
+    #     # Combine recurring schedule into the response
+    #     recurring_schedule = TherapistAvailability.objects.filter(therapist=user).annotate(
+    #         day=F('day_of_week'),
+    #         start=F('start_time'),
+    #         end=F('end_time'),
+    #         available=F('is_available')
+    #     ).values('day', 'start', 'end', 'available')
+
+    #     combined_response = {
+    #         "specific_schedule": ordered_grouped_data,
+    #         "recurring_schedule": [
+    #             {
+    #                 "day": entry['day'],
+    #                 "from": entry['start'].strftime('%H:%M') if entry['start'] else '',
+    #                 "to": entry['end'].strftime('%H:%M') if entry['end'] else '',
+    #                 "is_available": entry['available']
+    #             }
+    #             for entry in recurring_schedule
+    #         ]
+    #     }
+
+    #     return Response(combined_response)
+
 
     def post(self,request):
         user = request.user
@@ -446,7 +581,7 @@ class ScheduleAvailability(APIView):
 
 
         # Handle added/updated slots
-        schedule = data.get('schedule', {})
+        schedule = data.get('recSchedule', {})
         for day, slots in schedule.items():
             for slot in slots:
                 start_time = slot['from'] if slot['from'] else None

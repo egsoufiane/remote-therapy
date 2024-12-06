@@ -31,6 +31,16 @@ const ScheduleT = (props) => {
         "Sunday":[{from: '', to:'', is_available: false}],
     })
 
+    const [recSchedule, setRecSchedule] = useState({
+        "Monday":[{from: '', to:'', is_available: false}],
+        "Tuesday":[{from: '', to:'', is_available: false}],
+        "Wednesday":[{from: '', to:'', is_available: false}],
+        "Thursday":[{from: '', to:'', is_available: false}],
+        "Friday":[{from: '', to:'', is_available: false}],
+        "Saturday":[{from: '', to:'', is_available: false}],
+        "Sunday":[{from: '', to:'', is_available: false}],
+    })
+
     const [deletedSchedule, setdeletedSchedule] = useState({});
     const [deletedSpecialSchedule, setdeletedSpecialSchedule] = useState({});
     
@@ -75,6 +85,7 @@ const ScheduleT = (props) => {
                                     <hr/>
                                 </div>
 
+    //multiply skeleton template
     for(let i=0; i<7; i++){
         recurringSkeletons.push(reccuringSkeleton)
     }
@@ -131,24 +142,25 @@ const ScheduleT = (props) => {
                             border: cellBorder,
                    
                         }}
+                        onClick={()=>{
+                            getWeekRange(day)}
+                            }  
                     ></td>
                 );
             });
         };
     
-   
-
 
 
     const addTimeSlot = (day) => {
-        setSchedule((prev) => ({
+        setRecSchedule((prev) => ({
             ...prev,
             [day]: [...prev[day], { from: '', to: '', is_available: false }],
         }));
     };
  
     const removeTimeSlot = (day, index) => {
-        setSchedule((prev) => {
+        setRecSchedule((prev) => {
             const slotToRemove = prev[day][index]; // Get the slot to be removed
             const updatedSlots = prev[day].filter((_, i) => i !== index); // Remove the slot
             
@@ -167,7 +179,7 @@ const ScheduleT = (props) => {
     
 
     const updateField = (day, index, field, value) => {
-        setSchedule((prev) => {
+        setRecSchedule((prev) => {
             const updatedSlots = [...prev[day]];
             const updatedSlot = { ...updatedSlots[index], [field]: value };
             
@@ -219,7 +231,7 @@ const ScheduleT = (props) => {
 
         // Prepare the combined payload
         const payload = {
-            schedule, // Updated or added time slots
+            recSchedule, // Updated or added time slots
             deleted_slots: deletedSchedule, // Removed time slots
         };
 
@@ -231,9 +243,10 @@ const ScheduleT = (props) => {
         }).then(res => {
             console.log(res)
             console.log(res.data)
-            setTimeout(()=>{
-                setSuccess(1)
-            }, 3000);
+            // getSpecialSchedule();
+            setSuccess(1);
+            getWeekRange(currentDate);
+
             
             
         }).catch(err => {
@@ -442,7 +455,6 @@ const ScheduleT = (props) => {
     }
 
 
-
     //update specialSchedule
     useEffect(()=>{
 
@@ -484,6 +496,7 @@ const ScheduleT = (props) => {
 
         if( dateKey in specialSchedule){
             alert("Schedule for this date already set go to Special Schedule Section if you want to Update")
+          
 
         }else{
             setSpecificDaySchedule({
@@ -492,11 +505,13 @@ const ScheduleT = (props) => {
                         to: '',
                         is_available: false
             }]})
+
         }
+
+        window.location.href="#"+dateKey;
 
    
     }, [currentDate]);
- 
 
 
     const getCurrentWeekSchedule = (start, end) => {
@@ -521,11 +536,14 @@ const ScheduleT = (props) => {
                     setSchedule(res.data);
                     setLoading(false);
             }
+
+     
         }).catch(err => {
             console.log(err.message);
         });
     
     }
+  
 
     //get SpecialdSchedule Data
 
@@ -551,6 +569,30 @@ const ScheduleT = (props) => {
     
     }
 
+    //get recurring schedule
+    const getRecurringSchedule = () => {
+
+        axios.get(apiURL+'/users/recurring_schedule/', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${props.accessToken}`
+            }
+        }).then(res => {
+            console.log(res);
+            console.log(res.data);
+    
+            if (res.data && Object.keys(res.data).length > 0) {
+           
+                    setRecSchedule(res.data)
+                    setLoading(false);
+            }
+
+     
+        }).catch(err => {
+            console.log(err.message);
+        });
+    
+    }
 
 
     //Handle Specific schedule
@@ -559,9 +601,10 @@ const ScheduleT = (props) => {
             const { startOfWeek, endOfWeek } = getWeekRange(currentDate);
             getCurrentWeekSchedule(startOfWeek, endOfWeek);
             getSpecialSchedule();
+            getRecurringSchedule();
+         
         
     }, []);
-
 
 
     //Get week range
@@ -585,7 +628,6 @@ const ScheduleT = (props) => {
         //to update selectedweekschedule everytime a date is selected
         getCurrentWeekSchedule(startOfWeek,endOfWeek);
 
-
         const current = new Date(startOfWeek);
         const allDays = [];
 
@@ -596,6 +638,8 @@ const ScheduleT = (props) => {
         }
         
         setWeekDays(allDays)
+        
+       
 
         return { startOfWeek, endOfWeek };
     }
@@ -653,6 +697,7 @@ const ScheduleT = (props) => {
         <section className='section-2'>
             <Header />
             <h2>Therapist Schedule</h2>
+            <p>Note! Special/Specific Day Schedule will override your set working hours(weekly working hours)</p>
             {/* pick range start end date and specify availability for the days in that range 
             like monday from this time to end time available , thursday ... etc; when clicked on day from calendar 
             choose an hour or range of hours to specidy availabilty */}
@@ -683,7 +728,12 @@ const ScheduleT = (props) => {
                                         <th></th>
                                         {weekDays.map((day) => (
                                             <th key={day} Style={day.toLocaleDateString('en-US', { weekday: 'long' }) === currentDate.toLocaleDateString('en-US', { weekday: 'long' })?
-                                            ('background-color:  var(--accent-color); border: 3px solid var(--black-color);'):('')}>
+                                            ('background-color:  var(--accent-color); border: 3px solid var(--black-color);'):('')}
+                                                onClick={()=>{
+                                                    getWeekRange(day);
+                                                    }
+                                                    }   
+                                                >
                                             {/* <h5 Style='color: var(--bar-text-color)'>{day.substring(0, 3)}</h5> */}
                                             <h5  Style='color: var(--bar-text-color)'>{day.toLocaleDateString('en-US', { weekday: 'long' }).substring(0,3)}</h5>
                                             <h6 Style='color: var(--bar-text-color)'>{day.toLocaleDateString()}</h6>
@@ -693,9 +743,12 @@ const ScheduleT = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     {numbers.map((hour) => (
                                         <tr key={hour} className='dayCells'>
-                                            <td className='hourCell'>{`${hour}:00`}
+                                            <td className='hourCell'
+                                            
+                                            >{`${hour}:00`}
                                             </td>
                                             {renderCellsForRow(hour)}
                                         </tr>
@@ -706,13 +759,14 @@ const ScheduleT = (props) => {
                 {
 
                     Object.keys(specificDaySchedule).map((dateKey) =>
-                        <div className='special-schedule-container'>
+                        <div className='special-schedule-container' id={dateKey} 
+                        Style={(currentDate.toLocaleDateString('en-CA') === dateKey)? 'background-color: yellow;': ''}>
                             <h3>Specific Day Schedule</h3>
                             <h4 Style='color: var(--accent-color);'>{dateKey}</h4>
                                 
                                 {specificDaySchedule[dateKey].map((slot, index) => (
 
-                                <div className='special-schedule'>
+                                <div className='special-schedule' >
                                 {/* <h3>{ currentDate.toLocaleDateString('en-US' ,  {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',} )}</h3> */}
                                    
                                     <input type='time' step="3600" min="09:00" name='from' max="18:00"  className='from' value={slot.from}
@@ -766,7 +820,7 @@ const ScheduleT = (props) => {
                                 {
 
                                     Object.keys(specialSchedule).map((date) =>
-                                    <div className='range-container' key={date} 
+                                    <div className='range-container' key={date} id={date}
                                     Style={(date === currentDate.toLocaleDateString('en-CA'))? 'background-color: yellow; ': ''}>
                                         <h4 Style='color: var(--accent-color)'>{date}</h4>
                                         {specialSchedule[date].map((slot, index) => (
@@ -828,7 +882,8 @@ const ScheduleT = (props) => {
                                 <Calendar 
                                 className={"inside-calendar"}
                                 value={currentDate}
-                                    onChange={getWeekRange}/>
+                                    onChange={getWeekRange}
+                                    />
                     </div>
                 
                         <div className='range'>
@@ -858,10 +913,10 @@ const ScheduleT = (props) => {
                                 <div>
                                         {
                                 // days.map((day, index) =>
-                                    Object.keys(schedule).map((day) =>
+                                    Object.keys(recSchedule).map((day) =>
                                     <div className='range-container' key={day}>
                                         <h4 Style='color: var(--accent-color)'>{day}</h4>
-                                        {schedule[day].map((slot, index) => (
+                                        {recSchedule[day].map((slot, index) => (
                                         <div className='recurring-schedule-inputs' key={index}>
                                             <input type='time' step="3600" min="09:00" name='from' max="18:00" value={slot.from} className='from' id={'day'+index} 
                                             onChange={(e) => {
@@ -904,10 +959,9 @@ const ScheduleT = (props) => {
                                                 <span  className='add-icon entry-icon' onClick={() => addTimeSlot(day)}>+</span>    
                                         
 
-
                                         </div>
                                     ) 
-                                }
+                                 }
                                 </div>
                                 )
                                 
@@ -918,12 +972,6 @@ const ScheduleT = (props) => {
                                 
                         </div>
                     </div>
-
-            
-
-
-                    {/* <div>{JSON.stringify(schedule)}</div>
-                    <div>{JSON.stringify(deletedSchedule)}</div> */}
 
                 </div>
             
