@@ -13,6 +13,8 @@ import {
   } from "react-router-dom";
 import Appointment from '../appointment/Appointment';
 import Profile from '../profile/Profile';
+import Therapists from '../therapists/Therapists';
+import Myappointments from '../myappointments/Myappointments';
 
 
 const ClientDashboard = () => {
@@ -51,8 +53,10 @@ const ClientDashboard = () => {
 
         <Sidebar/>
         <Routes >
-            <Route path="/" element={<Overview/>} />
-            <Route path="/appointment" element={<Appointment/>} />
+            <Route path="/" element={<Overview accessToken = {accessToken}/>} />
+            <Route path="/appointment" element={<Appointment  accessToken = {accessToken}/>} />
+            <Route path="/myappointments" element={<Myappointments accessToken = {accessToken}/>} />
+            <Route path="/therapists" element={<Therapists accessToken = {accessToken}/>} />
             <Route path='/profile' element={<Profile accessToken = {accessToken} />} />
             <Route path="*" element={<Navigate to="/"/>} />  
         </Routes>

@@ -67,7 +67,7 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(ClientProfile)
 class ClientProfileAdmin(admin.ModelAdmin):
-    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user')
+    list_display = ('id','firstname', 'lastname', 'birthday', 'sexe', 'city', 'state', 'country','user','selected_therapist')
     search_fields = ('firstname', 'lastname')
     
 @admin.register(TherapistProfile)

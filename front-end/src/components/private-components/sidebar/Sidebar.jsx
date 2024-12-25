@@ -8,6 +8,8 @@ import { FaUser } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BiLogOut } from "react-icons/bi";
 import { FaRegEnvelope } from "react-icons/fa6";
+import { FaClipboardList } from "react-icons/fa";
+import { FaPen } from "react-icons/fa"; 
 import { IoMdLogOut } from "react-icons/io";
 
 
@@ -47,9 +49,12 @@ const Sidebar = () => {
 
             </div>
             <ul>
+
                 <li><a href='/' className='nav-link'><LuLayoutDashboard/>Overview</a></li>
-                <li><a href='/appointment' className='nav-link'><CiCalendar/>Appointments</a></li>
+                <li><a href='/appointment' className='nav-link'><FaPen/>Schedule Appointment</a></li>
+                <li><a href='/myappointments' className='nav-link'><CiCalendar/>My Appointments</a></li>
                 <li><a href='/sessions' className='nav-link'><MdOutlineVideoCall/>Sessions</a></li>
+                <li><a href='/therapists' className='nav-link'><FaClipboardList/>Therapists</a></li>
                 <li><a href='/messages' className='nav-link'><FaRegEnvelope/>Messages</a></li>
                 <li><a href='/profile' className='nav-link'><FaUser/>Profile</a></li>
                 <li><a href='/settings' className='nav-link'><IoSettingsOutline/>Settings</a></li>

@@ -5,19 +5,23 @@ import pp from '../../../assets/profile.jpg'
 import { FaRegEnvelope } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import Header from '../header/Header';
+import Rating from '@mui/material/Rating';
+
 
 import { Skeleton } from '@mui/material';
 
 const apiURL=process.env.REACT_APP_API_URL;
 
-const Overview = () => {
+const Overview = (props) => {
 
 
     const [fullName, setfullName] = useState('');
     const [honorific, sethonorific] = useState('');
     const [isLoading,setisLoading] = useState(true);
+    const [selectedTherapist, setSetecltedTherapist] = useState({})
+    const [upComingSession, setUpComingSession] = useState({})
+    const [counter, setCounter] = useState(null)
 
- 
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
@@ -47,100 +51,176 @@ const Overview = () => {
 
 
     // Timer 
-    const  timer = () => {
-        var sec = 60;
-        var timer = setInterval(function(){
-            document.getElementById('safeTimerDisplay').innerHTML='00:'+sec;
-            sec--;
-            if (sec < 0) {
-                clearInterval(timer);
-            }
-        }, 1000);
-    }
+    // const  timer = () => {
+    //     var sec = 60;
+    //     var timer = setInterval(function(){
+    //         document.getElementById('safeTimerDisplay').innerHTML='00:'+sec;
+    //         sec--;
+    //         if (sec < 0) {
+    //             clearInterval(timer);
+    //         }
+    //     }, 1000);
+    // }
 
-    window.addEventListener('load',timer)
+    // window.addEventListener('load',timer)
+
+
+   
+    //get selected therapist
+    useEffect(()=>{
+        axios.get(apiURL+'/users/get_assigned_therapist/', {
+            headers:{
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${props.accessToken}`
+            }
+        }).then(res =>{
+            console.log(res);
+            console.log(res.data);
+            setSetecltedTherapist(res.data)
+
+        }).catch(err =>{
+            console.log(err.message)
+        })
+        
+    }, []);
+
+    //get upcoming session data
+    useEffect(()=>{
+        axios.get(apiURL+'/appointments/get_upcoming_session/',{
+            headers:{
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${props.accessToken}`
+            }
+        }).then(res=>{
+            console.log(res.data);
+            if(res.data){
+                setUpComingSession(res.data);
+           
+            }
+        }).catch(err =>{
+            console.log(err.message)
+        })
+
+
+    }, []);
+    
 
 
     return(
 
             <section className='section-2'>
-            {/* <header className='dashboard-header'>
-                <span className='search-container'>
-                    <CiSearch/><input type="text" id='search-box' placeholder='search' className='search'/>
-                </span>
-                
-                <div className='profile-header'>
-                    <div className='profile-img-container'>
-                        <img src={pp} alt='profile-picture' className='profile-picture'/>
-                    </div>
-                    <h3>{fullName}</h3>
-                </div>
-            </header> */}
             <Header/>
+
             <section className='client-content'>
+       
                 <h1 Style='font-size:2rem'>Welcome</h1>
                 {isLoading ? (
                     <Skeleton variant='text' width={220} /> 
                 ) : ( 
                     <h2>{honorific+' '+fullName}</h2>
                 )}
-                <div className='dashboard-cards'>
-                    <div className='client-card card'>
-                        <h2>Upcoming Session</h2>
-                        <p>02 February 2025</p>
-                        <p>9:00PM</p>
-                        <h2 id='safeTimerDisplay'>Counter/Timer </h2>
-                        <div className='cta'>
-                            <button className='btn btn-primary'>Join Session</button>
-                            <button className='btn btn-secondary'>Cancel</button>
-                        </div>
-    
-                    </div>
-                    <div className='client-card therapist-card card'>
+
+                
+                    <div className='dashboard-cards'>
+
+                        {
+                            (Object.keys(upComingSession).length>0)? (      
+                                <div className='client-card card'>
+                                <h2>Upcoming Session</h2>
+                                <h1>{upComingSession.date}</h1>
+                                <h1>{upComingSession.start_time}</h1>
+                                {/* <h2 id='safeTimerDisplay'>Counter/Timer </h2> */}
+                                <div className='cta'>
+                                    <button className='btn btn-primary'>Join Session</button>
+                                    <button className='btn btn-secondary'>Cancel</button>
+                                </div>
+
+                            </div>
+                        ):
+                                    ( <div className='client-card card'>
+                                            <h3>No Upcoming Session</h3>
+                                            <a href='/appointment' ><button className='btn btn-primary'>Book Appointment</button></a>
+                                        </div>)
+                            
+                        }
+
+
+                    {
+                        (Object.keys(selectedTherapist).length>0)? (
+                            <div className='client-card therapist-card card'>
                         
                             <h2 Style='align-self:center'>My Therapist</h2>
                             <a href='/' className='card-profile'>
                                 <div className='profile-img-container'>
                                     <img src={pp} alt='profile-picture' className='profile-picture'/>
                                 </div>
-                                <h3>Dr. FirstName Lastname </h3>
+                                <h3>{(selectedTherapist.sexe === 'male')?  'Mr ': 'Mrs ' } {selectedTherapist.firstname+' '+selectedTherapist.lastname} </h3>
                             </a>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, repudiandae recusandae 
-                                eveniet dolorem, quaerat laborum, magni deleniti sunt rerum voluptatum aut 
-                                consequuntur! Sed reiciendis voluptates distinctio perspiciatis commodi sit labore.
+                               {selectedTherapist.bio}
                             </p>
                         
-                            <h5>⭐⭐⭐⭐⭐</h5>
+                            <Rating Style='color: yellow;' name="half-rating-read" defaultValue={selectedTherapist.ratings} precision={0.5} readOnly />
                             <FaRegEnvelope/>
                         
-                    </div>
+                        </div>
+
+                        ):(
+                            <div className='client-card therapist-card card'>
+                                <h3>No therapist selected yet</h3>
+                                <a href='/therapists'><button className='btn btn-primary'>Choose Your Therapist</button></a>
+                            </div>
+                        )
+                    }
+             
 
                 </div>
 
-                <h1 Style='align-self:flex-start; font-size:1.5rem; padding-left: 1rem;'>Your Therapy Snapshot:</h1>
+                <h1 Style='align-self:center; font-size:1.5rem; width: 95%;'>Your Therapy Snapshot:</h1>
+
                 <div className='therapy-snapshot'>
                     
                     <div className='snap'>
                         <h3>Current Therapist:</h3>
-                        <p>Name: <b>Fullname</b></p>
-                        <p>Specialization: <b>Therapist's expertise or area of focus</b></p>
+                        <div className='snap-info-unit'>
+                            <h5>Name: </h5><p>{selectedTherapist.firstname+' '+selectedTherapist.lastname}</p>
+                        </div>
+                        <div className='snap-info-unit'>
+                            <h5>Specialization: </h5>
+                            <p>{selectedTherapist.specialization}</p>
+                        </div>
                     </div>
                     <div className='snap'>
                         <h3>Session summary:</h3>
-                        <p>Total Sessions Completed: <b>9</b></p>
-                        <p>Upcoming Session: <b>09 mars 2025</b></p>
+                        <div className='snap-info-unit'>
+                            <h5>Total Sessions Completed: </h5>
+                            <p>9</p>
+                        </div>
+                        <div className='snap-info-unit'>
+                            <h5>Upcoming Session:</h5>
+                            <p>09 mars 2025</p>   
+                        </div>
                     </div>
                     
                     <div className='snap'>
                         <h3>Account Status:</h3>
-                        <p>Next Billing Date: <b>09/12</b></p>
-                        <p>Upcoming Session: <b>09 mars 2025</b></p>
+                        <div className='snap-info-unit'>
+                            <h5>Next Billing Date:</h5>
+                            <p>09/12</p> 
+                        </div>
+
+
                     </div>
                     <div className='snap'>
                         <h3>Contact & Support:</h3>
-                        <p>Support Contact: <b>support@therapynow.com</b></p>
-                        <p>Emergency Assistance: <b>9009000</b></p>
+                        <div className='snap-info-unit'>
+                            <h5>Support Contact:</h5>
+                            <p>support@therapynow.com</p>   
+                        </div>
+                        <div className='snap-info-unit'>
+                            <h5>Emergency Assistance:</h5>
+                            <p>9009000</p>   
+                        </div>
                     </div>
 
 

@@ -1,0 +1,466 @@
+.therapists-container{
+    width: 95%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+
+
+}
+
+.types-options-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.layout-types{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.layout-type-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+    padding: 4px;
+    border-radius: 2px;
+    box-shadow: -1px -1px 2px rgba(15, 15, 15, 0.1), 1px 1px 2px rgba(15, 15, 15, 0.1);
+    gap: 1rem;
+    cursor: pointer;
+    width: auto;
+    height: 100%;
+}
+
+.layout-type{
+    font-size: 1.5rem;
+    color: var(--bar-color);
+    width: 100%;
+}
+
+.therapist-options-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.therapist-option-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+    padding: 4px;
+    border-radius: 2px;
+    box-shadow: -1px -1px 2px rgba(15, 15, 15, 0.1), 1px 1px 2px rgba(15, 15, 15, 0.1);
+ 
+    cursor: pointer;
+    width: auto;
+    height: 100%;
+  
+
+    svg{
+        font-size: 1.5rem;
+    }
+
+}
+
+.therapist-option{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.assigned-therapist{
+    border: 3px solid var(--accent-color) !important;
+}
+
+.change-therapist{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items:center; 
+    gap: 3px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+
+    svg{
+        width: 100%;
+    }
+
+}
+
+.therapists-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    align-content: flex-start;
+}
+
+.therapists-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.therapist-card-grid{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  */
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  border: 3px solid var(--bar-color);
+  border-radius: 4px;
+  box-shadow: -4px -4px 6px rgba(255, 255, 255, 0.553), 4px 4px 6px rgba(15, 15, 15, 0.2);
+  width: 100%;
+  /* height: 100%; */
+  gap: 4px;
+  transition: ease 0.1s;
+
+}
+
+.therapist-card-list{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  */
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--white-color);
+  border: 3px solid var(--bar-color);
+  border-radius: 4px;
+  box-shadow: -4px -4px 6px rgba(255, 255, 255, 0.553), 4px 4px 6px rgba(15, 15, 15, 0.2);
+  width: 100%;
+  /* height: 100%; */
+  gap: 4px;
+  transition: ease 0.1s;
+  
+
+}
+
+
+.therapist-card-grid:hover{
+    /* border-color: var(--accent-color); */
+    transform: scale(1.01);
+    border: 3px solid var(--accent-color);
+    
+}
+
+.inner-therapist-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white-color);
+    padding: 10px;
+}
+
+.inner-therapist-card-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white-color);
+    padding: 10px;
+
+}
+
+
+.tppc-container{
+
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   background-color: var(--bar-color);
+   padding: 2px;
+
+   
+}
+
+.tppc{
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    align-self: center;
+    justify-self: center;
+
+  
+}
+
+.therapist-infos-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.therapist-infos-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white-color);
+}
+
+
+/* list page navigation */
+
+.list-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    > * {
+        cursor: pointer;
+    }
+
+}
+
+.index-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.page-index-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: var(--white-color);
+    box-shadow: -1px -1px 2px rgba(15, 15, 15, 0.2), 1px 1px 2px rgba(15, 15, 15, 0.2);
+    width: 40px;
+    height: 40px;
+
+}
+
+
+.therapist-cta{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.card-cta-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    
+    /* border: 2px solid var(--white-color); */
+    padding: 8px;
+    cursor: pointer;
+    
+    svg{
+        color: var(--bar-text-color);
+        font-size: 1.4rem;
+        
+    }
+
+}
+
+.cta-1{
+    background-color: var(--accent-color);
+}
+
+.cta-2{
+    background-color: var(--bar-color);
+    
+}
+
+
+.therapist-cta-list{
+
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 100%;
+}
+
+.card-cta-icon-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    
+    /* border: 2px solid var(--white-color); */
+    padding: 8px;
+    cursor: pointer;
+    
+    svg{
+        color: var(--bar-text-color);
+        font-size: 1.4rem;
+        
+    }
+}
+
+.confirmation-box{
+    
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    width: 30%;
+  
+    /* border: 2px solid var(--black-color); */
+    border-radius: 6px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    z-index: 100;
+
+    h2{
+        text-align: center;
+    }
+
+    > :first-child{
+        align-self: flex-end;
+    }
+
+    
+
+}
+
+.confirmation-box-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bar-color);
+
+    > *{
+        color: var(--bar-text-color);
+    }
+}
+
+.confirmation-infos-box{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+
+}
+
+.confirmation-infos-unit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.choices{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    > * {
+        width: 100%;
+
+    }
+
+}
+
+.overlay4{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; /* Hide overlay by default */
+    pointer-events: auto; /* Prevent clicks on the background */
+    z-index: 1;
+    overflow-y: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+    .therapists-grid{
+        overflow-y: auto;
+        /* display: flex;
+        flex-wrap: wrap; */
+    }
+    .confirmation-box{
+        width: 90%;
+    }
+    
+}
+
+
+@media screen and (max-width: 600px) {
+    
+    
+    .therapist-option{
+        font-size: 0.7rem;
+    }
+    
+}

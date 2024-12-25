@@ -49,6 +49,7 @@
 .inside-calendar{
     /* border-color: 2px solid var(--black-color); */
     width: 100%;
+    background-color: var(--white-color);
 
 }
 .hours{
@@ -103,6 +104,7 @@
     border: 2px solid var(--black-color);
     text-align: center;
     cursor: pointer;
+
  
     th{
         width: 100%;
@@ -112,6 +114,7 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            color: var(--bar-text-color);
           
         }
         
@@ -123,7 +126,7 @@
         box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);  
         border-collapse: separate;
         box-sizing: border-box;
-        
+
         
     }
 
@@ -139,6 +142,14 @@
     background-color: var(--bar-color);
     color: var(--bar-text-color);
     box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);  
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p{
+        color:var(--bar-text-color);
+    }
+
 }
 
 .range{
@@ -146,7 +157,7 @@
     flex-direction: column;
     width: 100%;
     height: auto;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-color: var(--white-color);
     /* border-radius: 10px; */
@@ -154,6 +165,8 @@
     /* padding: 1rem; */
     background-color: var(--white-color);
     border: 2px solid var(--black-color);
+
+
 
     h3:first-child{
         color: var(--bar-text-color);
@@ -163,11 +176,11 @@
         text-align: center;
     }
 
-    hr{
+    /* hr{
         background-color: var(--bar-color);
         margin: 0;
-        /* height: 2px; */
-    }
+    
+    } */
   
 
 }
@@ -316,8 +329,87 @@
     gap: 10px;
     padding: 1rem;
     width: 100%;
-}
+}ff
 
 .active-day{
     background-color: purple;
+}
+
+
+@media screen and (max-width: 1024px){
+
+    .schedule-container{
+        flex-direction: column;
+    }
+
+    .calendar-nav{
+     
+        font-size: 1rem;
+        padding: 1rem;
+
+    }
+
+    .hours-range{
+        flex-direction: column-reverse;
+    }
+
+    .range{
+
+    }
+
+    .recurring-schedule-inputs{
+   
+        /* justify-content: space-evenly; 
+        align-items: center; 
+        width: auto;
+        gap: 4px;
+        padding: 0.5rem; */
+      
+    }
+
+    .openclose{
+        font-size: 0.7rem;
+    }
+
+    .from, .to{
+        border: 2px solid var(--bar-color);
+        border-radius: 4px;
+        width: auto;
+        /* font-size: 0.7rem;
+        padding: 2px;
+        height: 2rem; */
+        font-weight: 40;
+        font-size: 0.8rem;
+        box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);  
+        height: 2rem;
+    }
+
+    
+    .hourCell{
+     
+        p{
+            text-align: center;
+           font-size: 0.6rem;
+        }
+    }
+
+
+
+
+}
+
+
+@media screen and (max-width: 600px){
+    .recurring-schedule-inputs{
+   
+      gap: 0.4rem;
+      
+    }
+    .from, .to{
+
+        font-size: 0.6rem;
+        box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);  
+        height: 1.8rem;
+    }
+
 }

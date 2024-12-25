@@ -21,6 +21,7 @@ const ScheduleT = (props) => {
     const numbers = Array.from({ length: 17-8+1 }, (_, i) => i + 8);
     // const numbers = Array.from({ length: 24 }, (_, i) => i++);
     const days = ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
     const [schedule, setSchedule] = useState({
         "Monday":[{from: '', to:'', is_available: false}],
         "Tuesday":[{from: '', to:'', is_available: false}],
@@ -679,16 +680,16 @@ const ScheduleT = (props) => {
             if (startOfWeek && endOfWeek) {
                 getCurrentWeekSchedule(startOfWeek, endOfWeek);
               
-            const current = new Date(startOfWeek);
-            const allDays = [];
+                const current = new Date(startOfWeek);
+                const allDays = [];
 
-                    while (current <= endOfWeek){
-                        allDays.push(new Date(current))
-                        current.setDate(current.getDate() + 1);
+                        while (current <= endOfWeek){
+                            allDays.push(new Date(current))
+                            current.setDate(current.getDate() + 1);
+                        
+                    }
                     
-                }
-                
-                setWeekDays(allDays)
+                    setWeekDays(allDays)
             }
         }, [startOfWeek, endOfWeek]);
 
@@ -696,15 +697,18 @@ const ScheduleT = (props) => {
     return(
         <section className='section-2'>
             <Header />
-            <h2>Therapist Schedule</h2>
-            <p>Note! Special/Specific Day Schedule will override your set working hours(weekly working hours)</p>
+
+            <div Style='display: flex; flex-direction: column; justify-content; align-items:center; width: 95%;'>
+                <h2>Therapist Schedule</h2>
+                <p>Note! Special/Specific Day Schedule will override your set working hours(weekly working hours)</p>
+            </div>
+            
             {/* pick range start end date and specify availability for the days in that range 
             like monday from this time to end time available , thursday ... etc; when clicked on day from calendar 
             choose an hour or range of hours to specidy availabilty */}
 
 
             <div className='schedule-container'>
-
              
                 <div className='calendar-nav'>
                     <MdKeyboardArrowLeft className='calendar-nav-arrows' onClick={leftWeek}/>
@@ -721,40 +725,42 @@ const ScheduleT = (props) => {
                 <div className='hours-range'>
                     
                     <div className='hours'>
-
-                        <table className="scheduleTable" border="1">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        {weekDays.map((day) => (
-                                            <th key={day} Style={day.toLocaleDateString('en-US', { weekday: 'long' }) === currentDate.toLocaleDateString('en-US', { weekday: 'long' })?
-                                            ('background-color:  var(--accent-color); border: 3px solid var(--black-color);'):('')}
-                                                onClick={()=>{
-                                                    getWeekRange(day);
-                                                    }
-                                                    }   
-                                                >
-                                            {/* <h5 Style='color: var(--bar-text-color)'>{day.substring(0, 3)}</h5> */}
-                                            <h5  Style='color: var(--bar-text-color)'>{day.toLocaleDateString('en-US', { weekday: 'long' }).substring(0,3)}</h5>
-                                            <h6 Style='color: var(--bar-text-color)'>{day.toLocaleDateString()}</h6>
-                                            
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    {numbers.map((hour) => (
-                                        <tr key={hour} className='dayCells'>
-                                            <td className='hourCell'
-                                            
-                                            >{`${hour}:00`}
-                                            </td>
-                                            {renderCellsForRow(hour)}
+                        <div className='table-container'>
+                            <table className="scheduleTable" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            {weekDays.map((day) => (
+                                                <th key={day} Style={day.toLocaleDateString('en-US', { weekday: 'long' }) === currentDate.toLocaleDateString('en-US', { weekday: 'long' })?
+                                                ('background-color:  var(--accent-color); border: 3px solid var(--black-color);'):('')}
+                                                    onClick={()=>{
+                                                        getWeekRange(day);
+                                                        }
+                                                        }   
+                                                    >
+                                                {/* <h5 Style='color: var(--bar-text-color)'>{day.substring(0, 3)}</h5> */}
+                                                {/* <h5  Style='color: var(--bar-text-color)'>{day.toLocaleDateString('en-US', { weekday: 'long' }).substring(0,3)}</h5>
+                                                <h5 Style='color: var(--bar-text-color)'>{day.toLocaleDateString()}</h5> */}
+                                                    <h5> {day.toDateString('en-CA')}</h5>
+                                                
+                                                </th>
+                                            ))}
                                         </tr>
-                                    ))}
-                                </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {numbers.map((hour) => (
+                                            <tr key={hour} className='dayCells'>
+                                                <td className='hourCell'
+                                                
+                                                ><p>{hour+':00'}</p>
+                                                </td>
+                                                {renderCellsForRow(hour)}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                            </table>
+                        </div>
 
                 {
 
@@ -910,7 +916,7 @@ const ScheduleT = (props) => {
 
                             ):
                             (
-                                <div>
+                                <div Style='width: 100%'>
                                         {
                                 // days.map((day, index) =>
                                     Object.keys(recSchedule).map((day) =>

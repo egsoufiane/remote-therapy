@@ -65,7 +65,6 @@ from django.conf import settings
 
 
 
-
 class CustomUser(AbstractUser):
     # USERNAME_FIELD = 'email'
     username = models.CharField(max_length=30, unique=True)
@@ -100,6 +99,10 @@ class ClientProfile(models.Model):
     city = models.CharField(max_length=100, blank=True)     # Add city field
     state = models.CharField(max_length=255, blank=True)  # Add state field
     country = models.CharField(max_length=100, blank=True)  # Add country field
+    selected_therapist = models.ForeignKey(
+        CustomUser, null=True, blank=True, on_delete=models.SET_NULL, related_name='clients'
+    )
+
     # favorite_therapist = models.ManyToManyField('TherapistProfile', blank=True, related_name='clients') #Relation between CP and TP
 
 class TherapistProfile(models.Model):
@@ -119,7 +122,6 @@ class TherapistProfile(models.Model):
     experience_years = models.PositiveIntegerField(blank=True, null=True)
     # available_slots = models.JSONField(default=dict) 
     
-
 
 
 class CustomUserManager(BaseUserManager):
@@ -180,7 +182,6 @@ class SpecificDayAvailability(models.Model):
 
     class Meta:
         unique_together = ('therapist', 'date', 'start_time', 'end_time') #prevent setting up slot more than once
-
 
 
 # class Appointment(models.Model):

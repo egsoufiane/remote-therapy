@@ -125,7 +125,7 @@ class Profile(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        user = request.user
+        
      
         # username= user.username
         # firstname = user.first_name
@@ -133,6 +133,17 @@ class Profile(APIView):
         # email = user.email
         # city = user.city
         # country = user.country
+
+        user_id = request.query_params.get('therapist_id')
+
+        if user_id:
+            try:
+                user = CustomUser.objects.get(id=user_id)
+            except CustomUser.DoesNotExist:
+                return Response({"error": "User not found"}, status=404)
+        else:
+            user = request.user
+
 
         if(user.is_client == True):
             cp = user.clientprofile
@@ -197,7 +208,31 @@ class Profile(APIView):
     #         return Response(serializer.data, 'status.HTTP_200_OK')
     #     return Response(serializer.errors, "status.HTTP_400_BAD_REQUEST")
 
+class Profiles(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request):
+        # Accept multiple IDs
+        therapist_ids = request.query_params.getlist('therapist_ids[]')
+
+        if therapist_ids:
+            users = CustomUser.objects.filter(id__in=therapist_ids, is_therapist=True)
+            if not users.exists():
+                return Response({"error": "No therapists found"}, status=404)
+
+            serialized_profiles = []
+            for user in users:
+                tp = user.therapistprofile
+                serialized_user = CustomUserSerializer(user)
+                serialized_therapist_profile = TherapistProfileSerializer(tp)
+                profile_data = serialized_user.data
+                profile_data['profile'] = serialized_therapist_profile.data
+                serialized_profiles.append(profile_data)
+
+            return Response(serialized_profiles)
+        
+        return Response({"error": "No therapist IDs provided"}, status=400)
         
 
 #Register Client
@@ -301,6 +336,25 @@ def register_therapist(request):
 
         return JsonResponse({'message': 'User created successfully'}, status=201)
     
+#get all therapists
+@api_view(['GET'])
+@csrf_exempt
+def get_therapists(request):
+
+    
+    therapist_ids = request.query_params.getlist('therapist_ids[]')
+
+# therapist_profiles = TherapistProfile.objects.filter(therapist__id__in=therapist_ids)
+    if(therapist_ids):
+        tl = TherapistProfile.objects.filter(user__in=therapist_ids)
+        serializedTL = TherapistProfileSerializer(tl, many=True)
+    else:
+        tl = TherapistProfile.objects.all().order_by('ratings')[::-1]
+        serializedTL = TherapistProfileSerializer(tl, many=True)
+
+    return Response(serializedTL.data)
+
+    
 
 from itertools import groupby
 from operator import itemgetter
@@ -390,11 +444,21 @@ class ScheduleAvailability(APIView):
     # get data with special and recurring schedule combined
     def get(self, request):
         DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-        user = request.user
-
+        
         # Extract query parameters
         start_of_week = request.query_params.get('startOfWeek')
         end_of_week = request.query_params.get('endOfWeek')
+        # therapist_id = request.query_params.get('therapist_id')
+
+
+        # if(therapist_id):
+        #     therapist_profile = TherapistProfile.objects.get(id = therapist_id)
+        #     user = therapist_profile.user
+        # else:
+        #     user = request.user
+        user = request.user
+        
+
 
         if not start_of_week or not end_of_week:
             return Response({"error": "Invalid date range"}, status=400)
@@ -463,6 +527,7 @@ class ScheduleAvailability(APIView):
 
 
         return Response(ordered_grouped_data)
+        
 
     # def get(self, request):
     #     DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -786,6 +851,217 @@ class OneDayAvaialbility(APIView):
 
         
         
+
+
+#get therapist schedule client pov
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# @csrf_exempt
+# def get_therapist_schedule(request):
+
+#     DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+#     # Extract query parameters
+#     start_of_week = request.query_params.get('startOfWeek')
+#     end_of_week = request.query_params.get('endOfWeek')
+#     therapist_id = request.query_params.get('therapist_id')
+
+#     # therapist_profile = TherapistProfile.objects.get(id = therapist_id)
+#     # user = therapist_profile.user
+
+#     user = therapist_id
+
+#     if not start_of_week or not end_of_week:
+#         return Response({"error": "Invalid date range"}, status=400)
+
+#     # Convert strings to date objects
+#     start_of_week = datetime.strptime(start_of_week, '%Y-%m-%d').date()
+#     end_of_week = datetime.strptime(end_of_week, '%Y-%m-%d').date()
+
+#     # Prepare a dictionary to store availability
+#     grouped_data = {}
+
+#     # Iterate through the days in the week
+#     current_date = start_of_week
+#     while current_date <= end_of_week:
+#         day_of_week = current_date.strftime('%A')  # Get day name (e.g., Monday)
+#         # Fetch specific availability for the current date
+#         specific_availability = SpecificDayAvailability.objects.filter(
+#             therapist=user, date=current_date
+#         ).annotate(
+#             start=F('start_time'),
+#             end=F('end_time'),
+#             available=F('is_available')
+#         ).values('start', 'end', 'available')
+        
+#         if specific_availability.exists():
+#             # Use specific availability if it exists
+#             grouped_data[day_of_week] = [
+#                 {
+                    
+#                     'from': slot['start'].strftime('%H:%M'),
+#                     'to': slot['end'].strftime('%H:%M'),
+#                     'is_available': slot['available']
+#                 }
+#                 for slot in specific_availability
+#             ]
+#         else:
+#             # Fallback to default availability for the day of the week
+#             default_availability = TherapistAvailability.objects.filter(
+#                 therapist=user, day_of_week=day_of_week
+#             ).annotate(
+#                 start=F('start_time'),
+#                 end=F('end_time'),
+#                 available=F('is_available')
+#             ).values('start', 'end', 'available')
+            
+#             grouped_data[day_of_week] = [
+#                 {
+#                     'from': slot['start'].strftime('%H:%M') if slot['start'] else '',
+#                     'to': slot['end'].strftime('%H:%M') if slot['end'] else '',
+#                     'is_available': slot['available']
+#                 }
+#                 for slot in default_availability
+#             ]
+        
+#         current_date += timedelta(days=1)
+
+#     # Ensure all days in the week are included in the response, even if no data exists
+#     for day in DAYS_ORDER:
+#         if day not in grouped_data:
+#             grouped_data[day] = []
+
+# # Sort grouped data by the custom days order
+#     ordered_grouped_data = {
+#         day: grouped_data[day] for day in DAYS_ORDER if day in grouped_data
+#     }
+
+
+#     return Response(ordered_grouped_data)
+
+
+
+
+#get therapist schedule including appointments into account 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def get_therapist_schedule(request):
+    DAYS_ORDER = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+    # Extract query parameters
+    start_of_week = request.query_params.get('startOfWeek')
+    end_of_week = request.query_params.get('endOfWeek')
+    therapist_id = request.query_params.get('therapist_id')
+
+    start_of_week = datetime.strptime(start_of_week, '%Y-%m-%d').date()
+    end_of_week = datetime.strptime(end_of_week, '%Y-%m-%d').date()
+
+    data = {}
+
+    if not start_of_week or not end_of_week:
+        return Response({"error": "Invalid date range"}, status=400)
+
+    try:
+  
+        current_date = start_of_week
+        while( current_date <= end_of_week):
+            day_of_week = current_date.strftime('%A')
+
+            sta= SpecificDayAvailability.objects.filter(
+                therapist_id = therapist_id, date=current_date
+                )
+
+            if(sta):
+                for slot in sta:
+                    data[day_of_week] = [
+                        {
+                            'from': slot.start_time.strftime('%H:%M') if slot.start_time else '',
+                            'to': slot.end_time.strftime('%H:%M') if slot.end_time else '',
+                            'is_available': slot.is_available 
+                        }    
+                        
+                    ]
+
+                
+            else:
+                rta = TherapistAvailability.objects.filter(
+                    therapist_id = therapist_id, day_of_week = day_of_week 
+                )
+
+                for slot in rta:
+                    data[day_of_week] = [
+                        {
+                            'from': slot.start_time.strftime('%H:%M') if slot.start_time else '',
+                            'to': slot.end_time.strftime('%H:%M') if slot.end_time else '',
+                            'is_available': slot.is_available 
+                        }
+                    
+                    ]
+    
+
+            current_date += timedelta(days=1) 
+
+        
+        # Ensure all days in the week are included in the response, even if no data exists
+        for day in DAYS_ORDER:
+            if day not in data:
+                data[day] = []    
+
+        ordered_data = {
+            day: data[day] for day in DAYS_ORDER if day in data
+        }
+
+
+        return Response(ordered_data)
+
+
+    except Exception as e:
+        return Response ({'detail': 'an error has occured try again later'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+#get clients selected_therapist
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def get_assigned_therapist(request):
+    user = request.user
+
+    client = ClientProfile.objects.get(user = user)
+    # assigned_therapist = CustomUser.objects.get(id = client.selected_therapist_id)
+    # atp = TherapistProfile.objects.get(user_id = assigned_therapist)
+
+    assigned_therapist = TherapistProfile.objects.get(user_id = client.selected_therapist_id)
+    serializedAT = TherapistProfileSerializer(assigned_therapist)
+
+    return Response(serializedAT.data)
+
+#set clients selected_therapist
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
+def set_assigned_therapist(request):
+    user = request.user
+    data = json.loads(request.body)
+
+    cp = user.clientprofile
+
+    try:
+        # cp = ClientProfile.objects.get(user_id = user)
+        
+        cp.selected_therapist_id = data['selected_therapist_id']
+        cp.save()
+        return Response(True)
+    except:
+        return Response(False)
+
+
+
+
+
+
 
 
 #---------------------------------------------------------------

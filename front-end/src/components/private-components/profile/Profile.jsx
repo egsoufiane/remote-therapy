@@ -66,10 +66,9 @@ const Profile = (props) => {
                 state: res.data.profile.state,
                 country: res.data.profile.country,
             })
-            setTimeout(() =>{
+          
                 setisLoading(false);
-            },'3000');
-           
+     
             console.log(res.data)
 
             }).catch(err =>{
@@ -306,7 +305,7 @@ const Profile = (props) => {
                     
                             <div className='info-block'>
                                 <h2>
-                                    Email:
+                                    Username:
                                 </h2>
                                 <p>
                                     {userData.username}

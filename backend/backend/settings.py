@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     "corsheaders",
 
     #Internal apps
-    'users'
+    'users',
+    'appointments',
 ]
 
 MIDDLEWARE = [

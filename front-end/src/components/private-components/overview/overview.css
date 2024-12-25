@@ -22,7 +22,7 @@
 
 .client-card{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -32,8 +32,8 @@
     transform: all 0.3s;  
     
     background-color: var(--white-color);
-    border-radius: 10px;
-    box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: -1px -1px 4px rgba(0, 0, 0, 0.1), 1px 1px 4px rgba(0, 0, 0, 0.1);
 
     svg{
         font-size: 1.5rem;
@@ -48,7 +48,7 @@
     }
 }
 .client-card:hover{
-    box-shadow: 1px 1px 1px var(--accent-color), -1px -1px 1px var(--accent-color);
+    box-shadow: 1px 1px 4px var(--accent-color), -1px -1px 4px var(--accent-color),  1px -1px 4px var(--accent-color), -1px 1px 4px var(--accent-color);
 }
 
 .card-profile{
@@ -73,7 +73,25 @@
 }
 
 .snap{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
     width: 100%;
+}
+
+.snap-info-unit{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+
+    h5{
+        display: flex;
+        text-wrap: nowrap;
+    }
 }
 
 

@@ -12,8 +12,8 @@
     padding: 1rem 2rem;
     gap:3rem;
     background-color: var(--bar-color);
+    box-shadow: 0px -4px 6px rgba(15, 15, 15);
 
-  
 
     a{
         color: var(--bar-text-color);
@@ -31,7 +31,6 @@
         /* li:last-child{
             margin-top: auto;
         } */
-
 
        
     }
@@ -75,6 +74,7 @@
     justify-content: center;
     align-items: center;
     color:var(--bar-text-color);
+    width: auto;
 }
 
 
