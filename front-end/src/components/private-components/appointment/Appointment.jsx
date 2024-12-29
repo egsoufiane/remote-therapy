@@ -4,7 +4,7 @@ import Header from '../header/Header';
 import tpp from '../../../assets/832.jpg';
 import ReactStars from "react-rating-stars-component";
 import {
- 
+
     useLocation,
      
   } from "react-router-dom";
@@ -56,7 +56,7 @@ const Appointment = (props) => {
         // "Saturday":[{from: '', to:'', is_available: false}],
         // "Sunday":[{from: '', to:'', is_available: false}],
     })
-    const [msg, setMsg] = useState('');
+
 
     //appoitnemnt data
     const [selectedTherapist, setSelectedTherapist] = useState({});
@@ -89,8 +89,6 @@ const Appointment = (props) => {
     //             setMsg('success');
              
          
-    
-     
     //     }).catch(err => {
     //         console.log(err.message);
     //         setMsg('failed');
@@ -134,7 +132,7 @@ const Appointment = (props) => {
         console.log(startOfWeek)
         console.log(endOfWeek)
 
-    //     //to update selectedweekschedule everytime a date is selected
+        //to update selectedweekschedule everytime a date is selected
 
         const current = new Date(startOfWeek);
         const allDays = [];
@@ -145,8 +143,6 @@ const Appointment = (props) => {
         }
 
         setSelectedWeek(allDays)
-    
-
 
         return { startOfWeek, endOfWeek };
     }
@@ -167,7 +163,7 @@ const Appointment = (props) => {
         };
     
         axios.get(apiURL+'/users/get_therapist_schedule/', {
-            params, // Add params here
+            params,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${props.accessToken}`
@@ -180,7 +176,6 @@ const Appointment = (props) => {
            
                     setSchedule(res.data);
                     
-                 
             }
 
      

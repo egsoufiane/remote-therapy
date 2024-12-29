@@ -97,13 +97,13 @@ class Home(APIView):
     def get(self, request):
         user = request.user
         
-        if(user.is_client == True):
+        if(user.is_client):
             cp = user.clientprofile
             firstname = cp.firstname
             lastname = cp.lastname
             specialization = ''
             sexe=cp.sexe
-        elif(user.is_therapist == True):
+        elif(user.is_therapist):
             tp = user.therapistprofile
             firstname = tp.firstname
             lastname = tp.lastname
@@ -336,26 +336,59 @@ def register_therapist(request):
 
         return JsonResponse({'message': 'User created successfully'}, status=201)
     
+from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination    
+
+class LargeResultsSetPagination(PageNumberPagination):
+    page_size = 8
+    page_size_query_param = 'page_size'
+    max_page_size = 100 
+
+    def get_paginated_response(self, data):
+        return Response({
+            'count': self.page.paginator.count,  # Total items
+            'page_size': self.page.paginator.per_page,  # Current page size
+            'next': self.get_next_link(),
+            'previous': self.get_previous_link(),
+            'results': data  # Actual paginated data
+    })
+    
 #get all therapists
 @api_view(['GET'])
-@csrf_exempt
 def get_therapists(request):
 
-    
     therapist_ids = request.query_params.getlist('therapist_ids[]')
 
 # therapist_profiles = TherapistProfile.objects.filter(therapist__id__in=therapist_ids)
     if(therapist_ids):
         tl = TherapistProfile.objects.filter(user__in=therapist_ids)
         serializedTL = TherapistProfileSerializer(tl, many=True)
+        return Response(serializedTL.data)
     else:
         tl = TherapistProfile.objects.all().order_by('ratings')[::-1]
-        serializedTL = TherapistProfileSerializer(tl, many=True)
+        paginator = LargeResultsSetPagination()
+        paginated_therapists = paginator.paginate_queryset(tl, request)
+        serialized_therapists = TherapistProfileSerializer(paginated_therapists , many=True)    
 
-    return Response(serializedTL.data)
+        return paginator.get_paginated_response(serialized_therapists.data)
+
+#get all therapists
+@api_view(['GET'])
+@csrf_exempt
+def get_clients(request):
+
+    client_ids = request.query_params.getlist('client_ids[]')
+
+# therapist_profiles = TherapistProfile.objects.filter(therapist__id__in=therapist_ids)
+    if(client_ids):
+        cl = ClientProfile.objects.filter(user__in=client_ids)
+        serializedCL = ClientProfileSerializer(cl, many=True)
+    else:
+        cl = ClientProfile.objects.all()
+        serializedCL = ClientProfileSerializer(cl, many=True)
+
+    return Response(serializedCL.data)
 
     
-
 from itertools import groupby
 from operator import itemgetter
 from django.db.models import F

@@ -15,25 +15,68 @@ from .models import Appointment
 from users.models import CustomUser
 from .serializers import AppointmentSerialzer
 
+from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
+
+
+class LargeResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+    
+    def get_paginated_response(self, data):
+        return Response({
+            'count': self.page.paginator.count,  # Total items
+            'page_size': self.page.paginator.per_page,  # Current page size
+            'next': self.get_next_link(),
+            'previous': self.get_previous_link(),
+            'results': data  # Actual paginated data
+        })
+    
 
 
 # Create your views here.
 class AppointmentController(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    # pagination_class = LargeResultsSetPagination
 
     def get(self, request):
         user = request.user
+        order_param = request.query_params.get('orderParam')
+        is_ascending = request.query_params.get('isAscending')       
+        if(user.is_client):
+            if(is_ascending=="true"):
+                appointments = Appointment.objects.filter(
+                client = user 
+                    ).all().order_by(order_param)[::-1]
+            else:
+                appointments = Appointment.objects.filter(
+                client = user 
+                    ).all().order_by(order_param)
 
-        appointments = Appointment.objects.filter(
-            client = user 
-        ).all().order_by('date','start_time')[::-1]
+        elif(user.is_therapist):
+            if(is_ascending=="true"):
+                appointments = Appointment.objects.filter(
+                therapist = user 
+                    ).all().order_by(order_param)[::-1]
+            else:
+                appointments = Appointment.objects.filter(
+                therapist = user 
+                    ).all().order_by(order_param)
 
-    
-        SerializedAppointments = AppointmentSerialzer(appointments, many=True)
+  
 
-        return Response(SerializedAppointments.data)
+        # SerializedAppointments = AppointmentSerialzer(appointments, many=True)
 
+        # return Response(SerializedAppointments.data)
+
+        # Apply pagination
+        paginator = LargeResultsSetPagination()
+        paginated_appointments = paginator.paginate_queryset(appointments, request)
+        serialized_appointments = AppointmentSerialzer(paginated_appointments, many=True)
+
+        # Return paginated response
+        return paginator.get_paginated_response(serialized_appointments.data)
 
 
     def post(self, request):

@@ -14,8 +14,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineSort } from "react-icons/md";
 import { IoMdSwitch } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
-
-
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 
 import {
@@ -52,27 +51,121 @@ const Therapists = (props) =>{
     //     }
     // ])
 
+    const [nextPage, setNextPage] = useState(null);
+    const [prevPage, setPrevPage] = useState(null);
+    const [pageSize, setPageSize] = useState(0)
+    const [totalCount, setTotalCount] = useState(0);
     const [therapists, setTherapists] = useState([]);
     const [selectedTherapist, setSelectedTherapist] = useState({});
     const [isList, setIsList] = useState(false);
     const [assignedTherapist, setassignedTherapist] = useState({});
     const [isTSelected, setisTSelected]= useState(false);
+    const [selectedPageIndex, setSelectedPageIndex] = useState(1);
     
-    //get all therapists
-    useEffect(()=>{
 
-        axios.get(apiURL+'/users/get_therapists/', {
+    const pager = () => {
+        let pagination = [];
+        const totalPages = Math.ceil(totalCount/pageSize);
+        const range = 2; // Number of pages to display before and after the selected page
+    
+        // Calculate start and end range for pagination
+        let startPage = Math.max(1, selectedPageIndex - range);
+        let endPage = Math.min(totalPages, selectedPageIndex + range);
+    
+        if (startPage > 1) {
+            // Add the first page and ellipsis if necessary
+            pagination.push(
+                <div
+                    key={1}
+                    className="page-index-container"
+                    style={(1 === selectedPageIndex) ? { backgroundColor: 'var(--accent-color)' } : {}}
+                    onClick={() => {
+                        loadSpecificPage(1);
+                        setSelectedPageIndex(1);
+                    }}
+                >
+                    <h5 className="page-index">1</h5>
+                </div>
+            );
+            if (startPage > 2) {
+                pagination.push(
+                    <div key="start-ellipsis" className="page-index-container">
+                        <h5 className="page-index">...</h5>
+                    </div>
+                );
+            }
+        }
+    
+        // Add pages in the calculated range
+        for (let i = startPage; i <= endPage; i++) {
+            pagination.push(
+                <div
+                    key={i}
+                    className="page-index-container"
+                    style={(i === selectedPageIndex) ? { backgroundColor: 'var(--accent-color)' } : {}}
+                    onClick={() => {
+                        loadSpecificPage(i);
+                        setSelectedPageIndex(i);
+                    }}
+                >
+                    <h5 className="page-index">{i}</h5>
+                </div>
+            );
+        }
+    
+        if (endPage < totalPages) {
+            // Add ellipsis and the last page if necessary
+            if (endPage < totalPages - 1) {
+                pagination.push(
+                    <div key="end-ellipsis" className="page-index-container">
+                        <h5 className="page-index">...</h5>
+                    </div>
+                );
+            }
+            pagination.push(
+                <div
+                    key={totalPages}
+                    className="page-index-container"
+                    style={(totalPages === selectedPageIndex) ? { backgroundColor: 'var(--accent-color)' } : {}}
+                    onClick={() => {
+                        loadSpecificPage(totalPages);
+                        setSelectedPageIndex(totalPages);
+                    }}
+                >
+                    <h5 className="page-index">{totalPages}</h5>
+                </div>
+            );
+        }
+    
+        return pagination;
+    };
+
+    const getTherapists = (url) => {
+        axios.get(url, {
             headers:{
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                
             }
         }).then(res =>{
             console.log(res);
             console.log(res.data);
-            setTherapists(res.data)
+            setTherapists(res.data.results)
+            setNextPage(res.data.next); // Set the next page URL
+            setPrevPage(res.data.previous); // Set the previous page URL
+            setTotalCount(res.data.count); // Set the total count of appointments
+            setPageSize(res.data.page_size); // Set the total count of appointments
+            window.location.href="#therapist-list"
 
         }).catch(err =>{
             console.log(err.message)
         })
+    }
+    
+    //get all therapists
+    useEffect(()=>{
+
+        getTherapists(apiURL+'/users/get_therapists/');
+
 
     }, []);
 
@@ -141,12 +234,44 @@ const Therapists = (props) =>{
 
     }, [isTSelected]);
 
+
+    //load next page
+    const loadNextPage = () => {
+       
+        if (nextPage) {
+            const index = Number(nextPage.substr(-1));
+            setSelectedPageIndex(index);
+            getTherapists(nextPage);
+        }
+    };
+
+    //load previous page
+    const loadPrevPage = () => {
+        if (prevPage) {
+            const index = prevPage.substr(-1);
+            if(index === "/"){
+                setSelectedPageIndex(1);
+            }else{
+                setSelectedPageIndex(Number(index));
+            }
+            
+            getTherapists(prevPage);
+        }
+    };
+
+    //load previous page
+    const loadSpecificPage = (key) => {
+        const specPage = apiURL+'/users/get_therapists/?page='+key
+        if (specPage) {
+            getTherapists(specPage);
+        }
+    };
+
    
 
     return(
         <section Style='height:100%'className='section-2'>
             <Header/>
-
 
             {
                 (isTSelected)? (
@@ -291,7 +416,6 @@ const Therapists = (props) =>{
 
                 </div>
 
-                
 
                 {
                     (isList)?(
@@ -445,23 +569,32 @@ const Therapists = (props) =>{
                     </div> */}
 
                 <div className='list-nav'>
-                    <h5>Prev</h5>
-                        <div className='index-container'>
-                            <div className='page-index-container'>
-                                <h5 className='page-index'>1</h5>
-                            </div>
-                            <div className='page-index-container'>
-                                <h5 className='page-index'>2</h5>
-                            </div>
-                            <div className='page-index-container'>
-                                <h5 className='page-index'>3</h5>
-                            </div>
-                            <div className='page-index-container'>
-                                <h5 className='page-index'>4</h5>
-                            </div>
 
+                        <h5 className='page-prev-next' onClick={loadPrevPage}><MdOutlineKeyboardArrowLeft/> Prev</h5>
+                        <div className='index-container'>
+                
+                            {/* {Array.from({ length: Math.ceil(totalCount / 8)}, (_, i) => (
+                            
+                                <div key={i} className="page-index-container" Style={(i+1 === selectedPageIndex)? 'background-color: var(--accent-color)' : ''}
+                                    onClick={()=>{
+                                        loadSpecificPage(i+1)
+                                        setSelectedPageIndex(i+1)
+                                }}>
+                                    <h5 className="page-index">{i + 1}</h5>
+                                </div>
+                         
+                            ))}
+                            <div className="page-index-container">
+                                <h5 className='page-index'>...</h5>
+                            </div>
+                            <div className="page-index-container">
+                                <h5 className='page-index'>{Math.ceil(totalCount/8)}</h5>
+                            </div> */}
+                            {pager()}
+    
                         </div>
-                    <h5>Next</h5>
+
+                        <h5 className='page-prev-next' onClick={loadNextPage}>Next <MdOutlineKeyboardArrowRight/> </h5>
 
                 </div>
 

@@ -21,6 +21,7 @@ const Overview = (props) => {
     const [selectedTherapist, setSetecltedTherapist] = useState({})
     const [upComingSession, setUpComingSession] = useState({})
     const [counter, setCounter] = useState(null)
+    const [remainingDays, setRemainingDays] = useState(null)
 
 
     useEffect(() => {
@@ -50,22 +51,6 @@ const Overview = (props) => {
 
 
 
-    // Timer 
-    // const  timer = () => {
-    //     var sec = 60;
-    //     var timer = setInterval(function(){
-    //         document.getElementById('safeTimerDisplay').innerHTML='00:'+sec;
-    //         sec--;
-    //         if (sec < 0) {
-    //             clearInterval(timer);
-    //         }
-    //     }, 1000);
-    // }
-
-    // window.addEventListener('load',timer)
-
-
-   
     //get selected therapist
     useEffect(()=>{
         axios.get(apiURL+'/users/get_assigned_therapist/', {
@@ -93,9 +78,9 @@ const Overview = (props) => {
             }
         }).then(res=>{
             console.log(res.data);
-            if(res.data){
+            if(Object.keys(res.data).length>0){
                 setUpComingSession(res.data);
-           
+            
             }
         }).catch(err =>{
             console.log(err.message)
@@ -103,7 +88,150 @@ const Overview = (props) => {
 
 
     }, []);
+   
+
+    //run timer whenver upComingSession updates
+    // useEffect(()=>{
+
+        
+    //     // Timer 
+    //     const  timer = () => {
     
+    //         if (!upComingSession){
+    //             return;
+    //         }else{
+    //             // console.log("upComingSession:", upComingSession);
+    //             // var sec = null;
+    //             // let appDate = new Date(upComingSession.date);
+    //             // let startTime = null;
+    //             // let currentDate = new Date();
+
+    //             if (upComingSession.start_time) {
+    //                 // Get the start time (in HH:MM:SS format)
+    //                 const [startHour, startMinute, startSecond] = upComingSession.start_time.split(":").map(Number);
+                
+    //                 // Create Date objects for the start time and current time
+    //                 let currentDate = new Date();
+    //                 let appDate = new Date(upComingSession.date); // Copy current date to match day and time
+    //                 appDate.setHours(startHour, startMinute, startSecond, 0); // Set app date to start time
+
+    //                 console.log('Appointment Date: '+appDate);
+    //                 console.log('current date: '+currentDate)
+
+    //                 if(appDate <= currentDate){
+    //                     document.getElementById('safeTimerDisplay').innerHTML = "The appointments has passed.";
+    //                 }else{
+    //                     //Days left
+    //                     const a = appDate,
+    //                     b = currentDate,
+    //                     difference = dateDiffInDays(a, b);
+    //                     console.log('days difference: '+difference )
+    //                     setRemainingDays(difference)
+                        
+    //                     // Get current time in seconds
+    //                     // const currentTimeInSeconds = Math.floor(currentDate.getTime() / 1000);
+                        
+    //                     // // Get the session start time in seconds
+    //                     // const startTimeInSeconds = Math.floor(appDate.getTime() / 1000);
+                        
+    //                     // // Calculate the difference between current time and start time
+    //                     // let sec = Math.abs(currentTimeInSeconds - startTimeInSeconds); // Absolute difference in seconds
+
+    //                     let sec = Math.floor((appDate.getTime()-currentDate.getTime()) / 1000)
+                    
+    //                     var timer = setInterval(function () {
+    //                         // Calculate hours, minutes, and seconds
+    //                         let hours = Math.floor(sec / 3600); // Calculate hours
+    //                         let minutes = Math.floor((sec % 3600) / 60); // Calculate minutes
+    //                         let seconds = sec % 60; // Calculate seconds
+                    
+    //                         // Format time as h:m:s
+    //                         let timeString = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                            
+    //                         // Display the formatted time
+    //                         document.getElementById('safeTimerDisplay').innerHTML = timeString;
+                    
+    //                         sec--; // Decrement the total remaining time in seconds
+                    
+    //                         if (sec < 0) {
+    //                             clearInterval(timer); // Stop the timer once the countdown reaches 0
+    //                         }
+    //                     }, 1000); // Update the timer every second
+    //                 }
+                
+                 
+    //             }
+                
+           
+
+    //         }
+        
+    //     }
+  
+    //     timer();
+
+    // }, [upComingSession]); 
+
+    //Calculate differecne between two days
+    const dateDiffInDays = (a, b)=> {
+        const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+        // Discard the time and time-zone information.
+        const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+      
+        return Math.abs(Math.floor((utc2 - utc1) / _MS_PER_DAY));
+      }
+
+      useEffect(()=>{
+
+        if(!upComingSession){
+            return;
+        }else{
+            if(upComingSession.start_time){
+                const [startHour, startMinute, startSecond] = upComingSession.start_time.split(':').map(Number)
+                let currentDate = new Date();
+                let appDate = new Date(upComingSession.date);
+
+                appDate.setHours(startHour, startMinute, startSecond, 0);
+
+                // Get the difference in milliseconds 
+                let sec = Math.floor((appDate.getTime() - currentDate.getTime()) / 1000)
+
+                if(sec<0){
+                        document.getElementById('safeTimerDisplay').innerHTML = "The appointments has passed.";
+                }else{
+                        var timer = setInterval(function () {
+                        // Calculate hours, minutes, and seconds
+           
+                        let days = Math.floor(sec / (3600 * 24));
+                        let hours = Math.floor((sec % (3600 * 24)) / 3600);// Calculate hours
+                        let minutes = Math.floor((sec % 3600) / 60); // Calculate minutes
+                        let seconds = sec % 60; // Calculate seconds
+                        
+                        const dayString = (days===1)? ' day' : ' days'
+                        // Format time as h:m:s
+                        let timeString = `${days} ${dayString} ${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                        
+                        // Display the formatted time
+                        document.getElementById('safeTimerDisplay').innerHTML = timeString;
+                
+                        sec--; // Decrement the total remaining time in seconds
+                
+                        if (sec < 0) {
+                            clearInterval(timer); // Stop the timer once the countdown reaches 0
+                        }
+                    }, 1000); // Update the timer every second
+
+                }
+    
+
+            }
+          
+
+        }
+
+
+      },[upComingSession]);
 
 
     return(
@@ -127,9 +255,13 @@ const Overview = (props) => {
                             (Object.keys(upComingSession).length>0)? (      
                                 <div className='client-card card'>
                                 <h2>Upcoming Session</h2>
-                                <h1>{upComingSession.date}</h1>
-                                <h1>{upComingSession.start_time}</h1>
-                                {/* <h2 id='safeTimerDisplay'>Counter/Timer </h2> */}
+                                <h3>{upComingSession.date}</h3>
+                                <h3>{upComingSession.start_time}</h3>
+                                <div className='appointment-counter'>
+                                    <h1 id='safeTimerDisplay'> </h1>
+                                </div>
+
+                                
                                 <div className='cta'>
                                     <button className='btn btn-primary'>Join Session</button>
                                     <button className='btn btn-secondary'>Cancel</button>
@@ -198,7 +330,7 @@ const Overview = (props) => {
                         </div>
                         <div className='snap-info-unit'>
                             <h5>Upcoming Session:</h5>
-                            <p>09 mars 2025</p>   
+                            <p>{upComingSession.date}</p>   
                         </div>
                     </div>
                     

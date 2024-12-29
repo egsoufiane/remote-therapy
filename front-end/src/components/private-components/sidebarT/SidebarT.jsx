@@ -56,7 +56,7 @@ const SidebarT = () => {
             </div>
             <ul>
                 <li><a href='/' className='nav-link'><LuLayoutDashboard/>Overview</a></li>
-                <li><a href='/appointments' className='nav-link'><CiCalendar/>Appointments</a></li>
+                <li><a href='/appointments' className='nav-link'><CiCalendar/>My Appointments</a></li>
                 <li><a href='/sessions' className='nav-link'><MdOutlineVideoCall/>Sessions</a></li>
                 <li><a href='/clients' className='nav-link'><FaUsers/>Clients</a></li>
                 <li><a href='/schedule' className='nav-link'><FaRegClock/>Schedule</a></li>

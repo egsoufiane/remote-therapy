@@ -24,7 +24,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
+    gap: 2rem;
     background-color: var(--white-color);
     padding: 2rem;
     border-radius: 4px;
@@ -46,6 +46,7 @@
     border-collapse: separate;
     border-spacing: 0 5px; 
     overflow: hidden; 
+    table-layout: fixed;
 
     th{
         /* background-color: var(--bar-color); */
@@ -97,6 +98,9 @@
 
 .icon-container{
     cursor: pointer;
+    svg{
+        font-size:1.2rem;
+    }
 }
 
 .appointment-status{
@@ -126,6 +130,10 @@
     background-color: rgba(76, 175, 80, 0.2);
 }
 
+.passed-date{
+    background-color:rgb(133, 133, 133) !important;
+}
+
 
 .action-bar{
     position: absolute;
@@ -149,6 +157,7 @@
         background-color: var(--bar-color);
         height: 100%;
         transition: all 0.2s;
+        cursor: pointer;
     }
     svg:hover{
         filter: brightness(90%);

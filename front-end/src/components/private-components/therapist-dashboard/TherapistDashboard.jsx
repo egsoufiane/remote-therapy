@@ -17,6 +17,7 @@ import Profile from '../profile/Profile';
 import OverviewT from '../overviewT/OverviewT';
 import ProfileT from '../profileT/ProfileT';
 import ScheduleT from '../scheduleT/ScheduleT';
+import MyappointmentsT from '../myappointmentsT/MyappointmentsT';
 
 
 const TherapistDashboard = () => {
@@ -58,12 +59,12 @@ const TherapistDashboard = () => {
         <SidebarT/>
         <Routes >
             <Route path="/" element={<OverviewT/>} />
+            <Route path="/appointments" element={<MyappointmentsT accessToken = {accessToken}/>} />
             <Route path="/schedule" element={<ScheduleT accessToken = {accessToken}/>} />
             <Route path='/profile' element= {<ProfileT accessToken = {accessToken}/>}/>
             <Route path="*" element={<Navigate to="/"/>} />  
         </Routes>
         
-            
         </section>
     )
 }

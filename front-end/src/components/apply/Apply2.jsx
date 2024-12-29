@@ -176,7 +176,7 @@ const Apply2 = (props) => {
                     <input type='submit' value='Next' className='btn btn-primary apply-submit-btn' />
 
                 </form>
-                <h3>02/03</h3>
+                <h3>03/03</h3>
 
             </div>
     
